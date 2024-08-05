@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Running time.</span></h3> <div class="para logical">
+<div class="para">Analyzing the running time of the optimized procedure is interesting. Let <span class="process-math">\(M\)</span> be the greatest integer such that <span class="process-math">\(M^2\lt N\text{.}\)</span> For each <span class="process-math">\(1\lt i\lt M\)</span> we are marking all multiples greater or equal to <span class="process-math">\(i^2\)</span> and smaller than <span class="process-math">\(N\text{.}\)</span> So the overall number of markings performed is</div>
+<div class="displaymath process-math">
+\begin{align*}
+\sum_{i=2}^M \lfloor (N-i^2)/i\rfloor \amp \lt \sum_{i=1}^M(N-i^2)/i\\
+\amp = N\sum_{i=1}^M \frac 1i-\sum_{i=1}^M i\\
+\amp \lt N\ln M-\frac{M(M+1)}2\lt N\ln N
+\end{align*}
+</div>
+<div class="para">In the last step, we have exploited that <span class="process-math">\(1+\ln n\)</span> is an upper bound to the <span class="process-math">\(n\)</span>-th harmonic number <span class="process-math">\(1+\frac 12+\cdots+\frac 1n\text{.}\)</span>
+</div>
+</div> <aside class="aside aside-like"><div class="para">This can be seen from <span class="process-math">\(\int_1^x dz/z=\ln x\text{.}\)</span>
+</div></aside></section><span class="incontext"><a href="section-16.html#paragraphs-5" class="internal">in-context</a></span>
+</body>
+</html>

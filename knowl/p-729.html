@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">Let us consider the specification <span class="process-math">\(S_\text{max}\)</span> of the computation of the maximum of two variables <span class="process-math">\(\CVar x\)</span> and <span class="process-math">\(\CVar y\text{.}\)</span> It is given by the following set of state pairs:</div>
+<div class="displaymath process-math">
+\begin{align*}
+S_\text{max} = \amp \{(\{\CVar x\mapsto 1, \CVar y\mapsto 1\}, \{\CVar x\mapsto 1, \CVar y\mapsto 1,\CVar m\mapsto 1\}), \\
+\amp (\{\CVar x\mapsto 1, \CVar y\mapsto 2\}, \{\CVar x\mapsto 1, \CVar y\mapsto 2,\CVar m\mapsto 2\}),  \\
+\amp \vdots \\
+\amp (\{\CVar x\mapsto 42, \CVar y\mapsto 37\}, \{\CVar x\mapsto 42, \CVar y\mapsto 37,\CVar m\mapsto 42\}), \\
+\amp \vdots 
+\end{align*}
+</div>
+<div class="para">or more compact:</div>
+<div class="displaymath process-math">
+\begin{equation}
+S_\text{max}=\{(\sigma,\sigma')\mid\sigma'\,\CVar m\ge\sigma\,\CVar x\land\sigma'\,\CVar m\ge\sigma\,\CVar y\land(\sigma'\,\CVar m=\sigma\,\CVar x\lor\sigma'\,\CVar m=\sigma\,\CVar y)\}\tag{7.1}
+\end{equation}
+</div>
+</div>
+<span class="incontext"><a href="sec-corr-functional.html#p-729" class="internal">in-context</a></span>
+</body>
+</html>

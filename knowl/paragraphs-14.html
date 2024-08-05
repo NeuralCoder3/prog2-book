@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Inserting an Element behind Another Element.</span></h4> <div class="para">Inserting an element behind another element is simple for singly-linked lists and can be done in constant time. The only thing to do is to allocate a new list node, set its next pointer to the current first list node, and set the root to the freshly inserted element.</div> <div class="para">When using a “dummy” list node as the list root, the insert-behind operation can also be used to prepend an element to the list (insert it at the front). This makes using a list node for the root appealing because it saves an extra function that handles the special case for inserting at the front of the list.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">list_node_t* list_insert_behind(list_node_t* where, int element) {
+    list_node_t* n = malloc(sizeof(*n));
+    n-&gt;element  = element;
+    n-&gt;next     = where-&gt;next;
+    where-&gt;next = n;
+    return n;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%20struct%20list_node_t%20%7B%0A%20%20%20%20int%20element%3B%0A%20%20%20%20struct%20list_node_t*%20next%3B%0A%7D%3B%20%0Atypedef%20struct%20list_node_t%20list_node_t%3B%0A%20%20%20%20%0Alist_node_t*%20list_insert_behind(list_node_t*%20where%2C%20int%20element)%20%7B%0A%20%20%20%20list_node_t*%20n%20%3D%20malloc(sizeof(*n))%3B%0A%20%20%20%20n-%3Eelement%20%20%3D%20element%3B%0A%20%20%20%20n-%3Enext%20%20%20%20%20%3D%20where-%3Enext%3B%0A%20%20%20%20where-%3Enext%20%3D%20n%3B%0A%20%20%20%20return%20n%3B%0A%7D%0A%0Aint%20list_remove_behind(list_node_t*%20where)%20%7B%0A%20%20%20%20list_node_t*%20to_be_removed%20%3D%20where-%3Enext%3B%0A%20%20%20%20if%20(where-%3Enext%20%3D%3D%20NULL)%0A%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20where-%3Enext%20%3D%20to_be_removed-%3Enext%3B%0A%20%20%20%20free(to_be_removed)%3B%0A%20%20%20%20return%201%3B%0A%7D%0A%0Alist_node_t*%20list_search(list_node_t*%20root%2C%20int%20value)%20%7B%0A%20%20%20%20list_node_t*%20n%20%3D%20root-%3Enext%3B%0A%20%20%20%20while(n%20!%3D%20NULL)%20%7B%0A%20%20%20%20%20%20%20%20if%20(n-%3Eelement%20%3D%3D%20value)%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20n%3B%0A%20%20%20%20%20%20%20%20n%20%3D%20n-%3Enext%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20NULL%3B%0A%7D%0A%0Aint%20main()%20%7B%0A%20%20%20%20list_node_t%20head%3B%0A%20%20%20%20head.element%20%3D%2042%3B%0A%20%20%20%20head.next%20%3D%20NULL%3B%0A%20%20%20%20list_node_t*%20tail%20%3D%20%26head%3B%0A%20%20%20%20tail%20%3D%20list_insert_behind(tail%2C32)%3B%0A%20%20%20%20tail%20%3D%20list_insert_behind(tail%2C22)%3B%0A%20%20%20%20list_insert_behind(%26head%2C41)%3B%0A%20%20%20%20tail%20%3D%20list_insert_behind(tail%2C12)%3B%0A%20%20%20%20list_node_t*%20n22%20%3D%20list_search(%26head%2C22)%3B%0A%20%20%20%20list_node_t*%20n32%20%3D%20list_search(%26head%2C32)%3B%0A%20%20%20%20list_remove_behind(n32)%3B%0A%20%20%20%20return%200%3B%0A%7D%20">Run</a>
+</div></section><span class="incontext"><a href="sec-ds-lists.html#paragraphs-14" class="internal">in-context</a></span>
+</body>
+</html>

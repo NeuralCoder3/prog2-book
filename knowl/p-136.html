@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">Furthermore, <a href="" class="xref" data-knowl="./knowl/fig-asm-fact.html" title="Listing 2.3.4">Listing 2.3.4</a> shows some examples for assembler directives. <code class="code-inline tex2jax_ignore">.text</code> is a directive that indicates that everything that follows is code. It activates the assembly code function which allows us to write mnemonic and register names instead of hand-coding instructions. <code class="code-inline tex2jax_ignore">.text</code> also tells the linker later on that everything that follows has to be placed into the code (sometimes called <em class="emphasis">text</em>) segment. We will discuss segments later in <a href="sec-asm-segments.html" class="internal" title="Section 2.6: Memory Segmentation">Section 2.6</a>. <code class="code-inline tex2jax_ignore">.globl factorial</code> makes the label <code class="code-inline tex2jax_ignore">factorial</code> visible from other translation units (see <a href="" class="xref" data-knowl="./knowl/fig-asm-toolchain.html" title="Figure 2.3.1">Figure 2.3.1</a>. Labels that are not declared global are local to a translation unit and cannot be referred to from other translation units. This prevents that situation that programmers accidentally use the same label name in different files that would clash if the label's name was global. Note also the use of pseudo instructions as discussed in <a href="" class="xref" data-knowl="./knowl/rem-asm-pseudo.html" title="Remark 2.3.3: Pseudo instructions">Remark 2.3.3</a>.</div>
+<span class="incontext"><a href="sec-asm-asm.html#p-136" class="internal">in-context</a></span>
+</body>
+</html>

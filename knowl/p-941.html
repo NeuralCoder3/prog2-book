@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">If we inspect the classes <code class="code-inline tex2jax_ignore">CartesianVec2</code> and <code class="code-inline tex2jax_ignore">PolarVec2</code> closer, we see that they have some code in common. In our reduced example, this is the case for the method <code class="code-inline tex2jax_ignore">scale</code>. In a complete implementation, many more methods would be affected. <code class="code-inline tex2jax_ignore">scale</code> only uses the setters and getters of <code class="code-inline tex2jax_ignore">Vec2</code> and no more implementation details of <code class="code-inline tex2jax_ignore">PolarVec2</code> or <code class="code-inline tex2jax_ignore">CartesianVec2</code>. The current implementation duplicates the code of <code class="code-inline tex2jax_ignore">scale</code>. Code duplication is the enemy of every programmer and should be avoided in all cases: If duplicated code is erroneous, it needs to be fixed at multiple source locations that might not be easy to find. Java helps here as well by allowing us to insert a class between the interface <code class="code-inline tex2jax_ignore">Vec2</code> and the concrete implementations <code class="code-inline tex2jax_ignore">CartesianVec2</code> and <code class="code-inline tex2jax_ignore">PolarVec2</code>, implementing parts of <code class="code-inline tex2jax_ignore">Vec2</code> but leaving others <em class="emphasis">abstract</em>.</div>
+<span class="incontext"><a href="sec-java-inherit.html#p-941" class="internal">in-context</a></span>
+</body>
+</html>

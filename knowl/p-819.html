@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">To this end, let us review the semantics of the assignment (see to <a href="" class="xref" data-knowl="./knowl/def-c0-stmt-sem.html" title="Definition 6.3.4: Operational Semantics of C0">Definition 6.3.4</a>) in detail: First of all, the result of the R-evaluation of the expression <span class="process-math">\(e\)</span> must be defined which is ensured by the predicate <span class="process-math">\(\exprdef\,e\text{.}\)</span> Second, the effect of <span class="process-math">\(\CAssign xe\)</span> is to evaluate <span class="process-math">\(e\)</span> and assign its value to the variable <span class="process-math">\(x\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-c0-stmt-sem.html">
+\begin{equation*}
+\config{\CAssign xe}{\sigma}\steprel\configt{\sigma'}
+\end{equation*}
+</div>
+<div class="para">So evaluating <span class="process-math">\(e\)</span> on <span class="process-math">\(\sigma\)</span> yields the same value as evaluating <span class="process-math">\(x\)</span> on <span class="process-math">\(\sigma'\text{.}\)</span> Hence, if <span class="process-math">\(\sigma'\)</span> satisfies <span class="process-math">\(Q\text{,}\)</span> <span class="process-math">\(\sigma\)</span> will satisfy the assertion <span class="process-math">\(Q[e/x]\)</span> (read:  <span class="process-math">\(e\)</span> replaces <span class="process-math">\(x\)</span> in <span class="process-math">\(Q\)</span>).  because <span class="process-math">\(e\)</span> evaluates to the same value on <span class="process-math">\(\sigma\)</span> as <span class="process-math">\(x\)</span> does on <span class="process-math">\(\sigma'\text{.}\)</span> That's just the purpose of the assignment. So the Hoare triple</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-c0-stmt-sem.html">
+\begin{equation*}
+\vdash\hoare{\exprdef\,e\land Q[e/x]}{\CAssign xe}{Q}
+\end{equation*}
+</div>
+<div class="para">is true and our proof system gets another axiom:</div>
+</div>
+<span class="incontext"><a href="sec-corr-hoare.html#p-819" class="internal">in-context</a></span>
+</body>
+</html>

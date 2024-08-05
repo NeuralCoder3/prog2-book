@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Assignment.</span></h4> <div class="para">For the assignment, we have to evaluate the left-hand and right-hand side expressions. The evaluation of the left-hand side yields an address and the right-hand side a value. After both expressions have been evaluated, we need to store the value into the stack slot at the address we got. To this end, we need the appropriate store that stores a value of type <span class="process-math">\(k_1\)</span> which is the type of <span class="process-math">\(l\text{.}\)</span> Note also that we have freedom in which sub-expression (left or right) we evaluate first and the same reasoning as for the binary arithmetic expression above applies here. For the sake of brevity we are only giving one rule here.</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:75%;"><div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\codeL{(r_1\lcc r_2\lcc rs)}{\denot l\enspace k_1}{c_1}$}
+\noLine 
+\UnaryInfC{$\codeR{(r_2\lcc rs)}{\denot e\enspace k_2}{c_2}$}
+\noLine 
+\UnaryInfC{$S=\text{store that stores value of type }k_1$}
+\LeftLabel{[CAssign]}
+\UnaryInfC{$\codeS{\denot{\CAssign le}}{c_\mathsf{Assign}}$}
+\end{prooftree}
+\end{equation*}
+</div></div></div>
+<div class="sbspanel top" style="width:25%;">
+<pre class="program"><code class="language-nasm"># c_assign
+c1
+c2
+S r2 (r1)
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%23%20c_assign%0A%20%20%20%20c1%0A%20%20%20%20c2%0A%20%20%20%20S%20r2%20(r1)%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+</div></div></section><span class="incontext"><a href="sec-comp-codegen.html#paragraphs-53" class="internal">in-context</a></span>
+</body>
+</html>

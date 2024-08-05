@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">#include &lt;assert.h&gt;
+
+static unsigned find(int* arr, unsigned n, int value)
+{
+    unsigned i = 0;
+    while (i &lt; n &amp;&amp; arr[i] &lt; value)
+        i++;
+    return i;
+}
+
+static void insert(int* arr, unsigned n, unsigned from, unsigned to)
+{
+    assert(to &lt;= from);
+    int val = arr[from];
+    for (unsigned i = to; i &lt;= from; i++) {
+        int tmp = arr[i];
+        arr[i]  = val;
+        val     = tmp;
+    }
+}
+
+void insertsort(int* arr, unsigned n)
+{
+    for (unsigned i = 1; i &lt; n; i++) {
+        unsigned pos = find(arr, n, arr[i]);
+        insert(arr, n, i, pos);
+    }
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23include%20%3Cassert.h%3E%0A%0Astatic%20unsigned%20find(int*%20arr%2C%20unsigned%20n%2C%20int%20value)%0A%7B%0A%20%20%20%20unsigned%20i%20%3D%200%3B%0A%20%20%20%20while%20(i%20%3C%20n%20%26%26%20arr%5Bi%5D%20%3C%20value)%0A%20%20%20%20%20%20%20%20i%2B%2B%3B%0A%20%20%20%20return%20i%3B%0A%7D%0A%0Astatic%20void%20insert(int*%20arr%2C%20unsigned%20n%2C%20unsigned%20from%2C%20unsigned%20to)%0A%7B%0A%20%20%20%20assert(to%20%3C%3D%20from)%3B%0A%20%20%20%20int%20val%20%3D%20arr%5Bfrom%5D%3B%0A%20%20%20%20for%20(unsigned%20i%20%3D%20to%3B%20i%20%3C%3D%20from%3B%20i%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20int%20tmp%20%3D%20arr%5Bi%5D%3B%0A%20%20%20%20%20%20%20%20arr%5Bi%5D%20%20%3D%20val%3B%0A%20%20%20%20%20%20%20%20val%20%20%20%20%20%3D%20tmp%3B%0A%20%20%20%20%7D%0A%7D%0A%0Avoid%20insertsort(int*%20arr%2C%20unsigned%20n)%0A%7B%0A%20%20%20%20for%20(unsigned%20i%20%3D%201%3B%20i%20%3C%20n%3B%20i%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20unsigned%20pos%20%3D%20find(arr%2C%20n%2C%20arr%5Bi%5D)%3B%0A%20%20%20%20%20%20%20%20insert(arr%2C%20n%2C%20i%2C%20pos)%3B%0A%20%20%20%20%7D%0A%7D%0A">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">4.11.6<span class="period">.</span></span><span class="space"> </span>Insertion sort implementation</figcaption></figure><span class="incontext"><a href="section-30.html#fig-c-insertsort" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Summary and Complexity Analysis.</span></h4> <div class="para">Array lists are very frequently used in practice. The amortized complexity of appending an element is constant as argued above. However, some append operations may take as many operations as there are elements in the list. Getting the i-th element can be done in a single operation by virtue of address arithmetic: We just index the array at index i. Removing and finding an element costs <span class="process-math">\(n\)</span> copy operations in the worst case.</div> <div class="para">In terms of memory, array lists allocate twice as much memory as needed in the worst case.</div> <div class="para">Very important in practice is that the list elements lie contiguously in memory. Various hardware mechanisms (fetching cache lines, prefetching) are optimized for contiguously accessing arrays which makes array lists very fast in practice.</div></section><span class="incontext"><a href="sec-ds-lists.html#paragraphs-12" class="internal">in-context</a></span>
+</body>
+</html>

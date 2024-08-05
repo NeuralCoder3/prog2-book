@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">6.6.7</span><span class="period">.</span><span class="space"> </span><span class="title">Static Semantics of C0 Statements and Programs.</span>
+</h4> <div class="para logical">
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\stmtGamma s$}
+\AxiomC{$\stmtGamma p$}
+\LeftLabel{[TSeq]}
+\BinaryInfC{$\stmtGamma{\CSeq sp}$}
+\end{prooftree}
+\quad
+\begin{prooftree}
+\AxiomC{}
+\LeftLabel{[TTerm]}
+\UnaryInfC{$\stmtGamma{\CTerm}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\typeGamma e{k_1}$}
+\AxiomC{$\typeGamma l{k_2}$}
+\AxiomC{$k_1\castrel k_2$}
+\LeftLabel{[TAssign]}
+\TrinaryInfC{$\stmtGamma{\CAssign le}$}
+\end{prooftree}
+\quad
+\begin{prooftree}
+\AxiomC{}
+\LeftLabel{[TAbort]}
+\UnaryInfC{$\stmtGamma{\CAbort}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\typeGamma ek$}
+\AxiomC{$\stmtGamma s$}
+\LeftLabel{[TWhile]}
+\BinaryInfC{$\stmtGamma{\CWhile es}$}
+\end{prooftree}
+\quad
+\begin{prooftree}
+\AxiomC{$\typeGamma ek$}
+\AxiomC{$\stmtGamma{s_1}$}
+\AxiomC{$\stmtGamma{s_2}$}
+\LeftLabel{[TIf]}
+\TrinaryInfC{$\stmtGamma{\CIf e{s_1}{s_2}}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\Gamma'=\Gamma[x_1\mapsto k_1,\dots,x_m\mapsto k_m]$}
+\AxiomC{$\stmtjudge{\Gamma'}{p}$}
+\LeftLabel{[TBlock]}
+\BinaryInfC{$\stmtGamma{\CBlock{k_1\,x_1;\dots k_m\,x_m; p}}$}
+\end{prooftree}
+\end{equation*}
+</div>
+</div></article><span class="incontext"><a href="sec-c0-type.html#definition-22" class="internal">in-context</a></span>
+</body>
+</html>

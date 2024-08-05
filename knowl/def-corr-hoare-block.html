@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h5 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Hoare triples for the block statement and programs.</span>
+</h5> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare PsQ$}
+\AxiomC{$\vdash\hoare QpR$}
+\LeftLabel{[Seq]}
+\BinaryInfC{$\vdash\hoare P{\CSeq sp}R$}
+\end{prooftree}
+\qquad
+\begin{prooftree}
+\AxiomC{}
+\LeftLabel{[Term]}
+\UnaryInfC{$\vdash\hoare Q{\CTerm}Q$}
+\end{prooftree}
+\end{equation*}
+</div></div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare PpQ$}
+\LeftLabel{[Block]}
+\UnaryInfC{$\vdash\hoare{P}{\CBlock{p}}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div></div> <div class="para">Because sequences of statements (which form a program) are always terminated by <span class="process-math">\(\varepsilon\text{,}\)</span> we define a convenience rule for a program that contains of two statements. This rule can be used to conveniently “process” the last two statements of a longer program without having to resort to the [Term] rule.</div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare P{s_1}Q$}
+\AxiomC{$\vdash\hoare Q{s_2}R$}
+\LeftLabel{[SeqS]}
+\BinaryInfC{$\vdash\hoare{P}{\CSeq{s_1}{\CSeq{s_2}\CTerm}}{R}$}
+\end{prooftree}
+\end{equation*}
+</div></div></article><span class="incontext"><a href="sec-corr-hoare.html#def-corr-hoare-block" class="internal">in-context</a></span>
+</body>
+</html>

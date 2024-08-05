@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Binary Expressions.</span></h4> <div class="para">For binary operators, we show the case for arithmetic operators here, one of the two sub-expressions needs to be evaluated first. The register that was used to keep the value of that sub-expression cannot be used to evaluate the second sub-expression because the register has to hold the computed value throughout the evaluation of the second sub-expression. So, <span class="process-math">\(\mathit{codeR}\)</span> needs at least two registers to generate code that evaluates the expression. If the registers are exhausted, the compiler is allowed to report an error and abort compilation.</div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC   {$\codeR{(r_1\lcc r_2\lcc rs)}{\denot{e_1}\enspace k_1}{c_1}$}
+\noLine
+\UnaryInfC{$\codeR{(r_2\lcc rs)}{\denot{e_2}\enspace k_2}{c_2}$}
+\LeftLabel{[CBinary]}
+\UnaryInfC{$\codeR{(r_1\lcc r_2\lcc rs)}{\denot{e_1\mathbin{o}e_2}\enspace k}{c_{Binary}}$}
+\end{prooftree}
+\end{equation*}
+</div></div> <div class="para">In principle, one could define an additional rule</div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC   {$\codeR{(r_1\lcc r_2\lcc rs)}{\denot{e_2}\enspace k_1}{c_2}$}
+\noLine
+\UnaryInfC{$\codeR{(r_2\lcc rs)}{\denot{e_1}\enspace k_2}{c_1}$}
+\LeftLabel{[CBinary2]}
+\UnaryInfC{$\codeR{(r_1\lcc r_2\lcc rs)}{\denot{e_1\mathbin{o}e_2}\enspace k}{c_{Binary2}}$}
+\end{prooftree}
+\end{equation*}
+</div></div> <div class="para">which just swaps the order in which the sub-expressions are evaluated as can be seen in the code that they generate:</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;">
+<pre class="program"><code class="language-nasm"># c_Binary
+c1
+c2
+o  r1 r1 r2
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%23%20c_Binary%0A%20%20%20%20c1%0A%20%20%20%20c2%0A%20%20%20%20o%20%20r1%20r1%20r2%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<div class="sbspanel top" style="width:50%;">
+<pre class="program"><code class="language-nasm"># c_Binary2
+c2
+c1
+o  r1 r1 r2
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%23%20c_Binary2%0A%20%20%20%20c2%0A%20%20%20%20c1%0A%20%20%20%20o%20%20r1%20r1%20r2%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+</div></div> <div class="para">In principle, having both rules [CBinary] and [CBinary2] would make our code generator non-determinstic: For each binary expression we could apply either rule. So, it would be nice to have a <em class="emphasis">deterministic</em> policy that tells us when to use which rule.</div> <div class="para">Looking at this closer, it turns out that the order in which the expressions are evaluated has an impact on the register consumption. Consider the following expression tree:</div> <div class="image-box" style="width: 33%; margin-left: 33.5%; margin-right: 33.5%;"><img src="generated/latex-image/image-41.svg" role="img" class="contained"></div> <div class="para">When evaluating the right sub-expression first in each expression, the code looks as follows</div>
+<pre class="code-block tex2jax_ignore">G r1
+F r2
+E r3
+D r4
+C r3 r4 r3
+B r2 r3 r2
+A r1 r2 r1
+</pre>
+<div class="para">and will use four registers. When generating code for the left sub-expression first in each expression, we get code that looks like this</div>
+<pre class="code-block tex2jax_ignore">D r1
+E r2
+C r1 r1 r2
+F r2
+B r1 r1 r2
+G r2
+A r1 r1 r2
+</pre>
+<div class="para">which uses only two registers. Now, fixing the order in which code for the expressions is generated <em class="emphasis">a priori</em>, can yield a sub-optimal register consumption. The question is if there is a way of determining the order in which to generate code for the expressions such that register consumption is minimized?</div> <div class="para logical">
+<div class="para">It turns out there is. The following observation is key: Consider a binary expression <span class="process-math">\(e\text{.}\)</span> Assume we knew the register consumption of both sub-expressions of <span class="process-math">\(e\text{:}\)</span> Say the code for the left sub-expression <span class="process-math">\(e_1\)</span> uses <span class="process-math">\(\mathit{regs}(e_1)\)</span> registers and the code for the right sub-expression uses <span class="process-math">\(\mathit{regs}(e_2)\)</span> registers. If <span class="process-math">\(\mathit{regs}(e_1)=\mathit{regs}(e_2)\text{,}\)</span> it doesn't matter which sub-expression we evaluate first because we need one register to keep the result of one sub-expression while evaluating the other. So, in total, we need <span class="process-math">\(\mathit{regs}(e_1)+1\)</span> registers to evaluate <span class="process-math">\(e\)</span> itself. However, if <span class="process-math">\(\mathit{regs}(e_1)\ne\mathit{regs}(e_2)\text{,}\)</span> then we evaluate the one with the higher register demand first, and then we can use one of the registers we used to evaluate that sub-expression that won't be used by the other in which we can keep the value. So, in conclusion: We should always generate code for the sub-expression first that has the higher register demand. We can determine the register demand recursively by the following function that implements the considerations above:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/sethi-ullman.html">
+\begin{align*}
+\mathit{regs}(x) \amp = 1\\
+\mathit{regs}(c) \amp = 1\\
+\mathit{regs}(e_1\mathbin{o}e_2) \amp =
+\begin{cases}
+\mathit{regs}(e_1)+1\amp \text{if }\mathit{regs}(e_1)=\mathit{regs}(e_2) \\ 
+\max(\mathit{regs}(e_1),\mathit{regs}(e_2))  \amp \text{otherwise}
+\end{cases}
+\end{align*}
+</div>
+<div class="para">One can show <a href="" class="xref" data-knowl="./knowl/sethi-ullman.html" title="Bibliographic Entry 17: The Generation of Optimal Code for Arithmetic Expressions">[17]</a> that generating code this way results in <em class="emphasis">minimal</em> register consumption. In summary, our compiler can use the function <span class="process-math">\(\mathit{regs}\)</span> to break the non-determinism of [CBinary] and [CBinary2] and always select the one that leads to minimal register consumption.</div>
+</div></section><span class="incontext"><a href="sec-comp-codegen.html#paragraphs-51" class="internal">in-context</a></span>
+</body>
+</html>

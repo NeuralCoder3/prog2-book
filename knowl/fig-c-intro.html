@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int factorial(int n) {
+  int res;          /* declaration of a variable */
+  res = 1;          /* statement: assignment expression */
+  while (n &gt; 1) {   /* statement: loop */
+    res = res * n;  /* statement: assignment expression */
+    n   = n - 1;    /* statement: assignment expression */
+  }
+  return res;       /* statement: return to caller */
+}
+
+int main() {
+  int res;
+  res = factorial(3);
+  printf("%d\n", res);
+  return 0;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=int%20factorial(int%20n)%20%7B%0A%20%20int%20res%3B%20%20%20%20%20%20%20%20%20%20%2F*%20declaration%20of%20a%20variable%20*%2F%0A%20%20res%20%3D%201%3B%20%20%20%20%20%20%20%20%20%20%2F*%20statement%3A%20assignment%20expression%20*%2F%0A%20%20while%20(n%20%3E%201)%20%7B%20%20%20%2F*%20statement%3A%20loop%20*%2F%0A%20%20%20%20res%20%3D%20res%20*%20n%3B%20%20%2F*%20statement%3A%20assignment%20expression%20*%2F%0A%20%20%20%20n%20%20%20%3D%20n%20-%201%3B%20%20%20%20%2F*%20statement%3A%20assignment%20expression%20*%2F%0A%20%20%7D%0A%20%20return%20res%3B%20%20%20%20%20%20%20%2F*%20statement%3A%20return%20to%20caller%20*%2F%0A%7D%0A%0Aint%20main()%20%7B%0A%20%20int%20res%3B%0A%20%20res%20%3D%20factorial(3)%3B%0A%20%20printf(%22%25d%5Cn%22%2C%20res)%3B%0A%20%20return%200%3B%0A%7D%0A">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">4.1.1<span class="period">.</span></span><span class="space"> </span>A C program consisting of two functions. It computes the factorial of 3 and writes it on the screen.</figcaption></figure><span class="incontext"><a href="sec-c-basics.html#fig-c-intro" class="internal">in-context</a></span>
+</body>
+</html>

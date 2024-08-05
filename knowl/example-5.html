@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.11.1</span><span class="period">.</span><span class="space"> </span><span class="title">Number Conversion.</span>
+</h3> <figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">#include &lt;stdio.h&gt;
+
+void print_hex(unsigned word)
+{
+    unsigned shift = 8 * sizeof(word);
+    do {
+        shift -= 4;
+        unsigned digit = (word &gt;&gt; shift) &amp; 0x0f;
+        unsigned ascii = digit + (digit &lt; 10 ? '0' : 'a' - 10);
+        putchar(ascii);
+    } while (shift != 0);
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23include%20%3Cstdio.h%3E%0A%0Avoid%20print_hex(unsigned%20word)%0A%7B%0A%20%20%20%20unsigned%20shift%20%3D%208%20*%20sizeof(word)%3B%0A%20%20%20%20do%20%7B%0A%20%20%20%20%20%20%20%20shift%20-%3D%204%3B%0A%20%20%20%20%20%20%20%20unsigned%20digit%20%3D%20(word%20%3E%3E%20shift)%20%26%200x0f%3B%0A%20%20%20%20%20%20%20%20unsigned%20ascii%20%3D%20digit%20%2B%20(digit%20%3C%2010%20%3F%20'0'%20%3A%20'a'%20-%2010)%3B%0A%20%20%20%20%20%20%20%20putchar(ascii)%3B%0A%20%20%20%20%7D%20while%20(shift%20!%3D%200)%3B%0A%7D%0A">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">4.11.2<span class="period">.</span></span><span class="space"> </span>Number conversion implementation</figcaption></figure></article><span class="incontext"><a href="section-30.html#example-5" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="figure figure-like"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel middle" style="width:50%;"><figure class="listing figure-like" id="listing-6"><pre class="program"><code class="language-c">#include "factorial.h"
+
+int factorial(int n) {
+    int res = 1;
+    while (n &gt; 1) {
+        res = res * n;
+        n   = n - 1;
+    }
+    return res;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23include%20%22factorial.h%22%0A%0Aint%20factorial(int%20n)%20%7B%0A%20%20%20%20int%20res%20%3D%201%3B%0A%20%20%20%20while%20(n%20%3E%201)%20%7B%0A%20%20%20%20%20%20%20%20res%20%3D%20res%20*%20n%3B%0A%20%20%20%20%20%20%20%20n%20%20%20%3D%20n%20-%201%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20res%3B%0A%7D%0A">Run</a><figcaption><span class="codenumber">(a)</span><span class="space"> </span><code class="code-inline tex2jax_ignore">factorial.c</code></figcaption></figure></div>
+<div class="sbspanel middle" style="width:50%;"><figure class="listing figure-like" id="listing-7"><pre class="program"><code class="language-c">#ifndef FACTORIAL_H
+#define FACTORIAL_H
+int factorial(int n);
+#endif /* FACTORIAL_H */
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23ifndef%20FACTORIAL_H%0A%23define%20FACTORIAL_H%0Aint%20factorial(int%20n)%3B%0A%23endif%20%2F*%20FACTORIAL_H%20*%2F%0A">Run</a><figcaption><span class="codenumber">(b)</span><span class="space"> </span><code class="code-inline tex2jax_ignore">factorial.h</code></figcaption></figure></div>
+</div></div>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;"><div class="sbspanel top" style="width:100%;"><figure class="listing figure-like" id="listing-8"><pre class="program"><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#include "factorial.h"
+
+int main(int argc, char *argv[]) {
+    if (argc &lt;= 1) {
+        fprintf(stderr,
+            "syntax: %s &lt;value&gt;\n",
+            argv[0]);
+        return 1;
+    }
+
+    int n = atoi(argv[1]);
+    int r = factorial(n);
+    printf("%u\n", r);
+    return 0;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23include%20%3Cstdio.h%3E%0A%23include%20%3Cstdlib.h%3E%0A%0A%23include%20%22factorial.h%22%0A%0Aint%20main(int%20argc%2C%20char%20*argv%5B%5D)%20%7B%0A%20%20%20%20if%20(argc%20%3C%3D%201)%20%7B%0A%20%20%20%20%20%20%20%20fprintf(stderr%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22syntax%3A%20%25s%20%3Cvalue%3E%5Cn%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20argv%5B0%5D)%3B%0A%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20int%20n%20%3D%20atoi(argv%5B1%5D)%3B%0A%20%20%20%20int%20r%20%3D%20factorial(n)%3B%0A%20%20%20%20printf(%22%25u%5Cn%22%2C%20r)%3B%0A%20%20%20%20return%200%3B%0A%7D%0A">Run</a><figcaption><span class="codenumber">(c)</span><span class="space"> </span><code class="code-inline tex2jax_ignore">main.c</code></figcaption></figure></div></div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">4.5.5<span class="period">.</span></span><span class="space"> </span>Factorial function and <code class="code-inline tex2jax_ignore">main</code> function in two separate translation units. The header file <code class="code-inline tex2jax_ignore">factorial.h</code> contains the prototype of the function <code class="code-inline tex2jax_ignore">factorial</code>. The preprocessing directives (<code class="code-inline tex2jax_ignore">#ifdef</code>, etc.) ensure that the file content is only included once per translation unit. While not necessary here, this convention becomes important when header files include other header files, to break infinite recursive include sequences.</figcaption></figure><span class="incontext"><a href="sec-c-tu.html#fig-c-fac_tu" class="internal">in-context</a></span>
+</body>
+</html>

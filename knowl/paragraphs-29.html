@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Weakening and Strengthening.</span></h4> <div class="para logical">
+<div class="para">An assertion <span class="process-math">\(B\)</span> is <em class="emphasis">stronger</em> than an assertion <span class="process-math">\(C\)</span> if <span class="process-math">\(B\limp C\text{.}\)</span> Correspondingly, <span class="process-math">\(C\)</span> is <em class="emphasis">weaker</em> than <span class="process-math">\(B\text{.}\)</span>  Based on the definition of satisfiability (<a href="" class="xref" data-knowl="./knowl/def-corr-satis.html" title="Definition 7.1.4: Satisfiability and Validity">Definition 7.1.4</a>), a weaker assertion is satisfied by more states. For example</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-satis.html">
+\begin{align*}
+x&gt;10\amp\text{ is stronger than }x&gt;3\\
+x=10\land y=5\amp\text{ is stronger than }y=5
+\end{align*}
+</div>
+</div> <div class="para">In a Hoare triple we can strengthen preconditions and weaken postconditions. Intuitively, this is true because of the following observation: If <span class="process-math">\(P'\simp P\text{,}\)</span> each state satisfying <span class="process-math">\(P'\)</span> also satisfies <span class="process-math">\(P\text{,}\)</span> so if <span class="process-math">\(\vdash\hoare PsQ\text{,}\)</span> we also have <span class="process-math">\(\vdash\hoare {P'}sQ\text{.}\)</span> Similarly, if <span class="process-math">\(Q\simp Q'\text{,}\)</span> each state that satisfies <span class="process-math">\(Q\)</span> also satisfies <span class="process-math">\(Q'\text{.}\)</span> Hence, if we have <span class="process-math">\(\vdash\hoare PsQ\text{,}\)</span> we then also have <span class="process-math">\(\vdash\hoare Ps{Q'}\text{.}\)</span> This is reflected in the following rule which is often called <dfn class="terminology">rule of consequence</dfn>:</div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$P'\limp P$}
+\AxiomC{$\vdash\hoare PsQ$}
+\AxiomC{$Q\limp Q'$}
+\LeftLabel{[Consequence]}
+\TrinaryInfC{$\vdash\hoare {P'}s{Q'}$}
+\end{prooftree}
+\end{equation*}
+</div></div></section><span class="incontext"><a href="sec-corr-hoare.html#paragraphs-29" class="internal">in-context</a></span>
+</body>
+</html>

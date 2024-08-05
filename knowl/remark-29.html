@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">6.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">Syntax Analysis.</span>
+</h3> <div class="para">The process of obtaining the abstract syntax tree from a textual representation of the program is called <dfn class="terminology">syntax analysis</dfn>. Syntax analysis is a core component of each <dfn class="terminology">interpreter</dfn> or <dfn class="terminology">compiler</dfn> and is usually performed in two separate phases: The first phase is called <dfn class="terminology">lexing</dfn> and combines subsequent characters into a stream of <dfn class="terminology">tokens</dfn>. Each token stands for a lexical category such as “integer number”, “identifier”, “plus symbol”, and so on. Lexing accounts for the fact that the concrete characters such as the names of variables are not important for syntax analysis because they do not influence the structure of the program. Of course, lexing can already identify some ill-formed programs. For example, it is illegal to put the character sequence <code class="code-inline tex2jax_ignore">123abc</code> outside of a comment in a C program. Such errors are identified during lexing.</div> <div class="para">The second phase is called <dfn class="terminology">parsing</dfn>. Parsing constructs the AST from the input token sequence or reports an error if the input token sequence does not lead to a program that adheres to the rules of the concrete syntax.</div></article><span class="incontext"><a href="sec-c0-syntax-general.html#remark-29" class="internal">in-context</a></span>
+</body>
+</html>

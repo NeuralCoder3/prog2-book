@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><article class="hiddenproof"><div class="para logical">
+<div class="para">By contradiction: Assume there is <span class="process-math">\(h_a(i)=h_a(j)\)</span> for two numbers <span class="process-math">\(i\ne j\)</span> in the set <span class="process-math">\(\{0,\dots,2^k-1\}\text{.}\)</span> Then,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a+i(i+1)/2\equiv a+j(j+1)/2\mod 2^k
+\end{equation*}
+</div>
+<div class="para">and there is a <span class="process-math">\(q\in\mathbb Z\)</span> such that</div>
+<div class="displaymath process-math">
+\begin{align*}
+\amp      \amp i(i+1)/2-j(j+1)/2 \amp = q\cdot 2^k\\
+\amp \iff \amp i(i+1)-j(i+1)   \amp = q\cdot 2^{k+1}\\
+\amp \iff \amp (i+j+1)(i-j)    \amp = q\cdot 2^{k+1}
+\end{align*}
+</div>
+<div class="para">Now, the first observation is that for <span class="process-math">\(i\ne j\)</span> the product <span class="process-math">\((i+j+1)(i-j)\)</span> is also unequal to zero, so we have <span class="process-math">\(q\ne 0\text{.}\)</span> Second, for all <span class="process-math">\(i,j\)</span> holds that if <span class="process-math">\((i-j)\)</span> is odd, then <span class="process-math">\((i+j+1)\)</span> is even. This means that exactly one of both factors is a multiple of <span class="process-math">\(2^{k+1}\text{.}\)</span> But since <span class="process-math">\(i\)</span> and <span class="process-math">\(j\)</span> are chosen from <span class="process-math">\(\{0,\dots,2^k-1\}\text{,}\)</span> both <span class="process-math">\((i+j+1)\)</span> and <span class="process-math">\((i-j)\)</span> are less than <span class="process-math">\(2^{k+1}\)</span> which is a contradiction.</div>
+</div></article></body>
+</html>

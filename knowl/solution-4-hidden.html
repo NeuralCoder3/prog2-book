@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><div class="solution solution-like"><div class="para"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">#include &lt;stdio.h&gt;
+
+int caesar(char* text, int n) {
+  if (n &gt; 25 || n &lt; 0) {
+    printf("The value of n needs to be between 0 and 25 (was %i)", n);
+    return 1;
+  }
+
+  while (*text != '\0') {
+
+    // shift
+    *text += n;
+
+    // fix shifting boundary violations
+    if (*text &gt; 'z') {
+      *text = *text - 'z' + 'a' - 1;
+    }
+
+    text++;
+  }
+
+  return 0;
+}
+
+int main() {
+  int shift = 5;
+  char text[] = "abcdz";
+
+  printf("Plain text:\n");
+  printf("%s\n", text);
+  printf("Shift by %i\n", shift);
+
+  int ret = caesar(text, shift);
+
+  if (ret == 0) {
+    printf("Cipher:\n");
+    printf("%s\n", text);
+  }
+
+  return ret;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23include%20%3Cstdio.h%3E%0A%0Aint%20caesar(char*%20text%2C%20int%20n)%20%7B%0A%20%20if%20(n%20%3E%2025%20%7C%7C%20n%20%3C%200)%20%7B%0A%20%20%20%20printf(%22The%20value%20of%20n%20needs%20to%20be%20between%200%20and%2025%20(was%20%25i)%22%2C%20n)%3B%0A%20%20%20%20return%201%3B%0A%20%20%7D%0A%0A%20%20while%20(*text%20!%3D%20'%5C0')%20%7B%0A%0A%20%20%20%20%2F%2F%20shift%0A%20%20%20%20*text%20%2B%3D%20n%3B%0A%0A%20%20%20%20%2F%2F%20fix%20shifting%20boundary%20violations%0A%20%20%20%20if%20(*text%20%3E%20'z')%20%7B%0A%20%20%20%20%20%20*text%20%3D%20*text%20-%20'z'%20%2B%20'a'%20-%201%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20text%2B%2B%3B%0A%20%20%7D%0A%0A%20%20return%200%3B%0A%7D%0A%0Aint%20main()%20%7B%0A%20%20int%20shift%20%3D%205%3B%0A%20%20char%20text%5B%5D%20%3D%20%22abcdz%22%3B%0A%0A%20%20printf(%22Plain%20text%3A%5Cn%22)%3B%0A%20%20printf(%22%25s%5Cn%22%2C%20text)%3B%0A%20%20printf(%22Shift%20by%20%25i%5Cn%22%2C%20shift)%3B%0A%0A%20%20int%20ret%20%3D%20caesar(text%2C%20shift)%3B%0A%0A%20%20if%20(ret%20%3D%3D%200)%20%7B%0A%20%20%20%20printf(%22Cipher%3A%5Cn%22)%3B%0A%20%20%20%20printf(%22%25s%5Cn%22%2C%20text)%3B%0A%20%20%7D%0A%0A%20%20return%20ret%3B%0A%7D%0A">Run</a>
+</div></div></div></body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.12.2</span><span class="period">.</span><span class="space"> </span><span class="title">Eratosthenes.</span>
+</h3> <div class="para">Consider a <code class="code-inline tex2jax_ignore">main</code> function that obtains the size of the table for the Sieve of Eratosthenes from a command line parameter:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int main(int argc, char** argv) {
+    if (argc &lt; 2) {
+        printf("syntax: %s &lt;n&gt;\n", argv[0]);
+        return 1;
+    }
+    unsigned n = atoi(argv[1]);
+    char *table = malloc(n * sizeof(table[0]));
+    eratosthenes(table, n);
+    print_table(table, n);
+    free(table)
+    return 0;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20main(int%20argc%2C%20char**%20argv)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(argc%20%3C%202)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20printf(%22syntax%3A%20%25s%20%3Cn%3E%5Cn%22%2C%20argv%5B0%5D)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20unsigned%20n%20%3D%20atoi(argv%5B1%5D)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20char%20*table%20%3D%20malloc(n%20*%20sizeof(table%5B0%5D))%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20eratosthenes(table%2C%20n)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20print_table(table%2C%20n)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20free(table)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div></article><span class="incontext"><a href="sec-c-dyn-mem-management.html#example-8" class="internal">in-context</a></span>
+</body>
+</html>

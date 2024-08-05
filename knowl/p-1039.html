@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">The address of the virtual method required at a given call site results from a two-step process: First, the right entry in the VMT needs to be determined. This information is given by the method name (and the signature, in case of method overloading) and can therefore be derived <em class="emphasis">statically</em> at compile time. In our example in <a href="" class="xref" data-knowl="./knowl/fig-oo-vtab.html" title="Listing 8.12.1">Listing 8.12.1</a>, the selected entry corresponds to a field in the <code class="code-inline tex2jax_ignore">...vtab_t</code> structs. Java's static semantics guarantees that there is an entry for the called method in <em class="emphasis">every</em> possible VMT. In the second step, the concrete VMT is determined. Since the VMT address has been written to the object's hidden <code class="code-inline tex2jax_ignore">vtab</code> field during initialization, we only need to load this address <em class="emphasis">at run time</em> to obtain the right VMT.</div>
+<span class="incontext"><a href="sec-java-oo-with-c.html#p-1039" class="internal">in-context</a></span>
+</body>
+</html>

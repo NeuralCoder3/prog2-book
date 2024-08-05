@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Finding an Element.</span></h4> <div class="para">Finding the list node for a certain element value (for example to check, if an element is in the list) takes linear time in worst case (in the worst case the element we are looking for is the last one in the list). The implementation traverses the list by “chasing” the next pointers until the end of the list is reached which is indicated by a next pointer of <code class="code-inline tex2jax_ignore">NULL</code>. In C-style this can be written very compactly:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">list_node_t* list_search(list_node_t* root, int value) {
+    list_node_t* n = root-&gt;next;
+    while(n != NULL) {
+        if (n-&gt;element == value)
+            return n;
+        n = n-&gt;next;
+    }
+    return NULL;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%20struct%20list_node_t%20%7B%0A%20%20%20%20int%20element%3B%0A%20%20%20%20struct%20list_node_t*%20next%3B%0A%7D%3B%20%0Atypedef%20struct%20list_node_t%20list_node_t%3B%0A%20%20%20%20%0Alist_node_t*%20list_insert_behind(list_node_t*%20where%2C%20int%20element)%20%7B%0A%20%20%20%20list_node_t*%20n%20%3D%20malloc(sizeof(*n))%3B%0A%20%20%20%20n-%3Eelement%20%20%3D%20element%3B%0A%20%20%20%20n-%3Enext%20%20%20%20%20%3D%20where-%3Enext%3B%0A%20%20%20%20where-%3Enext%20%3D%20n%3B%0A%20%20%20%20return%20n%3B%0A%7D%0A%0Aint%20list_remove_behind(list_node_t*%20where)%20%7B%0A%20%20%20%20list_node_t*%20to_be_removed%20%3D%20where-%3Enext%3B%0A%20%20%20%20if%20(where-%3Enext%20%3D%3D%20NULL)%0A%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20where-%3Enext%20%3D%20to_be_removed-%3Enext%3B%0A%20%20%20%20free(to_be_removed)%3B%0A%20%20%20%20return%201%3B%0A%7D%0A%0Alist_node_t*%20list_search(list_node_t*%20root%2C%20int%20value)%20%7B%0A%20%20%20%20list_node_t*%20n%20%3D%20root-%3Enext%3B%0A%20%20%20%20while(n%20!%3D%20NULL)%20%7B%0A%20%20%20%20%20%20%20%20if%20(n-%3Eelement%20%3D%3D%20value)%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20n%3B%0A%20%20%20%20%20%20%20%20n%20%3D%20n-%3Enext%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20NULL%3B%0A%7D%0A%0Aint%20main()%20%7B%0A%20%20%20%20list_node_t%20head%3B%0A%20%20%20%20head.element%20%3D%2042%3B%0A%20%20%20%20head.next%20%3D%20NULL%3B%0A%20%20%20%20list_node_t*%20tail%20%3D%20%26head%3B%0A%20%20%20%20tail%20%3D%20list_insert_behind(tail%2C32)%3B%0A%20%20%20%20tail%20%3D%20list_insert_behind(tail%2C22)%3B%0A%20%20%20%20list_insert_behind(%26head%2C41)%3B%0A%20%20%20%20tail%20%3D%20list_insert_behind(tail%2C12)%3B%0A%20%20%20%20list_node_t*%20n22%20%3D%20list_search(%26head%2C22)%3B%0A%20%20%20%20list_node_t*%20n32%20%3D%20list_search(%26head%2C32)%3B%0A%20%20%20%20list_remove_behind(n32)%3B%0A%20%20%20%20return%200%3B%0A%7D%20">Run</a>
+</div> <div class="para">Determining the length or getting the i-th element can be implemented in a similar style.</div></section><span class="incontext"><a href="sec-ds-lists.html#paragraphs-16" class="internal">in-context</a></span>
+</body>
+</html>

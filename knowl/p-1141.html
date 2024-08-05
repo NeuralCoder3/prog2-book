@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para"><code class="code-inline tex2jax_ignore">Object</code></div>
+<ul class="circle">
+<li><div class="para">
+<code class="code-inline tex2jax_ignore">toString</code> used to automatically convert an object to a string. Used by the <code class="code-inline tex2jax_ignore">+</code> operator on strings and many other methods such as <code class="code-inline tex2jax_ignore">System.out.println</code>.</div></li>
+<li><div class="para">
+<code class="code-inline tex2jax_ignore">equals()</code> compares objects to be equal (not the same; that is done by the <code class="code-inline tex2jax_ignore">==</code> operator!). We need this if we want to put objects in collections. Make small example, comparing two strings. Implement in <code class="code-inline tex2jax_ignore">BaseVec2</code>.</div></li>
+<li><div class="para">
+<code class="code-inline tex2jax_ignore">equals(Vec2)</code> would be nice but does not override <code class="code-inline tex2jax_ignore">equals(Object)</code> that we inherit from <code class="code-inline tex2jax_ignore">Object</code>. <code class="code-inline tex2jax_ignore">@override</code> helps to make clear that we are actually overriding a method. Will cause compile error if we are overloading instead of overriding.</div></li>
+<li><div class="para">We cannot call <code class="code-inline tex2jax_ignore">getX</code> from <code class="code-inline tex2jax_ignore">equals(Object)</code> because the static type is too weak. <code class="code-inline tex2jax_ignore">instanceof</code> allows for tests on the dynamic type and guard dynamic type casts.</div></li>
+<li><div class="para">Illustrate subtype relationship by means of a Venn diagram. Make clear that we can always weaken the static type. Strengthening it needs a dynamic cast. Draw connection to assertion lecture: weakening post-condition is always possible.</div></li>
+<li><div class="para">Using <code class="code-inline tex2jax_ignore">instanceof</code> is bad style and hints at a problem in the design. Sometimes, like in <code class="code-inline tex2jax_ignore">equals</code> it is however necessary. Work as much as possible with static types.</div></li>
+</ul>
+</div>
+<span class="incontext"><a href="section-86.html#p-1141" class="internal">in-context</a></span>
+</body>
+</html>

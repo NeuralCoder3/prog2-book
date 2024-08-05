@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">/// Insert into a hash table with separate chaining.
+int hash_chain_insert(chaining_hashtable_t* ht, void* key, eq_t equals) {
+    entry_t** insert;
+    int found = hash_chain_search(ht, key, equals, &amp;insert);
+    if (found) {
+        // the hash table did not change
+        return 0;
+    }
+    // The search function sets insert to the address of 
+    // the last next pointer in the collision chain
+    assert (*insert == NULL);
+    // here, we know that the element is not in the table
+    // so we allocate a new list entry
+    entry_t* e = malloc(sizeof(*e));
+    // initialize the entry
+    e-&gt;next = NULL;
+    e-&gt;key = key;
+    // and append it to the collision chain
+    *insert = e; 
+    ++ht-&gt;size;
+    return 1;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%20%23include%20%3Cstdlib.h%3E%0A%0Atypedef%20int%20(*eq_t)(void*%20p%2C%20void*%20q)%3B%0Atypedef%20int%20(*hash_fct_t)(void*%20key)%3B%0A%0Atypedef%20struct%20entry_t%20%7B%0A%20%20%20%20void*%20key%3B%0A%20%20%20%20struct%20entry_t*%20next%3B%0A%7D%20entry_t%3B%0A%0Atypedef%20struct%20%7B%0A%20%20%20%20unsigned%20size%3B%20%20%20%20%20%20%20%20%20%20%2F%2F%20%23%20of%20keys%20in%20the%20table%0A%20%20%20%20unsigned%20table_length%3B%20%20%2F%2F%20length%20of%20the%20hash%20table%0A%20%20%20%20float%20max_load_factor%3B%20%20%2F%2F%20the%20maximal%20load%20factor%0A%20%20%20%20hash_fct_t%20h%3B%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20the%20hash%20function.%0A%20%20%20%20entry_t**%20table%3B%20%20%20%20%20%20%20%20%2F%2F%20an%20array%20of%20singly-linked%20entry%20lists%0A%7D%20chaining_hashtable_t%3B%0A%0A%2F%2F%2F%20This%20function%20searches%20for%20a%20key%20%0A%2F%2F%2F%20in%20a%20hash%20tab%20with%20separate%20chaining.%0A%2F%2F%2F%20@param%20ht%20The%20hash%20table%0A%2F%2F%2F%20@param%20key%20The%20key%20to%20search%20for%0A%2F%2F%2F%20@param%20hash%20The%20hash%20function%20value%20for%20key%0A%2F%2F%2F%20@param%20eq%20A%20function%20to%20compare%20two%20keys%20for%20equality%0A%2F%2F%2F%20@param%20insert%20The%20address%20of%20a%20pointer%20to%20an%20entry_t%20pointer.%0A%2F%2F%2F%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20There%2C%20we%20will%20put%20the%20address%20of%20the%20pointer%0A%2F%2F%2F%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20where%20the%20new%20collision%20chain%20entry%20should%20be%0A%2F%2F%2F%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20appended%20in%20the%20case%20where%20we%20insert%20a%20new%20key.%0Aint%20hash_chain_search(chaining_hashtable_t*%20ht%2C%20void*%20key%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20eq_t%20equals%2C%20entry_t***%20insert)%20%7B%0A%20%20%20%20unsigned%20bucket%20%3D%20ht-%3Eh(key)%20%25%20ht-%3Etable_length%3B%20%20%2F%2F%20compute%20h_m%0A%20%20%20%20*insert%20%3D%20ht-%3Etable%20%2B%20bucket%3B%20%20%20%20%20%20%20%0A%20%20%20%20for%20(entry_t*%20e%20%3D%20ht-%3Etable%5Bbucket%5D%3B%20e%20!%3D%20NULL%3B%20e%20%3D%20e-%3Enext)%20%7B%0A%20%20%20%20%20%20%20%20if%20(equals(e-%3Ekey%2C%20key))%0A%20%20%20%20%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%20%20%20%20*insert%20%3D%20%26e-%3Enext%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%200%3B%0A%7D%0A%0A%2F%2F%2F%20Insert%20into%20a%20hash%20table%20with%20separate%20chaining.%0Aint%20hash_chain_insert(chaining_hashtable_t*%20ht%2C%20void*%20key%2C%20eq_t%20equals)%20%7B%0A%20%20%20%20entry_t**%20insert%3B%0A%20%20%20%20int%20found%20%3D%20hash_chain_search(ht%2C%20key%2C%20equals%2C%20%26insert)%3B%0A%20%20%20%20if%20(found)%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20the%20hash%20table%20did%20not%20change%0A%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20%7D%0A%20%20%20%20%2F%2F%20The%20search%20function%20sets%20insert%20to%20the%20address%20of%20%0A%20%20%20%20%2F%2F%20the%20last%20next%20pointer%20in%20the%20collision%20chain%0A%20%20%20%20assert%20(*insert%20%3D%3D%20NULL)%3B%0A%20%20%20%20%2F%2F%20here%2C%20we%20know%20that%20the%20element%20is%20not%20in%20the%20table%0A%20%20%20%20%2F%2F%20so%20we%20allocate%20a%20new%20list%20entry%0A%20%20%20%20entry_t*%20e%20%3D%20malloc(sizeof(*e))%3B%0A%20%20%20%20%2F%2F%20initialize%20the%20entry%0A%20%20%20%20e-%3Enext%20%3D%20NULL%3B%0A%20%20%20%20e-%3Ekey%20%3D%20key%3B%0A%20%20%20%20%2F%2F%20and%20append%20it%20to%20the%20collision%20chain%0A%20%20%20%20*insert%20%3D%20e%3B%20%0A%20%20%20%20%2B%2Bht-%3Esize%3B%0A%20%20%20%20return%201%3B%0A%7D%0A%0Aint%20hash_chain_insert_resize(chaining_hashtable_t*%20ht%2C%20void*%20key%2C%20eq_t%20eq)%20%7B%0A%20%20%20%20if%20(ht-%3Esize%20%3E%20ht-%3Emax_load_factor%20*%20ht-%3Etable_length)%20%7B%0A%20%20%20%20%20%20%20%20ht-%3Etable_length%20*%3D%202%3B%0A%20%20%20%20%20%20%20%20assert%20(ht-%3Esize%20%3C%20ht-%3Emax_load_factor%20*%20ht-%3Etable_length)%3B%0A%20%20%20%20%20%20%20%20entry_t**%20old_table%20%3D%20ht-%3Etable%3B%0A%20%20%20%20%20%20%20%20%2F%2F%20allocate%20new%20table%20and%20initialize%20to%200%0A%20%20%20%20%20%20%20%20ht-%3Etable%20%3D%20calloc(ht-%3Etable_length%2C%20sizeof(ht-%3Etable%5B0%5D))%3B%0A%20%20%20%20%20%20%20%20%2F%2F%20go%20over%20old%20hash%20table%20and%20add%20each%20element%20to%20new%20table%0A%20%20%20%20%20%20%20%20rehash_table(ht%2C%20old_table)%3B%0A%20%20%20%20%20%20%20%20%2F%2F%20free%20old%20table%0A%20%20%20%20%20%20%20%20free(old_table)%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20return%20hash_chain_insert(ht%2C%20key%2C%20eq)%3B%0A%7D%0A%0Atypedef%20struct%20%7B%0A%20%20%20%20unsigned%20size%3B%0A%20%20%20%20unsigned%20table_length%3B%0A%20%20%20%20float%20max_load_factor%3B%0A%20%20%20%20hash_fct_t%20h%3B%0A%20%20%20%20void**%20table%3B%0A%7D%20open_addr_hashtable_t%3B%0A%0Aint%20open_addr_hashtable_search(open_addr_hashtable_t*%20ht%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20void%20*key%2C%20eq_t%20equals)%20%7B%0A%20%20%20%20for%20(unsigned%20i%20%3D%200%3B%20i%20%3C%20ht-%3Etable_length%3B%20i%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20call%20probing%20function%20to%20compute%20bucket%20%0A%20%20%20%20%20%20%20%20%2F%2F%20of%20collision%20chain%20entry%0A%20%20%20%20%20%20%20%20unsigned%20bucket%20%3D%20h_prime(ht-%3Eh(key)%2C%20i)%3B%20%20%0A%20%20%20%20%20%20%20%20void*%20k%20%3D%20ht-%3Etable%5Bbucket%5D%3B%0A%20%20%20%20%20%20%20%20if%20(k%20%3D%3D%20NULL%20%7C%7C%20equals(k%2C%20key))%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20bucket%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20-1%3B%0A%7D%20">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">5.3.3<span class="period">.</span></span><span class="space"> </span>Inserting into a hash table with separate chaining.</figcaption></figure><span class="incontext"><a href="sec-ds-hash.html#listing-29" class="internal">in-context</a></span>
+</body>
+</html>

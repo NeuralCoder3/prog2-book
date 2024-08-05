@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">Let us run the program on the state <span class="process-math">\(\{\CVar x\mapsto 5,\CVar y\mapsto 2,\CVar q\mapsto\indetval,\CVar r\mapsto\indetval\}\text{.}\)</span> To improve the readability, we abbreviate the loop body with <span class="process-math">\(S\text{.}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{llll}
+\amp \langle        \CSeqThree{\CAssign{\CVar q}{\CConst 0}} {\CAssign{\CVar r}{\CVar x}} {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}S}                                                 \amp| {\{\CVar q\mapsto ?, \CVar r\mapsto ?, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \\
+\steprel \amp \langle        \CSeq                                    {\CAssign{\CVar r}{\CVar x}} {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}S}                                                 \amp| {\{\CVar q\mapsto 0, \CVar r\mapsto ?, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[Assign]} \\
+\steprel \amp \langle                                                                              {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}S}                                                 \amp| {\{\CVar q\mapsto 0, \CVar r\mapsto 5, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[Assign]} \\
+\steprel \amp \langle\CSeq{\CBlock{\CSeq{\CAssign{\CVar r}{\CBinary{-}{\CVar r}{\CVar y}}}{\CAssign{\CVar q}{\CBinary{+}{\CVar q}{\CConst 1}}}}} {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}{S}} \amp| {\{\CVar q\mapsto 0, \CVar r\mapsto 5, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[WhileTrue]}\\
+\steprel \amp \langle         \CSeqThree{\CAssign{\CVar r}{\CBinary{-}{\CVar r}{\CVar y}}} {\CAssign{\CVar q}{\CBinary{+}{\CVar q}{\CConst 1}}}  {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}{S}} \amp| {\{\CVar q\mapsto 0, \CVar r\mapsto 5, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[Block]}\\
+\steprel \amp \langle         \CSeq                                                        {\CAssign{\CVar q}{\CBinary{+}{\CVar q}{\CConst 1}}}  {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}{S}} \amp| {\{\CVar q\mapsto 0, \CVar r\mapsto 3, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[Assign]}\\
+\steprel \amp \langle                                                                                                                            {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}{S}} \amp| {\{\CVar q\mapsto 1, \CVar r\mapsto 3, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[Assign]}\\
+\steprel \amp \langle\CSeq{\CBlock{\CSeq{\CAssign{\CVar r}{\CBinary{-}{\CVar r}{\CVar y}}}{\CAssign{\CVar q}{\CBinary{+}{\CVar q}{\CConst 1}}}}} {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}{S}} \amp| {\{\CVar q\mapsto 1, \CVar r\mapsto 3, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[WhileTrue]}\\
+\steprel \amp \langle         \CSeqThree{\CAssign{\CVar r}{\CBinary{-}{\CVar r}{\CVar y}}} {\CAssign{\CVar q}{\CBinary{+}{\CVar q}{\CConst 1}}}  {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}{S}} \amp| {\{\CVar q\mapsto 1, \CVar r\mapsto 3, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[Block]}\\
+\steprel \amp \langle         \CSeq                                                        {\CAssign{\CVar q}{\CBinary{+}{\CVar q}{\CConst 1}}}  {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}{S}} \amp| {\{\CVar q\mapsto 1, \CVar r\mapsto 1, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[Assign]}\\
+\steprel \amp \langle                                                                                                                            {\CWhile{\CBinary{\le}{\CVar y}{\CVar r}}{S}} \amp| {\{\CVar q\mapsto 2, \CVar r\mapsto 1, \CVar x\mapsto 5, \CVar y\mapsto 2\}}\rangle \amp \ \text{[Assign]}\\
+\steprel \amp \config{\CTerm}{\{\CVar q\mapsto 2, \CVar r\mapsto 1, \CVar x\mapsto 5, \CVar y\mapsto 2\}} \amp \amp \ \text{[WhileFalse]}\\
+\end{array}
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-c0-sem.html#p-684" class="internal">in-context</a></span>
+</body>
+</html>

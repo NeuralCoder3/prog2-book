@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<div class="para logical">
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\vdash\hoare {2&gt;0}{\CAssign{\CVar x}{\CConst 2}}{\CVar x&gt;0}$}
+\end{prooftree}
+\quad
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\vdash\hoare {\CBinary{*}{\CConst 2}{\CVar y}=\CVar y}{\CAssign{\CVar x}{\CBinary{*}{\CConst 2}{\CVar y}}}{\CVar x=\CVar y}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\vdash\hoare {\CBinary{+}{\CVar y}{\CConst 1}=\CConst 5}{\CAssign{\CVar x}{\CBinary{+}{\CVar y}{\CConst 1}}}{\CVar x=\CConst 5}$}
+\end{prooftree}
+\quad
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\vdash\hoare {\CVar z\ne 0\land\CBinary{/}{\CVar y}{\CVar z}=\CConst 5}{\CAssign{\CVar x}{\CBinary{/}{\CVar y}{\CVar z}}}{\CVar x=\CConst 5}$}
+\end{prooftree}
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-corr-hoare.html#p-823" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">Let us assume that <code class="code-inline tex2jax_ignore">bar</code> is defined in a different translation unit that we do not make any assumption about. So, how can we know that the value we stored into <code class="code-inline tex2jax_ignore">$t0</code> with the first <code class="code-inline tex2jax_ignore">addu</code> is still intact? Now you might say that we have to look inside the code of <code class="code-inline tex2jax_ignore">bar</code> to be sure that it doesn't overwrite <code class="code-inline tex2jax_ignore">$t0</code>. This is a bad idea for several reasons: First, if the project is bigger this may mean that you have to look at way more code than your own. Above a certain code size, this is no longer feasible. Second, the implementation of <code class="code-inline tex2jax_ignore">bar</code> may change in the future and so might its usage of <code class="code-inline tex2jax_ignore">$t0</code>. So it is a good idea to make as few assumptions as possible about the inner workings of <code class="code-inline tex2jax_ignore">bar</code>. Pessimistically, we have to assume that <code class="code-inline tex2jax_ignore">bar</code> uses <code class="code-inline tex2jax_ignore">$t0</code> for its own purposes.</div>
+<span class="incontext"><a href="sec-asm-call.html#p-167" class="internal">in-context</a></span>
+</body>
+</html>

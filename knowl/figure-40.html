@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="figure figure-like"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;">
+<pre class="program"><code class="language-c">{ // Scope 1
+  int x; 
+  int y;
+  x = 1;
+  y = 1;
+  { // Scope 2
+    int z;
+    z = x + y;
+  }
+  { // Scope 3
+    int y;
+    y = x + 1;
+  }
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%7B%20%2F%2F%20Scope%201%0A%20%20int%20x%3B%20%0A%20%20int%20y%3B%0A%20%20x%20%3D%201%3B%0A%20%20y%20%3D%201%3B%0A%20%20%7B%20%2F%2F%20Scope%202%0A%20%20%20%20int%20z%3B%0A%20%20%20%20z%20%3D%20x%20%2B%20y%3B%0A%20%20%7D%0A%20%20%7B%20%2F%2F%20Scope%203%0A%20%20%20%20int%20y%3B%0A%20%20%20%20y%20%3D%20x%20%2B%201%3B%0A%20%20%7D%0A%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<div class="sbspanel top" style="width:50%;"><img src="generated/latex-image/image-40.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.1<span class="period">.</span></span><span class="space"> </span>A C0 with multiple nested blocks. For each block there is a type environment / scope. The nesting of the blocks corresponds to a tree of scopes. The type environment of a block only lists the innermost variable declarations and points to the next outer scope via a pointer. Note that each scope maps the declared identifier to the AST node of the declaration (which is not shown in the figure).</figcaption></figure><span class="incontext"><a href="sec-comp-tychk.html#figure-40" class="internal">in-context</a></span>
+</body>
+</html>

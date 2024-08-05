@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.12</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">Consider the division program from <a href="" class="xref" data-knowl="./knowl/ex-corr-hoare-while.html" title="Example 7.4.7">Example 7.4.7</a>.</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-corr-hoare-while.html">
+\begin{equation*}
+\CAssign{\CVar q}{\CConst 0}
+\CWhileInv{\CBinary{\ge}{\CVar x}{\CVar y}}{
+\underbrace{\CBlock{
+\CAssign{\CVar x}{\CBinary{-}{\CVar x}{\CVar y}}
+\CAssign{\CVar q}{\CBinary{+}{\CVar q}{\CConst 1}}
+}}_{s}
+}{\CVar q*\CVar y+\CVar x=\CVar X}
+\end{equation*}
+</div>
+<div class="para">which we want to prove correct with respect to the specification</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-corr-hoare-while.html">
+\begin{align*}
+P \amp = \CVar x=\CVar X\\
+Q \amp = \CVar q*\CVar y+\CVar x=\CVar X\land \CVar x\lt\CVar y
+\end{align*}
+</div>
+<div class="para">using the loop invariant</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-corr-hoare-while.html">
+\begin{align*}
+I \amp = \CVar q*\CVar y+\CVar x=\CVar X
+\end{align*}
+</div>
+</div> <div class="para logical">
+<div class="para">Using <a href="" class="xref" data-knowl="./knowl/def-corr-hoare-pc.html" title="Definition 7.4.9: Preconditions and Verification Conditions">Definition 7.4.9</a>, we have:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-pc.html ./knowl/eq-corr-hoare-mech.html">
+\begin{align*}
+\hpc \denot{\mathtt{while}\ \dots}\,Q \amp = I\\
+\hpc \denot{\CAssign{\CVar q}{\CConst 0}\dots}\,Q
+\amp = \hpc \denot{\CAssign{\CVar q}{\CConst 0}}\,(\hpc \denot{\mathtt{while}\ \dots}\,Q)\\
+\amp = \hpc \denot{\CAssign{\CVar q}{\CConst 0}}\,I = (\CVar 0*\CVar y+\CVar x=\CVar X)
+\end{align*}
+</div>
+<div class="para">and</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-pc.html ./knowl/eq-corr-hoare-mech.html">
+\begin{align*}
+\hvc \denot{\CAssign{\CVar q}{\CConst 0}\dots}\,Q \amp = \hvc \denot{\CAssign{\CVar q}{\CConst 0}}\,(\hpc \denot{\mathtt{while}\ \dots}\,Q)\cup \hvc \denot{\mathtt{while}\dots}\,Q\\
+\amp = \hvc \denot{\mathtt{while}\dots}\,Q\\
+\hvc \denot{\mathtt{while}\ \dots}\,Q      \amp = (\hvc s\,I)\cup \{\CBinary{\lt}{\CVar x}{\CVar y}\land I\simp Q,I\land\CBinary{\ge}{\CVar x}{\CVar y}\simp\hpc s\,I \} \\
+\hvc s\,I                                  \amp = \emptyset\\
+\hpc s\,I                                  \amp = \left[(\CVar q+\CConst 1)*\CVar y+(\CVar x-\CVar y)=\CVar X\right]
+\end{align*}
+</div>
+<div class="para">So in summary, we have:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-pc.html ./knowl/eq-corr-hoare-mech.html">
+\begin{align*}
+\hpc \denot{\CAssign{\CVar q}{\CConst 0}\dots}\,Q \amp = \CConst 0*\CVar y+\CVar x=X\\
+\hvc \denot{\CAssign{\CVar q}{\CConst 0}\dots}\,Q \amp = \{\CBinary{\lt}{\CVar x}{\CVar y}\land I\simp Q,I\land\CBinary{\ge}{\CVar x}{\CVar y}\simp\hpc s\,I \}
+\end{align*}
+</div>
+<div class="para">Coming back to <a href="" class="xref" data-knowl="./knowl/eq-corr-hoare-mech.html" title="Equation 7.4">(7.4)</a>, all verification conditions are:</div>
+<ol class="decimal">
+<li><div class="para"><span class="process-math">\(\displaystyle P\simp \CConst 0*\CVar y+\CVar x=X\)</span></div></li>
+<li><div class="para"><span class="process-math">\(\displaystyle \CVar x\lt\CVar y\land I\simp Q\)</span></div></li>
+<li><div class="para"><span class="process-math">\(\displaystyle I\land\CVar x\ge\CVar y\simp (\CVar q+\CConst 1)*\CVar y+(\CVar x-\CVar y)=\CVar X\)</span></div></li>
+</ol>
+<div class="para">They can now be given to a theorem solver. If the solver reports that they are valid, the program is partially correct with respect to the given specification.</div>
+</div></article><span class="incontext"><a href="sec-corr-hoare.html#example-35" class="internal">in-context</a></span>
+</body>
+</html>

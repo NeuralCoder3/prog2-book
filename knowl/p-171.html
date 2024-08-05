@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">Typically, the size of the stack frame is constant (i.e. the same for all program executions). In some situations, one wants to allocate more memory on the stack, maybe also dependent on some input. In such a case, it may not be <em class="emphasis">statically</em> known how deep the stack pointer will move throughout the execution of a procedure's code. This makes using constant offsets in the form of immediates like in the example above impossible. In such a situation, one uses an additional register that is called the <dfn class="terminology">frame pointer</dfn>. In MIPS, frame pointers reside in register 30 and are called <code class="code-inline tex2jax_ignore">$fp</code>. It is common to set the frame pointer right at the entrance of the procedure by saving the old frame pointer and setting the frame pointer to the current stack pointer value.</div>
+<span class="incontext"><a href="sec-asm-call.html#p-171" class="internal">in-context</a></span>
+</body>
+</html>

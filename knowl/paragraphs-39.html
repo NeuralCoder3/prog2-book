@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">C.</span></h3> <div class="para">Let us now consider the implementation in C (<a href="" class="xref" data-knowl="./knowl/fig-oo-exp-c.html" title="Listing 8.10.2">Listing 8.10.2</a>). The C implementation exposes the low-level details of algebraic data types and shows how they might be implemented in a functional language “under the hood”. The struct <code class="code-inline tex2jax_ignore">exp_t</code> contains a <em class="emphasis">union</em> containing the data for the two variants of our ADT. The member field <code class="code-inline tex2jax_ignore">op</code> determines whether the expression is an addition or the occurrence of a variable. Which variant is represented is set by the corresponding constructor (<code class="code-inline tex2jax_ignore">exp_init_var</code> and <code class="code-inline tex2jax_ignore">exp_init_add</code>).</div> <figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">struct env_t;
+typedef struct env_t env_t;
+int env_get(env_t const *e, char const* name);
+
+typedef enum {
+    ADD, VAR,
+} operator_t;
+
+typedef struct exp_t {
+    operator_t op;
+    union {
+        struct exp_t *opnds[2];
+        char const* var_name;
+    };
+} exp_t;
+
+exp_t* exp_init_add(exp_t* t,
+                    exp_t* l, exp_t* r) {
+    t-&gt;op = ADD;
+    t-&gt;opnds[0] = l;
+    t-&gt;opnds[1] = r;
+    return t;
+}
+
+exp_t* exp_init_var(exp_t* t, char const* n) {
+    t-&gt;op = VAR;
+    t-&gt;var_name = n;
+    return t;
+}
+
+int exp_eval(exp_t const* t, env_t const* e) {
+    switch(t-&gt;op) {
+    case ADD:  return exp_eval(t-&gt;opnds[0], e)
+                    + exp_eval(t-&gt;opnds[1], e);
+    case VAR:  return env_get(e, t-&gt;var_name);
+    }
+}
+
+void exp_print(exp_t const* t, FILE* f) {
+    switch(t-&gt;op) {
+    case ADD:  exp_print(t-&gt;opnds[0], f);
+               fprintf(f, " + ");
+               exp_print(t-&gt;opnds[1], f);
+               break;
+    case VAR:  fputs(t-&gt;var_name, f);
+               break;
+    }
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=struct%20env_t%3B%0Atypedef%20struct%20env_t%20env_t%3B%0Aint%20env_get(env_t%20const%20*e%2C%20char%20const*%20name)%3B%0A%0Atypedef%20enum%20%7B%0A%20%20%20%20ADD%2C%20VAR%2C%0A%7D%20operator_t%3B%0A%0Atypedef%20struct%20exp_t%20%7B%0A%20%20%20%20operator_t%20op%3B%0A%20%20%20%20union%20%7B%0A%20%20%20%20%20%20%20%20struct%20exp_t%20*opnds%5B2%5D%3B%0A%20%20%20%20%20%20%20%20char%20const*%20var_name%3B%0A%20%20%20%20%7D%3B%0A%7D%20exp_t%3B%0A%0Aexp_t*%20exp_init_add(exp_t*%20t%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20exp_t*%20l%2C%20exp_t*%20r)%20%7B%0A%20%20%20%20t-%3Eop%20%3D%20ADD%3B%0A%20%20%20%20t-%3Eopnds%5B0%5D%20%3D%20l%3B%0A%20%20%20%20t-%3Eopnds%5B1%5D%20%3D%20r%3B%0A%20%20%20%20return%20t%3B%0A%7D%0A%0Aexp_t*%20exp_init_var(exp_t*%20t%2C%20char%20const*%20n)%20%7B%0A%20%20%20%20t-%3Eop%20%3D%20VAR%3B%0A%20%20%20%20t-%3Evar_name%20%3D%20n%3B%0A%20%20%20%20return%20t%3B%0A%7D%0A%0Aint%20exp_eval(exp_t%20const*%20t%2C%20env_t%20const*%20e)%20%7B%0A%20%20%20%20switch(t-%3Eop)%20%7B%0A%20%20%20%20case%20ADD%3A%20%20return%20exp_eval(t-%3Eopnds%5B0%5D%2C%20e)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2B%20exp_eval(t-%3Eopnds%5B1%5D%2C%20e)%3B%0A%20%20%20%20case%20VAR%3A%20%20return%20env_get(e%2C%20t-%3Evar_name)%3B%0A%20%20%20%20%7D%0A%7D%0A%0Avoid%20exp_print(exp_t%20const*%20t%2C%20FILE*%20f)%20%7B%0A%20%20%20%20switch(t-%3Eop)%20%7B%0A%20%20%20%20case%20ADD%3A%20%20exp_print(t-%3Eopnds%5B0%5D%2C%20f)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fprintf(f%2C%20%22%20%2B%20%22)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20exp_print(t-%3Eopnds%5B1%5D%2C%20f)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20break%3B%0A%20%20%20%20case%20VAR%3A%20%20fputs(t-%3Evar_name%2C%20f)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20break%3B%0A%20%20%20%20%7D%0A%7D%0A">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">8.10.2<span class="period">.</span></span><span class="space"> </span>Implementation of the abstract syntax of the simple expression language in C.</figcaption></figure> <div class="para">The implementations for expression evaluation (in <code class="code-inline tex2jax_ignore">exp_eval</code>) and printing (in <code class="code-inline tex2jax_ignore">exp_print</code>) use this field to execute the corresponding variant of the code. These two functions thus contain the corresponding code for all expression variants. A variant's implementation is therefore scattered over many places in the C code: The <em class="emphasis">enum</em> that lists all variants, a member field in the <em class="emphasis">union</em> for the data and a branch in every function implementing an operation of the data type.</div> <div class="para">Since C does not have inheritance, the <code class="code-inline tex2jax_ignore">exp_t</code> struct collects fields for all subclasses. The lack of classes requires branches in case distinctions for the method implementations (see <code class="code-inline tex2jax_ignore">exp_eval</code> and <code class="code-inline tex2jax_ignore">exp_print</code>). These functions can access all fields, meaning that there is no encapsulation between the <code class="code-inline tex2jax_ignore">Add</code> and <code class="code-inline tex2jax_ignore">Const</code> classes.</div></section><span class="incontext"><a href="sec-java-proper-oo.html#paragraphs-39" class="internal">in-context</a></span>
+</body>
+</html>

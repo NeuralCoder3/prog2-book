@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">Global Variable.</span>
+</h4> <div class="para">Consider the following function:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int data[1024];
+
+void sort() {
+    /* sort the values in data */
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20data%5B1024%5D%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20void%20sort()%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20sort%20the%20values%20in%20data%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">This sorting function can only operate if the data to be sorted has been copied to the array <code class="code-inline tex2jax_ignore">data</code> before. This reduces its flexibility and makes the function difficult to comprehend: Its parameters do not say what is to be sorted. A better design would give <code class="code-inline tex2jax_ignore">sort</code> a parameter with a pointer type that should point to the array that needs to be sorted and a parameter for the length of the array.</div></article><span class="incontext"><a href="sec-c-object.html#example-2" class="internal">in-context</a></span>
+</body>
+</html>

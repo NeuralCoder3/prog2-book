@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">So, we need to allocate space in memory <em class="emphasis">for every call</em> to save the registers of this particular instance. Because each function returns before its caller, we can organize this memory using a <dfn class="terminology">stack</dfn>. A stack is a data structure (a way to organize data) with the policy that data can only be removed from the data structure in the reverse order of their insertion which means that the last in is first out (LIFO). To this end, each function that wants to save register contents allocates a <dfn class="terminology">stack frame</dfn> (certain amount of bytes) on the stack where the register contents can be saved. Allocation is simple because it is a stack: One register that holds the current height of the stack is sufficient. In practice this register, called the <dfn class="terminology">stack pointer</dfn>, points to the last byte that is currently on the stack. Since the stack grows downwards decreasing the stack pointer by <span class="process-math">\(n\)</span> allocates <span class="process-math">\(n\)</span> bytes on the stack. On MIPS systems register 29 is assigned the role of the stack pointer and therefore bears the short name <code class="code-inline tex2jax_ignore">$sp</code>. The following listing extends the example program above with the allocation and de-allocation of a stack frame and loads and stores to save and restore the values of <code class="code-inline tex2jax_ignore">$t0</code> and <code class="code-inline tex2jax_ignore">$ra</code>. </div>
+<span class="incontext"><a href="sec-asm-call.html#p-170" class="internal">in-context</a></span>
+</body>
+</html>

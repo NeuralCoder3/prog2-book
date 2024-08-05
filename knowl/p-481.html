@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">Let us call the length of the array the <dfn class="terminology">capacity</dfn> of the array list. So, assume that initially the array has capacity 1 and the list is empty, i.e. has length 0. (One could start with a higher capacity to optimize away some of the initial reallocations, but let us ignore that for the sake of simplicity.) Since we double the size of the array only when we want to add an element <em class="emphasis">and</em> the capacity equals the list size, the capacity will always be a power of two. Assume we are in this situation and the capacity (and the list length) is <span class="process-math">\(2^n\text{.}\)</span> If we now add one more element to the array list, we will allocate a new array of size <span class="process-math">\(2^{n+1}\)</span> and copy all <span class="process-math">\(2^n\)</span> elements over to the new array. So, in general, if the array capacity equals <span class="process-math">\(2^m\text{,}\)</span> we have copied <span class="process-math">\(2^0+2^1+\cdots+2^{m-1}=2^{m}-1\)</span> elements. However, if the capacity is <span class="process-math">\(2^m\text{,}\)</span> the array list contains at least <span class="process-math">\(2^{m-1}+1\)</span> elements. So in total (<em class="emphasis">amortized</em> over all insertions) after inserting <span class="process-math">\(2^{m-1}\lt M\le 2^m\)</span> elements to the array list, we have performed at most <span class="process-math">\(2M\)</span> copy operations.</div>
+<span class="incontext"><a href="sec-ds-lists.html#p-481" class="internal">in-context</a></span>
+</body>
+</html>

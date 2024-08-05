@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><pre class="program"><code class="language-c">#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include "poly.h"
+
+int main(int argc, char *argv[])
+{
+    if (argc &lt; 3) {
+        fprintf(stderr, "syntax: %s x coeffs...",
+                argv[0]);
+        return 1;
+    }
+
+    poly_t *p = poly_alloc(argc - 3);
+    for (int i = 2; i &lt; argc; i++) {
+        int coeff = atoi(argv[i]);
+        poly_set_coeff(p, i - 2, coeff);
+    }
+    int x = atoi(argv[1]);
+    int y = poly_eval(p, x);
+    poly_free(p);
+    printf("%d\n", y);
+    return 0;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23include%20%3Cstdlib.h%3E%0A%23include%20%3Cstdio.h%3E%0A%23include%20%22poly.h%22%0A%0Aint%20main(int%20argc%2C%20char%20*argv%5B%5D)%0A%7B%0A%20%20%20%20if%20(argc%20%3C%203)%20%7B%0A%20%20%20%20%20%20%20%20fprintf(stderr%2C%20%22syntax%3A%20%25s%20x%20coeffs...%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20argv%5B0%5D)%3B%0A%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20poly_t%20*p%20%3D%20poly_alloc(argc%20-%203)%3B%0A%20%20%20%20for%20(int%20i%20%3D%202%3B%20i%20%3C%20argc%3B%20i%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20int%20coeff%20%3D%20atoi(argv%5Bi%5D)%3B%0A%20%20%20%20%20%20%20%20poly_set_coeff(p%2C%20i%20-%202%2C%20coeff)%3B%0A%20%20%20%20%7D%0A%20%20%20%20int%20x%20%3D%20atoi(argv%5B1%5D)%3B%0A%20%20%20%20int%20y%20%3D%20poly_eval(p%2C%20x)%3B%0A%20%20%20%20poly_free(p)%3B%0A%20%20%20%20printf(%22%25d%5Cn%22%2C%20y)%3B%0A%20%20%20%20return%200%3B%0A%7D%0A">Run</a><figcaption><span class="codenumber">(c)</span><span class="space"> </span><code class="code-inline tex2jax_ignore">main.c</code></figcaption></figure><span class="incontext"><a href="sec-c-structs.html#listing-27" class="internal">in-context</a></span>
+</body>
+</html>

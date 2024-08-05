@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">The function <code class="code-inline tex2jax_ignore">probing_hashtable_search</code> returns the table index of a key equal to <code class="code-inline tex2jax_ignore">key</code> if such a key is in the table. If there is no such key, it returns the index in the hash table where <code class="code-inline tex2jax_ignore">key</code> can be inserted. If all entries <span class="process-math">\(h'(k,0),h'(k,1),\dots,h'(k,m-1)\)</span> are occupied it returns the error code -1. The pressing question now is if the table really is full in this case, i.e. if <span class="process-math">\(h'\)</span> is <em class="emphasis">surjective</em> with respect to its second parameter for each key. This certainly depends on how we define <span class="process-math">\(h'\text{.}\)</span> In the following, we will discuss two different ways of defining <span class="process-math">\(h'\)</span> for which hold that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\{h'(k,0),h'(k,1),\dots,h'(k,m-1) \}=\{0,\dots,m-1\}
+\end{equation*}
+</div>
+<div class="para">i.e. that whenever the search function returns -1 the table is indeed full.</div>
+</div>
+<span class="incontext"><a href="sec-ds-hash.html#p-574" class="internal">in-context</a></span>
+</body>
+</html>

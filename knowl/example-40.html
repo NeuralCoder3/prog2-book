@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">8.8.6</span><span class="period">.</span>
+</h4>
+<div class="para">Consider the following classes:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class A {
+  public void m(double X)  { System.out.println("A.m(double)"); }
+  public void m(boolean x) { System.out.println("A.m(boolean)"); }
+}
+
+public class B extends A {
+  public void m(int x)     { System.out.println("B.m(int)"); }
+  public void m(boolean x) { System.out.println("B.m(boolean)"); }
+}
+</code></pre></div> <div class="para">To understand which method overrides which, consider the following table:</div> <figure class="table table-like"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">8.8.7<span class="period">.</span></span><span class="space"> </span>Overloaded and overridden methods</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b1 r1 l0 t0 lines">Class</td>
+<td class="c m b1 r0 l0 t0 lines" colspan="3">Methods</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore">A</code></td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">A.m(double)</code></td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">A.m(boolean)</code></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore">B</code></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">B.m(boolean)</code></td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">B.m(int)</code></td>
+</tr>
+</table></div></figure> <div class="para">Methods in a row with the same name overload each other. A method in a column overrides the method in the same column of a row above. Hence, here only <code class="code-inline tex2jax_ignore">B.m(boolean)</code> overrides the method <code class="code-inline tex2jax_ignore">A.m(boolean)</code>. Consider the following program fragments that call <code class="code-inline tex2jax_ignore">m</code> in different constellations:</div> <div class="para logical"><ol class="decimal">
+<li>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">A a = new A();
+a.m(5);
+</code></pre></div>
+<div class="para">prints <code class="code-inline tex2jax_ignore">A.m(double)</code>. Trivial, since the concrete type is equal to the static type.</div>
+</li>
+<li>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">A a = new B();
+a.m(5);
+</code></pre></div>
+<div class="para">prints <code class="code-inline tex2jax_ignore">A.m(double)</code>. The static type of <code class="code-inline tex2jax_ignore">a</code> is <code class="code-inline tex2jax_ignore">A</code>, but the concrete type is here <code class="code-inline tex2jax_ignore">B</code>. However, <code class="code-inline tex2jax_ignore">B</code> does not override the method <code class="code-inline tex2jax_ignore">A.m(double)</code>, but only overloads the methods <code class="code-inline tex2jax_ignore">m(double)</code> and <code class="code-inline tex2jax_ignore">m(boolean)</code> again with the parameter type <code class="code-inline tex2jax_ignore">int</code>. Since the overloaded method is selected by the static type (here: <code class="code-inline tex2jax_ignore">A.m(double)</code>), the method <code class="code-inline tex2jax_ignore">m(int)</code> in the concrete type <code class="code-inline tex2jax_ignore">B</code> is irrelevant.</div>
+</li>
+<li>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">B b = new B();
+b.m(5);
+</code></pre></div>
+<div class="para">prints <code class="code-inline tex2jax_ignore">B.m(int)</code>. The static type is now <code class="code-inline tex2jax_ignore">B</code> and <code class="code-inline tex2jax_ignore">m</code> is overloaded three times in <code class="code-inline tex2jax_ignore">B</code>.</div>
+</li>
+</ol></div></article><span class="incontext"><a href="sec-java-overload.html#example-40" class="internal">in-context</a></span>
+</body>
+</html>

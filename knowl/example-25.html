@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.6.10</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">Finally, let's consider the derivation of the static semantics for a more complex example in which we declare local variables in blocks.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdots$}
+\LeftLabel{[TAssign]}
+\UnaryInfC{$\stmtGamma{\CAssign{\CVar x}{\CConst 3}}$}
+\AxiomC{$\vdots$}
+\LeftLabel{[TSeq]}
+\UnaryInfC{$\stmtjudge{\Gamma[\CVar x\mapsto\CPtr\CInt]}{\CAssign{\CVar x}{\CAddrOf{\CVar y}}}$}
+\LeftLabel{[TBlock]}
+\UnaryInfC{$\stmtGamma{\CBlock{\CPtr\CInt\,\CVar x;\ \CAssign{\CVar x}{\CAddrOf{\CVar y}}};}$}
+\AxiomC{$\vdots$}
+\LeftLabel{[TAssign]}
+\UnaryInfC{$\stmtGamma{\CAssign{\CVar y}{\CVar x}}$}
+\AxiomC{}
+\LeftLabel{[TTerm]}
+\UnaryInfC{$\stmtGamma\CTerm$}
+\LeftLabel{[TSeq]}
+\BinaryInfC{$\stmtGamma{\CAssign{\CVar y}{\CVar x}}$}
+\LeftLabel{[TSeq]}
+\BinaryInfC{$\stmtGamma{\CBlock{\CPtr\CInt\,\CVar x;\ \CAssign{\CVar x}{\CAddrOf{\CVar y}}}; \CAssign{\CVar y}{\CVar x}}$}
+\LeftLabel{[TSeq]}
+\BinaryInfC{$\stmtjudge{\{\CVar x\mapsto\CInt,\CVar y\mapsto\CInt\}\eqdef\Gamma}{
+\ \CAssign{\CVar x}{\CConst 3}
+\CBlock{
+\CPtr\CInt\,\CVar x;
+\ \CAssign{\CVar x}{\CAddrOf{\CVar y}}
+}
+\ \CAssign{\CVar y}{\CVar x}}$}
+\LeftLabel{[TBlock]}
+\UnaryInfC{$\stmtjudge{\emptyset}{\CBlock{
+\CInt\,\CVar x;
+\ \CInt\,\CVar y;
+\ \CAssign{\CVar x}{\CConst 3}
+\CBlock{
+\CPtr\CInt\,\CVar x;
+\ \CAssign{\CVar x}{\CAddrOf{\CVar y}}
+}
+\ \CAssign{\CVar y}{\CVar x}}}$}
+\end{prooftree}
+\end{equation*}
+</div>
+</div></article><span class="incontext"><a href="sec-c0-type.html#example-25" class="internal">in-context</a></span>
+</body>
+</html>

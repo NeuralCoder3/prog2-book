@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Motivate inheritance of methods by code reuse by means of the Vec2 example.</div>
+<ul class="circle">
+<li><div class="para">Multiple variants share code. But code duplication is bad.</div></li>
+<li><div class="para">The <code class="code-inline tex2jax_ignore">translate</code> method is implemented in both classes. Factor this method out into a super class <code class="code-inline tex2jax_ignore">BaseVec2</code>.</div></li>
+<li><div class="para">However, <code class="code-inline tex2jax_ignore">setXY</code> is not available in <code class="code-inline tex2jax_ignore">BaseVec</code>.</div></li>
+<li><div class="para">Make <code class="code-inline tex2jax_ignore">BaseVec2</code> abstract and declare method <code class="code-inline tex2jax_ignore">setXY</code> abstract in <code class="code-inline tex2jax_ignore">BaseVec2</code>.</div></li>
+<li><div class="para">Subclasses can always override methods. <code class="code-inline tex2jax_ignore">CartesianVec2</code> could override <code class="code-inline tex2jax_ignore">translate</code> and provide a more “direct” implementation.</div></li>
+<li><div class="para">Mention <code class="code-inline tex2jax_ignore">@override</code>. Defer discussion to overloading.</div></li>
+</ul>
+</div>
+<span class="incontext"><a href="section-86.html#p-1140" class="internal">in-context</a></span>
+</body>
+</html>

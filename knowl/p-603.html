@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">From <a href="" class="xref" data-knowl="./knowl/eq-ds-binom.html" title="Equation 5.1">(5.1)</a> follows that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq-ds-binom.html ./knowl/eq-ds-binom-rec.html">
+\begin{equation*}
+\binom nk=\binom n{n-k}
+\end{equation*}
+</div>
+<div class="para">which is equivalent to saying that Pascal's triangle is symmetrical. This means that we never need to memoize a binomial coefficient larger than <span class="process-math">\(\lfloor n/2\rfloor\text{.}\)</span> From <a href="" class="xref" data-knowl="./knowl/eq-ds-binom-rec.html" title="Equation 5.2">(5.2)</a> follows that we don't need to compute binomial coefficients larger than <span class="process-math">\(k\)</span> in order to compute <span class="process-math">\(\binom nk\text{.}\)</span> So, to compute <span class="process-math">\(\binom nk\text{,}\)</span> we need a two-dimensional table with <span class="process-math">\(k\)</span> columns and <span class="process-math">\(n\)</span> rows. For example, this is the table for computing <span class="process-math">\(\binom 73\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq-ds-binom.html ./knowl/eq-ds-binom-rec.html">
+\begin{equation*}
+\begin{array}{r|rrrrrrrrr}
+\amp k=0 \amp 1 \amp 2 \amp 3 \amp 4 \amp 5 \amp 6 \amp 7 \amp \cdots \\
+\hline
+n = 0 \amp 1 \amp {\color{gray} 0} \amp {\color{gray}0} \amp {\color{gray}0} \amp   \amp   \amp   \amp   \amp \\
+1 \amp 1 \amp 1 \amp {\color{gray}0} \amp {\color{gray}0} \amp   \amp   \amp   \amp   \amp \\
+2 \amp 1 \amp 2 \amp 1 \amp {\color{gray}0} \amp   \amp   \amp   \amp   \amp \\
+3 \amp 1 \amp 3 \amp 3 \amp 1 \amp   \amp   \amp   \amp   \amp \\
+4 \amp 1 \amp 4 \amp 6 \amp 4 \amp . \amp   \amp   \amp   \amp \\
+5 \amp 1 \amp 5 \amp 10\amp 10\amp . \amp . \amp   \amp   \amp \\
+6 \amp 1 \amp 6 \amp 15\amp 20\amp . \amp . \amp . \amp   \amp \\
+7 \amp 1 \amp 7 \amp 21\amp 35\amp . \amp . \amp . \amp . \amp \\
+\end{array}
+\end{equation*}
+</div>
+<div class="para">The following code implements the memoization technique to compute binomial coefficients: <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">unsigned int binomial_table(unsigned int N, unsigned int K) {
+    if (K &gt; N)
+        return 0;
+    if (K &gt; N - K)
+        K = N - K;
+    if (K == 0)
+        return 1;
+
+    unsigned table[N + 1][K + 1];
+    for (unsigned n = 0; n &lt;= N; n++) {
+        table[n][0] = 1;
+        unsigned const end = n &lt; K ? n : K;
+        for (unsigned k = 1; k &lt;= end; k++)
+            table[n][k] = table[n - 1][k] + table[n - 1][k - 1];
+        for (unsigned i = end + 1; i &lt;= K; i++)
+            table[n][i] = 0;
+    }
+    return table[N][K];
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%20int%20binomial(int%20n%2C%20int%20k)%20%7B%0A%20%20%20%20if%20(k%20%3E%20n)%0A%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20if%20(k%20%3D%3D%200%20%7C%7C%20k%20%3D%3D%20n)%0A%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20return%20binomial(n%20-%201%2C%20k%20-%201)%20%2B%20binomial(n%20-%201%2C%20k)%3B%0A%7D%0A%0Aint%20binomial_table(int%20N%2C%20int%20K)%20%7B%0A%20%20%20%20if%20(K%20%3E%20N)%0A%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20if%20(K%20%3E%20N%20-%20K)%0A%20%20%20%20%20%20%20%20K%20%3D%20N%20-%20K%3B%0A%20%20%20%20if%20(K%20%3D%3D%200)%0A%20%20%20%20%20%20%20%20return%201%3B%0A%0A%20%20%20%20int%20table%5BN%20%2B%201%5D%5BK%20%2B%201%5D%3B%0A%20%20%20%20for%20(int%20n%20%3D%200%3B%20n%20%3C%3D%20N%3B%20n%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20table%5Bn%5D%5B0%5D%20%3D%201%3B%0A%20%20%20%20%20%20%20%20int%20end%20%3D%20n%20%3C%20K%20%3F%20n%20%3A%20K%3B%0A%20%20%20%20%20%20%20%20for%20(int%20k%20%3D%201%3B%20k%20%3C%3D%20end%3B%20k%2B%2B)%0A%20%20%20%20%20%20%20%20%20%20%20%20table%5Bn%5D%5Bk%5D%20%3D%20table%5Bn%20-%201%5D%5Bk%5D%20%2B%20table%5Bn%20-%201%5D%5Bk%20-%201%5D%3B%0A%20%20%20%20%20%20%20%20for%20(int%20i%20%3D%20end%20%2B%201%3B%20i%20%3C%3D%20K%3B%20i%2B%2B)%0A%20%20%20%20%20%20%20%20%20%20%20%20table%5Bn%5D%5Bi%5D%20%3D%200%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20table%5BN%5D%5BK%5D%3B%0A%7D%0A%0Aint%20binomial_small(int%20N%2C%20int%20K)%20%7B%0A%20%20%20%20if%20(K%20%3E%20N)%0A%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20if%20(K%20%3E%20N%20-%20K)%0A%20%20%20%20%20%20%20%20K%20%3D%20N%20-%20K%3B%0A%20%20%20%20if%20(K%20%3D%3D%200)%0A%20%20%20%20%20%20%20%20return%201%3B%0A%0A%20%20%20%20int%20table%5B2%5D%5BK%20%2B%201%5D%3B%0A%20%20%20%20for%20(int%20n%20%3D%200%3B%20n%20%3C%3D%20N%3B%20n%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20table%5Bn%20%25%202%5D%5B0%5D%20%3D%201%3B%0A%20%20%20%20%20%20%20%20int%20end%20%3D%20n%20%3C%20K%20%3F%20n%20%3A%20K%3B%20%2F*%20min(n%2C%20K)%20*%2F%0A%20%20%20%20%20%20%20%20for%20(int%20k%20%3D%201%3B%20k%20%3C%3D%20end%3B%20k%2B%2B)%0A%20%20%20%20%20%20%20%20%20%20%20%20table%5Bn%20%25%202%5D%5Bk%5D%20%3D%20table%5B(n%20-%201)%20%25%202%5D%5Bk%5D%20%2B%20table%5B(n%20-%201)%20%25%202%5D%5Bk%20-%201%5D%3B%0A%20%20%20%20%20%20%20%20for%20(int%20i%20%3D%20end%20%2B%201%3B%20i%20%3C%3D%20K%3B%20i%2B%2B)%0A%20%20%20%20%20%20%20%20%20%20%20%20table%5Bn%20%25%202%5D%5Bi%5D%20%3D%200%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20table%5BN%20%25%202%5D%5BK%5D%3B%0A%7D%0A%0Aint%20main()%0A%7B%0A%20%20%20%20int%20N%3D5%3B%0A%0A%20%20%20%20for%20(int%20n%20%3D%200%3B%20n%20%3C%3D%20N%3B%20n%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20for%20(int%20k%20%3D%200%3B%20k%20%3C%3D%20n%3B%20k%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20b%20%3D%20binomial_table(n%2C%20k)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20(b%20%3D%3D%20binomial_small(n%2C%20k))%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20printf(%22%25d%20%22%2C%20b)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20else%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20printf(%22%20err%20%22)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20printf(%22%5Cn%22)%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%200%3B%0A%7D%20">Run</a>
+</div> Note that we could even further optimize this code because in order to compute the k-th row of the table, we only need the previous row. So we actually don't need to memoize all rows but just two and “double-buffer” them.</div>
+</div>
+<span class="incontext"><a href="sec-ds-dynpro.html#p-603" class="internal">in-context</a></span>
+</body>
+</html>

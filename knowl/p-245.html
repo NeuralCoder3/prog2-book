@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">We represent execution traces in table form. Each line of a table represents the execution of a statement and visualizes the values of the variables <em class="emphasis">before executing</em> the statement. In the first column, we note the line number of the executed statement. For each variable declaration, we add another column with the declaration's identifier as its title. For simplicity, we assume that no declaration is shadowed by another one in a nested scope. A statement can have different <em class="emphasis">effects</em> on the <dfn class="terminology">state</dfn> of the execution: For example, a variable declaration can allocate new containers, the end of a block can deallocate existing containers, and an assignment may read from or write to containers. In a line where the previous statement did not change a variable's content, we leave its column clear. The content of a freshly allocated container is undefined, which we represent with a question mark. Besides changes to contents of a variable's container, a statement can have “side effects”, for example calling a function or printing text on the screen. We note these in a column with the title “side effects”.</div>
+<span class="incontext"><a href="sec-c-trace.html#p-245" class="internal">in-context</a></span>
+</body>
+</html>

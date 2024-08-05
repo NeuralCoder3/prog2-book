@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">
+<dfn class="terminology">Quadratic probing</dfn> was introduced to solve the problem of cluster formation of linear probing. To this end, one introduces a quadratic term to “push” higher collision chain entries further away:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+h'(k,i)\defeq (h(k)+ci+di^2)\mathrel{\%}m
+\end{equation*}
+</div>
+<div class="para">Now the question is can <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> chosen such that <span class="process-math">\(h'\)</span> is surjective on the table for each key. (Again, if it is not, this implies that we would not be able to add a key even if the table was not full.) The following theorem establishes that by setting <span class="process-math">\(c=d=1/2\)</span> makes <span class="process-math">\(h'\)</span> <em class="emphasis">injective</em> on <span class="process-math">\(\{0,\dots,s^k-1\}\)</span> for any <span class="process-math">\(k\ge 0\text{.}\)</span>
+</div>
+</div>
+<span class="incontext"><a href="sec-ds-hash.html#p-576" class="internal">in-context</a></span>
+</body>
+</html>

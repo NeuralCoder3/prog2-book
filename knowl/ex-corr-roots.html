@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.3.3</span><span class="period">.</span>
+</h4>
+<div class="para">Given is the specification of a function that is supposed to compute the roots of a quadratic polynomial:</div> <div class="para">“The function <code class="code-inline tex2jax_ignore">unsigned roots(double a, double b, double c, double* r);</code> shall compute the real roots of the polynomial <span class="process-math">\(ax^2+bx+c\text{.}\)</span> It shall return the number of real roots. If the polynomial has more than two roots, the value <code class="code-inline tex2jax_ignore">UINT_MAX</code> shall be returned. The parameter <code class="code-inline tex2jax_ignore">r</code> points to an array that can hold at least two doubles. The function <code class="code-inline tex2jax_ignore">roots</code> places the found roots into the array pointed to by <code class="code-inline tex2jax_ignore">r</code>.”</div> <div class="para logical">
+<div class="para">Based on the mathematics of quadratic functions, we know that there are several different cases that we must cover.</div>
+<ol class="decimal">
+<li><div class="para">The polynomial is equal to the zero polynomial (<span class="process-math">\(a=b=c=0\)</span>). Then, <code class="code-inline tex2jax_ignore">roots</code> has to return <code class="code-inline tex2jax_ignore">UINT_MAX</code>
+</div></li>
+<li><div class="para">The polynomial is linear (<span class="process-math">\(a=0\)</span>). Then, it has one (<span class="process-math">\(b\ne 0\)</span>) or no (<span class="process-math">\(b=0\)</span>) root.</div></li>
+<li><div class="para">The polynomial is quadratic (<span class="process-math">\(a\ne 0\)</span>). Then there is either none, one, or two roots.</div></li>
+</ol>
+</div></article><span class="incontext"><a href="sec-corr-testing.html#ex-corr-roots" class="internal">in-context</a></span>
+</body>
+</html>

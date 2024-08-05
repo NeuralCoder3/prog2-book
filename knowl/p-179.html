@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Let us reconsider our initial example, the computation of the factorial function. The standard way of defining the factorial function mathematically is by recursion:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig-asm-fact.html">
+\begin{equation*}
+f_r(n)\defeq\begin{cases}
+n\cdot f_r(n-1) \amp n \ge 1 \\
+1 \amp n \lt 1
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">The implementation in <a href="" class="xref" data-knowl="./knowl/fig-asm-fact.html" title="Listing 2.3.4">Listing 2.3.4</a> is not recursive: It does not contain any procedure calls especially not to itself. This implementation is based on a different but equivalent definition of the factorial function which is <dfn class="terminology">tail recursive</dfn>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig-asm-fact.html">
+\begin{equation*}
+f_e(n, r)\defeq\begin{cases}
+f_e(n-1, n\cdot r) \amp n \ge 1 \\
+r \amp n \lt 1
+\end{cases}
+\end{equation*}
+</div>
+<div class="para">Tail recursive means that the result of the recursive function application <em class="emphasis">is</em> the result of the function and does not appear in a larger expression. </div>
+</div>
+<span class="incontext"><a href="sec-asm-call.html#p-179" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Ensuring Class Invariants.</span></h3> <div class="para">Encapsulation also helps to ensure that invariants among the fields of a class (so-called <dfn class="terminology">class invariants</dfn>) are preserved. Consider the following class, which models fractions:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Fraction {
+  private int numerator, denominator;
+  ...
+  public setDenominator(int d) {
+    assert d &gt; 0 : "Denominator must be &gt; 0";
+    this.denominator = d;
+  }
+
+  public boolean isPositive() {
+    return numerator &gt;= 0;
+  }
+}
+</code></pre></div> <div class="para">The programmer appears to base their implementation of the class <code class="code-inline tex2jax_ignore">Fraction</code> on the fact that the denominator is always greater than zero. Thus, “<code class="code-inline tex2jax_ignore">d</code> <span class="process-math">\(&gt; 0\)</span>” is an invariant for all <code class="code-inline tex2jax_ignore">Fraction</code> objects. If this invariant was violated, the code of the class would not work correctly. For instance, the method <code class="code-inline tex2jax_ignore">isPositive</code> would yield an incorrect result for <code class="code-inline tex2jax_ignore">denominator</code> <span class="process-math">\(&lt; 0\)</span> and <code class="code-inline tex2jax_ignore">numerator</code> <span class="process-math">\(&lt; 0 \text{.}\)</span> With a setter method, we can ensure that the object never reaches an invalid state by raising a suitable exception when the invariant would be violated.</div></section><span class="incontext"><a href="sec-java-encapsulation.html#paragraphs-36" class="internal">in-context</a></span>
+</body>
+</html>

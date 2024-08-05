@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">The function <code class="code-inline tex2jax_ignore">foo</code> defines two local variables <code class="code-inline tex2jax_ignore">a</code> and <code class="code-inline tex2jax_ignore">b</code> and initializes them to 1 and 2. The third local variable <code class="code-inline tex2jax_ignore">p</code> is a <dfn class="terminology">pointer</dfn>, i.e. a variable that can hold an address. It is initialized to the address of variable <code class="code-inline tex2jax_ignore">b</code>. In the next statement the programmer adds 4 to the address of <code class="code-inline tex2jax_ignore">b</code>. Maybe the programmer believed that all local variables reside in a stack frame (see <a href="sec-asm-call.html" class="internal" title="Section 2.8: Calling Functions">Section 2.8</a>) in the order they were declared in the program. And maybe he thought that an int is four bytes long, so <code class="code-inline tex2jax_ignore">p + 4</code> would essentially give him the address of <code class="code-inline tex2jax_ignore">a</code>. But this is far from true. This program actually has <em class="emphasis">undefined behavior</em> because the address <code class="code-inline tex2jax_ignore">p + 4</code> is invalid. It is out of the bounds of <code class="code-inline tex2jax_ignore">b</code>'s container.</div>
+<span class="incontext"><a href="sec-c-memmodel.html#p-274" class="internal">in-context</a></span>
+</body>
+</html>

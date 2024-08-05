@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">We have seen that search trees can implement maps (and therefore sets). Another data structure for sets (and maps) that is often used in practice are hash tables. The basic idea is that we define a <dfn class="terminology">hash function</dfn> <span class="process-math">\(h\)</span> from the set of keys <span class="process-math">\(K\)</span> to <code class="code-inline tex2jax_ignore">int</code> to assign each possible key a <dfn class="terminology">bucket</dfn> in a <dfn class="terminology">hash table</dfn> which is just another way of saying ‘an index in an array’. If <span class="process-math">\(h\)</span> is <em class="emphasis">injective</em> (i.e. no two keys get assigned the same hash value) <em class="emphasis">and</em> the array is large enough, each key can get its own individual bucket. We then also say that there are no <dfn class="terminology">collisions</dfn>. Checking if a key <span class="process-math">\(k\)</span> is in the set then reduces to evaluating <span class="process-math">\(h(k)\)</span> and checking if the array is occupied at <span class="process-math">\(h(k)\text{.}\)</span> Being occupied could for instance mean that at <span class="process-math">\(h(k)\)</span> is a value that is associated with <span class="process-math">\(k\)</span> in case of a map or just a 1 to indicate that <span class="process-math">\(k\)</span> is in the set. If evaluating <span class="process-math">\(h(k)\)</span> does not depend on the size of <span class="process-math">\(k\)</span> we can check membership (and also add and remove) in constant time.</div>
+<span class="incontext"><a href="sec-ds-hash.html#p-560" class="internal">in-context</a></span>
+</body>
+</html>

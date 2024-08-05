@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Other very common application of private constructors are:</div>
+<dl class="description-list">
+<dt>Controlling the number of objects of a an <em class="emphasis">immutable</em> class (see Section 8.6)</dt>
+<dd>
+<div class="para">For example, nothing prevents us to create multiple distinct objects that all represent the <code class="code-inline tex2jax_ignore">Vec2</code> <span class="process-math">\((1, 0)\text{.}\)</span> Sometimes one wants to make sure that there is only <em class="emphasis">one</em> object for a specific value. In that case, a factory method could look up in a map if an object was already created for a specific set of parameters and return this object instead of creating a new one.</div>
+<div class="para">An extreme variant of this case is the <dfn class="terminology">singleton</dfn> where one wants to permit only one object per class.</div>
+</dd>
+<dt>Delegating the construction of the object</dt>
+<dd><div class="para">Sometimes, it turns out that for specific combinations of parameters to the constructor, an object of another (sub-) class is better suited. In this case, a factory method can select which object to create.</div></dd>
+</dl>
+</div>
+<span class="incontext"><a href="sec-java-encapsulation.html#p-915" class="internal">in-context</a></span>
+</body>
+</html>

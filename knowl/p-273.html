@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">We have already seen that containers have addresses. Many programmers believe that C's notion of an address is identical to address notion of a processor that we have seen in <a href="sec-asm.html" class="internal" title="Chapter 2: Machine Code">Chapter 2</a>. This is however not true. In particular, C does not require the address of a container to be an address in the main memory of the computer. Even more, while C allows some address arithmetic (computing new addresses by adding or subtracting offsets to the <dfn class="terminology">base address</dfn> of the container), this address arithmetic is restricted to the container the base address belongs to. It is in fact <dfn class="terminology">undefined behavior</dfn> (we will talk about that later in <a href="sec-c-undef.html" class="internal" title="Section 4.15: Undefined Behavior">Section 4.15</a>. For now just think of undefined behavior as something equally bad as dividing by 0) to create an <dfn class="terminology">out-of-bounds</dfn> address by address arithmetic. These restrictions may seem counterintuitive and limiting at first, since C is intended to enable programming “close to the hardware”. However, they allow compilers (the tools that translate C programs to machine code) more freedom when deciding where containers are actually located and make the meaning of programs independent of where containers actually reside. Let us consider the following code snippet to better understand why C makes these restrictions. </div>
+<span class="incontext"><a href="sec-c-memmodel.html#p-273" class="internal">in-context</a></span>
+</body>
+</html>

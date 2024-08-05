@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Type Checking</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="An Introduction to Imperative Programming">
+<meta property="book:author" content="Sebastian Hack">
+<meta property="og:image" content="https://www.dropbox.com/s/c23qqtukzq2niqg/eule.png?raw=1">
+<meta property="og:title" content="Type Checking">
+<meta property="og:description" content="
+      We have discussed the static semantics of C0 in .
+      The static semantics for expressions is modelled as a relation that relates a type environment with expressions and a type.
+      The static semantics for statements relates the type environment with statements.
+      The static expression semantics is deterministic (or functional) which means that each type environment and each expression are related to exactly one type.
+      This means that we can easily implement it as a method (in the interface Expression) that takes a type environment (here implemented by a class Scope which we will discuss below), an expression and delivers a type.
+      Statements can be handled similarly:
+      we implement the static statement semantics as a method (in the interface Statement) that takes a type environment as a parameter and check if a statement is well-typed.
+      Both methods generate an error (using a Diagnostic object) that is shown to the user if the statement/expression is not well-typed.
+      static semantics
+      deterministic relation
+    ">
+<meta property="og:type" content="website">
+<script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'mathtools', 'bussproofs', 'unicode', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/mathtools', '[tex]/bussproofs', '[tex]/unicode','[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_blue_red.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="external/custom.css">
+<link rel="stylesheet" type="text/css" href="external/prism-line-numbers.css">
+<script src="external/preload.js"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.3.3';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="./external/dist/runtime.482e6203cf96ba73.bundle.js"></script><link rel="stylesheet" type="text/css" href="./external/dist/637.0fa6cababf056764.css">
+<script type="text/javascript" src="./external/dist/637.d54be67956c5c660.bundle.js"></script><link rel="stylesheet" type="text/css" href="./external/dist/runestone.3eb60bc006ae9a54.css">
+<script type="text/javascript" src="./external/dist/runestone.ecc6dff5cad8b815.bundle.js"></script><script src="external/custom.js"></script><script src="external/prism-line-numbers.js"></script>
+</head>
+<body class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="https://prog2.de/book" target="_blank"><img src="external/img/eule.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="prog2-book.html"><span class="title">An Introduction to Imperative Programming</span></a></h1>
+<p class="byline">Sebastian Hack</p>
+</div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><input xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" id="toggle" name="darkmode" class="toggle save-cb-state" type="checkbox"><a class="previous-button button" href="sec-comp-synana.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="sec-comp.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="sec-comp-codegen.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\def\domain{\operatorname{dom}}
+\def\codomain{\operatorname{cod}}
+\def\funimage{\operatorname{img}}
+\def\defeq{\coloneqq}
+\def\eqdef{\eqqcolon}
+\def\syndef{\Coloneqq}
+\def\simp{\Rightarrow}
+
+
+\newcommand{\edist}{\mathit{edist}}
+
+
+\newcommand{\rd}{\$d}
+\newcommand{\rs}{\$s}
+\newcommand{\rt}{\$t}
+\newcommand{\lo}{\mathit{lo}}
+\newcommand{\hi}{\mathit{hi}}
+\newcommand{\pc}{\mathit{pc}}
+\newcommand{\shamt}{\mathit{n}}
+\newcommand{\offset}{i}
+\newcommand{\marke}{\mathit{label}}
+\newcommand{\addr}{\mathit{addr}}
+\newcommand{\imm}{\mathit{imm}}
+\newcommand{\sext}{\mathrm{se}}
+\newcommand{\zext}{\mathrm{ze}}
+\newcommand{\sei}{\sext(i)}
+\newcommand{\zei}{\zext(i)}
+\newcommand{\bft}[2]{[#1:#2]}
+\newcommand{\ite}[3]{\mathop{\mathit{if}}\,{#1}\mathrel{\mathit{then}}{#2}\mathrel{\mathit{ else }}{#3}}
+\newcommand{\cbranch}{\mathit{cbr}}
+
+
+\newcommand{\Nat}        {\mathbb{N}}
+\newcommand{\Int}        {\mathbb{Z}}
+\newcommand{\Bit}        {\mathbb{B}}
+\newcommand{\bbase}      {B}
+\newcommand{\bnine}      {A}
+\newcommand{\bneg}   [1] {\overline{#1}}
+\newcommand{\band}       {\mathrel{\&amp;}}
+\newcommand{\bor}        {\mathrel{|}}
+\newcommand{\bxor}       {\mathrel{\hat{\phantom{+}}}}
+\newcommand{\badd}       {\mathrel{+}}
+\newcommand{\blts}       {\mathrel{\lt_s}}
+\newcommand{\bltu}       {\mathrel{\lt_u}}
+\newcommand{\baddn}      {\mathrel{+_n}}
+\newcommand{\bsubn}      {\mathrel{-_n}}
+\newcommand{\bsll}       {\mathrel{\ll}}
+\newcommand{\bsrl}       {\mathrel{\gg}}
+\newcommand{\bsra}       {\mathrel{\overset s\gg}}
+\newcommand{\bconcat}    {\,}
+\newcommand{\bseqq}  [2] {{#1}_{#2}\dots {#1}_0}
+\newcommand{\bseq}   [2] {{#1}_{#2-1}\dots {#1}_0}
+\newcommand{\bsintp} [1] {[#1]}
+\newcommand{\buintp} [1] {\langle #1\rangle}
+\newcommand{\buintpb}[2] {\buintp{#1}_{#2}}
+
+
+
+\def\Var{\mathit{Var}}
+\def\Val{\mathit{Val}}
+\def\Addr{\mathit{Addr}}
+\def\Expr{\mathit{Expr}}
+\def\LExpr{\mathit{LExpr}}
+\def\ExprS{\mathit{ExprS}}
+\def\Stmt{\mathit{Stmt}}
+\def\Prg{\mathit{Prg}}
+\def\Conf{\mathit{Conf}}
+\def\Ty{\mathit{Ty}}
+\def\Assert{\mathit{Assert}}
+
+\newcommand{\TWhile}{\mathtt{While}}
+\newcommand{\TIf}{\mathtt{If}}
+\newcommand{\TBlock}{\mathtt{Block}}
+\newcommand{\TAssign}{\mathtt{Assign}}
+\newcommand{\TAbort}{\mathtt{Abort}}
+\newcommand{\TVar}{\mathtt{Var}}
+\newcommand{\TConst}{\mathtt{Const}}
+\newcommand{\TBinary}{\mathtt{Binary}}
+\newcommand{\TAddrOf}{\mathtt{Addr}}
+\newcommand{\TIndir}{\mathtt{Indir}}
+\newcommand{\TSeq}{\mathtt{Seq}}
+\newcommand{\TTerm}{\mathtt{Term}}
+\newcommand{\TCrash}{\mathtt{Crash}}
+
+\newcommand{\AIf}[3]{\TIf\left[#1,#2,#3\right]}
+\newcommand{\AWhile}[2]{\TWhile\left[#1,#2\right]}
+\newcommand{\ABlock}[2]{\TBlock_{#1}\left[#2\right]}
+\newcommand{\AAssign}[2]{\TAssign\left[#1,#2\right]}
+\newcommand{\AAbort}{\TAbort}
+\newcommand{\ASeq}[2]{\TSeq\left[#1,#2\right]}
+\newcommand{\ATerm}{\TTerm}
+\newcommand{\ACrash}{\TCrash}
+
+\newcommand{\AVar}[1]{\mathtt{Var}_{#1}}
+\newcommand{\ALVal}[1]{\mathtt{LVal}\left[#1\right]}
+\newcommand{\AConst}[1]{\TConst_{#1}}
+\newcommand{\ABinary}[3]{\TBinary_{#1}\left[#2,#3\right]}
+\newcommand{\AAddrOf}[1]{\TAddrOf\left[#1\right]}
+\newcommand{\AIndir}[1]{\TIndir\left[#1\right]}
+
+\newcommand{\CIf}[3]{\mathtt{if}\,(#1)\,#2\,\mathtt{else}\,#3}
+\newcommand{\CWhile}[2]{\mathtt{while}\,(#1)\,#2}
+\newcommand{\CWhileInv}[3]{\mathtt{while}\,(#1)\,\mathtt{\_Inv}(#3)\,#2}
+\newcommand{\CBlock}[1]{\{#1\}}
+\newcommand{\CAssign}[2]{#1=#2;}
+\newcommand{\CAbort}{\mathtt{abort();}}
+\newcommand{\CBinary}[3]{#2\mathop{#1}#3}
+\newcommand{\CAddrOf}[1]{\&amp;#1}
+\newcommand{\CIndir}[1]{*#1}
+\newcommand{\CSeq}[2]{{#1}\ {#2}}
+\newcommand{\CTerm}{\varepsilon}
+\newcommand{\CCrash}{\Lightning}
+\newcommand{\CConcat}[2]{#1\mathop{+\!+}#2}
+\newcommand{\CAssert}[1]{\mathtt{assert}(#1)}
+\newcommand{\CAssume}[1]{\mathtt{assume}(#1)}
+\newcommand{\CPtr}[1]{#1*}
+\newcommand{\CAssnVV}[2]{\CAssign{\CVar #1}{\CVar #2}}
+\newcommand{\CAssnVC}[2]{\CAssign{\CVar #1}{\CConst #2}}
+
+\newcommand{\CSeqThree}[3]{\CSeq{#1}{\CSeq{#2}{#3}}}
+\newcommand{\CSeqFour}[4]{\CSeq{#1}{\CSeqThree{#2}{#3}{#4}}}
+
+\newcommand{\COp}[1]{\mathbin{\mathtt{#1}}}
+\newcommand{\CVar}[1]{\mathtt{#1}}
+\newcommand{\CConst}[1]{\mathtt{#1}}
+\newcommand{\CPrg}[1]{\texttt{#1}}
+\newcommand{\CInt}{\mathtt{int}}
+\newcommand{\CChar}{\mathtt{char}}
+\newcommand{\CVoid}{\mathtt{void}}
+
+\newcommand{\tptr}[1]{#1\texttt{*}}
+\def\pto{\rightharpoonup}
+\def\steprel{\rightarrow}
+\def\terminates{\mathrel{\downarrow}}
+\newcommand\config[2]{\langle#1\mid #2\rangle}
+\newcommand\configt[1]{\config{\CTerm}{#1}}
+\def\castrel{\leftrightarrow}
+
+\newcommand{\stmtjudge}[2]{{#1}\mathrel{\vdash}{#2}}
+\newcommand{\stmtGamma}[1]{\stmtjudge{\Gamma}{#1}}
+\newcommand{\typejudge}[3]{{#1}\mathrel{\vdash}{#2}\mathrel{:}{#3}}
+\newcommand{\typeGamma}[2]{\typejudge{\Gamma}{#1}{#2}}
+
+
+\newcommand{\codeE}[5]{\mathit{#1}\enspace #2\enspace #3\enspace #4 = #5}
+\newcommand{\codeR}[3]{\codeE{codeR}{\mathit{offs}}{#1}{#2}{#3}}
+\newcommand{\codeL}[3]{\codeE{codeL}{\mathit{offs}}{#1}{#2}{#3}}
+\newcommand{\codeSO}[3]{\mathit{codeS}\enspace #1\enspace #2 = #3}
+\newcommand{\codeS}[2]{\mathit{codeS}\enspace \mathit{offs}\enspace #1 = #2}
+\newcommand{\codePO}[3]{\mathit{codeP}\enspace #1\enspace #2 = #3}
+\newcommand{\codeP}[2]{\mathit{codeP}\enspace \mathit{offs}\enspace #1 = #2}
+
+\newcommand{\mreg}[1]{\mathtt{\$#1}}
+\newcommand{\lcc}{\mathbin{::}}
+\def\rsl{r_1\lcc rs}
+\def\rsls{r_1\lcc r_2\lcc rs}
+\def\rlist{r\lcc{rs}}
+
+
+\ifdefined\isLatex
+  \def\adra{\bigtriangleup}
+  \def\adrb{\pentagon}
+  \def\adrc{\diamond}
+  \def\adrd{\bigtriangledown}
+  \def\adre{\bigstar}
+  \def\adrf{\male}
+  \def\adrg{\female}
+  \let\oldLightning\Lightning
+  \renewcommand{\Lightning}{\text{\oldLightning}}
+  
+  \newcommand{\denot}[1]{\llbracket {#1} \rrbracket}
+
+\else
+  \def\adra{\unicode{x25b3}}
+  \def\adrb{\unicode{x2b20}}
+  \def\adrc{\unicode{x25c7}}
+  \def\adrd{\unicode{x25bd}}
+  \def\adre{\unicode{x2605}}
+  \def\adrf{\unicode{x2642}}
+  \def\adrg{\unicode{x2640}}
+
+  \def\Lightning{\unicode{x21af}}
+  
+  \newcommand{\denot}[1]{[\![{#1}]\!]}
+\fi
+
+\newcommand{\denotL}[1]{L\denot{#1}}
+\newcommand{\denotR}[1]{R\denot{#1}}
+\newcommand{\indetval}{\mathord{?}}
+
+
+\def\adra{\bigtriangleup}
+\def\adrb{\bigcirc}
+\def\adrc{\lozenge}
+\def\adrd{\bigtriangledown}
+\def\adre{\bigstar}
+\def\adrf{\dagger}
+\def\adrg{\ddagger}
+
+\newcommand{\cleave}{\mathbin{\blacksquare}}
+
+
+
+
+
+\def\models{\vDash}
+\def\limp{\Rightarrow}
+\def\liff{\Leftrightarrow}
+\def\lneg{\neg}
+\def\bigstep{\mathrel{\Downarrow}}
+\def\ltrue{\mathit{true}}
+\def\lfalse{\mathit{false}}
+\def\exprdef{\operatorname{def}}
+\newcommand{\hpc}{\operatorname{pc}}
+\newcommand{\hvc}{\operatorname{vc}}
+\newcommand{\amodels}[1]{M\denot{#1}}
+\newcommand{\hoare}[3]{\{#1\}\mathrel{#2}\{#3\}}
+\newcommand{\hoaret}[3]{[#1]\mathrel{#2}[#3]}            
+\newcommand{\passingt}[1]{{#1}_\checkmark}
+\newcommand{\failingt}[1]{{#1}_\times}
+\newcommand{\passing}{\passingt\sigma}
+\newcommand{\failing}{\failingt\sigma}
+\newcommand{\slabel}[1]{\mathit{lab}}
+
+
+\newcommand{\subtyperel} {\mathrel{\le}}
+\newcommand{\prgltr}{s}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="colophon-1.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li>
+<li><div class="toc-item"><a href="acknowledgement-1.html" class="internal"><span class="title">Acknowledgements</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-arith.html" class="internal"><span class="codenumber">1</span> <span class="title">Computer Arithmetic</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-arith-positional.html" class="internal"><span class="codenumber">1.1</span> <span class="title">Positional Notation</span></a></div></li>
+<li><div class="toc-item"><a href="sec-arith-binary.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Binary Numbers</span></a></div></li>
+<li><div class="toc-item"><a href="sec-arith-add.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Addition and Subtraction</span></a></div></li>
+<li><div class="toc-item"><a href="sec-arith-int.html" class="internal"><span class="codenumber">1.4</span> <span class="title">The Integers</span></a></div></li>
+<li><div class="toc-item"><a href="section-5.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Shifts</span></a></div></li>
+<li><div class="toc-item"><a href="section-6.html" class="internal"><span class="codenumber">1.6</span> <span class="title">Summary</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-asm.html" class="internal"><span class="codenumber">2</span> <span class="title">Machine Code</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-asm-neumann.html" class="internal"><span class="codenumber">2.1</span> <span class="title">The von-Neumann Architecture</span></a></div></li>
+<li><div class="toc-item"><a href="sec-asm-mips.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The MIPS Processor</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-asm-asm.html" class="internal"><span class="codenumber">2.3</span> <span class="title">The Assembler</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-asm-asm.html#subsection-1" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Overview</span></a></div></li>
+<li><div class="toc-item"><a href="sec-asm-asm.html#subsection-2" class="internal"><span class="codenumber">2.3.2</span> <span class="title">An Example</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-asm-trace.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Execution Traces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-asm-dataseg.html" class="internal"><span class="codenumber">2.5</span> <span class="title">The Data Segment</span></a></div></li>
+<li><div class="toc-item"><a href="sec-asm-segments.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Memory Segmentation</span></a></div></li>
+<li><div class="toc-item"><a href="sec-asm-link.html" class="internal"><span class="codenumber">2.7</span> <span class="title">Linking</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-asm-call.html" class="internal"><span class="codenumber">2.8</span> <span class="title">Calling Functions</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-asm-call.html#subsection-3" class="internal"><span class="codenumber">2.8.1</span> <span class="title">Recursion</span></a></div></li>
+<li><div class="toc-item"><a href="sec-asm-call.html#sec-asm-cc" class="internal"><span class="codenumber">2.8.2</span> <span class="title">The Calling Convention</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-simple-algo.html" class="internal"><span class="codenumber">3</span> <span class="title">Some Simple Algorithms</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="bsp-.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Number Conversion</span></a></div></li>
+<li><div class="toc-item"><a href="section-16.html" class="internal"><span class="codenumber">3.2</span> <span class="title">The Sieve of Eratosthenes</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-17.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Insertion Sort</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-17.html#exercises-1" class="internal"><span class="codenumber">3.3</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="section-18.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Evaluating Polynomials with Horner's Method</span></a></div></li>
+<li><div class="toc-item"><a href="section-19.html" class="internal"><span class="codenumber">3.5</span> <span class="title">The Tortoise and the Hare</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-c.html" class="internal"><span class="codenumber">4</span> <span class="title">Introduction to C</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-c-basics.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Basics</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c-basics.html#subsection-5" class="internal"><span class="codenumber">4.1.1</span> <span class="title">Static Properties</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-basics.html#subsection-6" class="internal"><span class="codenumber">4.1.2</span> <span class="title">Dynamic Properties</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-c-trace.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Execution Traces</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-c-object.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Imperative Variables</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c-object.html#subsection-7" class="internal"><span class="codenumber">4.3.1</span> <span class="title">Local Variables</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-object.html#subsection-8" class="internal"><span class="codenumber">4.3.2</span> <span class="title">Global Variables</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-object.html#subsection-9" class="internal"><span class="codenumber">4.3.3</span> <span class="title">Dynamically Allocated Containers</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-c-memmodel.html" class="internal"><span class="codenumber">4.4</span> <span class="title">The C Memory Model</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-c-tu.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Translation Units</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c-tu.html#subsection-10" class="internal"><span class="codenumber">4.5.1</span> <span class="title">main</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-tu.html#sec-c-call_tu" class="internal"><span class="codenumber">4.5.2</span> <span class="title">Calling Functions from Other Translation Units</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-tu.html#subsection-12" class="internal"><span class="codenumber">4.5.3</span> <span class="title">Makefiles</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-c-numty.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Number Types</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-26.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Control Flow</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-26.html#subsection-13" class="internal"><span class="codenumber">4.7.1</span> <span class="title">Selection Statements</span></a></div></li>
+<li><div class="toc-item"><a href="section-26.html#sec-c-loops" class="internal"><span class="codenumber">4.7.2</span> <span class="title">Loops</span></a></div></li>
+<li><div class="toc-item"><a href="section-26.html#subsection-15" class="internal"><span class="codenumber">4.7.3</span> <span class="title">Function Return</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-c-expr.html" class="internal"><span class="codenumber">4.8</span> <span class="title">Expressions</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c-expr.html#subsection-16" class="internal"><span class="codenumber">4.8.1</span> <span class="title">Implicit Type Conversions</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-expr.html#sec-c-lval" class="internal"><span class="codenumber">4.8.2</span> <span class="title">L- and R-Evaluation of Expressions</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-expr.html#sec-c-sideeffects" class="internal"><span class="codenumber">4.8.3</span> <span class="title">Side Effects</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-expr.html#subsection-19" class="internal"><span class="codenumber">4.8.4</span> <span class="title">Lazy Evaluation</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-expr.html#subsection-20" class="internal"><span class="codenumber">4.8.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="section-28.html" class="internal"><span class="codenumber">4.9</span> <span class="title">Calling Functions</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-c-ptr.html" class="internal"><span class="codenumber">4.10</span> <span class="title">Pointers</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c-ptr.html#sec-c-array" class="internal"><span class="codenumber">4.10.1</span> <span class="title">Arrays</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-ptr.html#subsection-22" class="internal"><span class="codenumber">4.10.2</span> <span class="title">const</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-ptr.html#exercises-2" class="internal"><span class="codenumber">4.10.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="section-30.html" class="internal"><span class="codenumber">4.11</span> <span class="title">Examples</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-c-dyn-mem-management.html" class="internal"><span class="codenumber">4.12</span> <span class="title">Dynamic Memory Management</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-c-dyn-mem-management.html#subsection-23" class="internal"><span class="codenumber">4.12.1</span> <span class="title">realloc</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-c-structs.html" class="internal"><span class="codenumber">4.13</span> <span class="title">Structs</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c-structs.html#subsection-24" class="internal"><span class="codenumber">4.13.1</span> <span class="title">typedef</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-structs.html#subsection-25" class="internal"><span class="codenumber">4.13.2</span> <span class="title">Incomplete Structs</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-structs.html#exercises-3" class="internal"><span class="codenumber">4.13.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-c-io.html" class="internal"><span class="codenumber">4.14</span> <span class="title">Input and Output</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-c-io.html#subsection-26" class="internal"><span class="codenumber">4.14.1</span> <span class="title">Format Strings</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-c-undef.html" class="internal"><span class="codenumber">4.15</span> <span class="title">Undefined Behavior</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c-undef.html#subsection-27" class="internal"><span class="codenumber">4.15.1</span> <span class="title">Unspecified and Implementation-Defined Behavior</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-undef.html#subsection-28" class="internal"><span class="codenumber">4.15.2</span> <span class="title">Security Problems</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-undef.html#subsection-29" class="internal"><span class="codenumber">4.15.3</span> <span class="title">Undefined Behavior and the Compiler</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c-undef.html#subsection-30" class="internal"><span class="codenumber">4.15.4</span> <span class="title">Practical Examples</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-c-ds.html" class="internal"><span class="codenumber">5</span> <span class="title">Algorithms and Data Structures</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-ds-lists.html" class="internal"><span class="codenumber">5.1</span> <span class="title">Lists</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-ds-lists.html#sec-ds-arraylist" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Array Lists</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-ds-lists.html#exercises-4" class="internal"><span class="codenumber">5.1.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="sec-ds-lists.html#sec-ds-sllists" class="internal"><span class="codenumber">5.1.2</span> <span class="title">Singly-Linked Lists</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-lists.html#sec-ds-dllists" class="internal"><span class="codenumber">5.1.3</span> <span class="title">Doubly-Linked Lists</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-ds-trees.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Trees</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-ds-trees.html#subsection-34" class="internal"><span class="codenumber">5.2.1</span> <span class="title">General Notions and Algorithms</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-trees.html#sec-ds-bst" class="internal"><span class="codenumber">5.2.2</span> <span class="title">Binary Search Trees</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-trees.html#sec-ds-tries" class="internal"><span class="codenumber">5.2.3</span> <span class="title">Tries</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-ds-hash.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Hashing</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-ds-hash.html#subsection-37" class="internal"><span class="codenumber">5.3.1</span> <span class="title">Separate Chaining</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-hash.html#subsection-38" class="internal"><span class="codenumber">5.3.2</span> <span class="title">The Load Factor</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-hash.html#subsection-39" class="internal"><span class="codenumber">5.3.3</span> <span class="title">Hash Tables and Mutability</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-hash.html#subsection-40" class="internal"><span class="codenumber">5.3.4</span> <span class="title">Open Addressing</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-hash.html#subsection-41" class="internal"><span class="codenumber">5.3.5</span> <span class="title">A Comprehensive Example</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-hash.html#subsection-42" class="internal"><span class="codenumber">5.3.6</span> <span class="title">Deleting from a Hash Table with Open Addressing</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-hash.html#subsection-43" class="internal"><span class="codenumber">5.3.7</span> <span class="title">Summary</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-ds-dynpro.html" class="internal"><span class="codenumber">5.4</span> <span class="title">Dynamic Programming</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-ds-dynpro.html#sec-ds-fib" class="internal"><span class="codenumber">5.4.1</span> <span class="title">Computing Fibonacci Numbers</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-dynpro.html#sec-ds-binomial" class="internal"><span class="codenumber">5.4.2</span> <span class="title">Computing Binomial Coefficients</span></a></div></li>
+<li><div class="toc-item"><a href="sec-ds-dynpro.html#sec-ds-edist" class="internal"><span class="codenumber">5.4.3</span> <span class="title">Computing the Minimum Edit Distance</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-c0.html" class="internal"><span class="codenumber">6</span> <span class="title">Formal Semantics</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c0-syntax-general.html" class="internal"><span class="codenumber">6.1</span> <span class="title">The Syntax of Programming Languages</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c0-syntax.html" class="internal"><span class="codenumber">6.2</span> <span class="title">The Abstract Syntax of C0</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-c0-sem.html" class="internal"><span class="codenumber">6.3</span> <span class="title">The Semantics of C0</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c0-sem.html#subsection-47" class="internal"><span class="codenumber">6.3.1</span> <span class="title">The State</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c0-sem.html#subsection-48" class="internal"><span class="codenumber">6.3.2</span> <span class="title">Expressions</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c0-sem.html#subsection-49" class="internal"><span class="codenumber">6.3.3</span> <span class="title">Statements</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c0-sem.html#subsection-50" class="internal"><span class="codenumber">6.3.4</span> <span class="title">Digression: Getting Stuck</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c0-sem.html#sec-c0-ex" class="internal"><span class="codenumber">6.3.5</span> <span class="title">Some Examples</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-c0-pointers.html" class="internal"><span class="codenumber">6.4</span> <span class="title">Pointers (C0p)</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c0-scopes.html" class="internal"><span class="codenumber">6.5</span> <span class="title">Scopes (C0b)</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-c0-type.html" class="internal"><span class="codenumber">6.6</span> <span class="title">A Simple Type System (C0t)</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-c0-type.html#subsection-52" class="internal"><span class="codenumber">6.6.1</span> <span class="title">Expressions</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c0-type.html#subsection-53" class="internal"><span class="codenumber">6.6.2</span> <span class="title">Statements and Programs</span></a></div></li>
+<li><div class="toc-item"><a href="sec-c0-type.html#subsection-54" class="internal"><span class="codenumber">6.6.3</span> <span class="title">Examples</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="section-45.html" class="internal"><span class="codenumber">6.7</span> <span class="title">Summary and Further Reading</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-corr.html" class="internal"><span class="codenumber">7</span> <span class="title">Testing and Verification</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-corr-functional.html" class="internal"><span class="codenumber">7.1</span> <span class="title">Functional Correctness</span></a></div></li>
+<li><div class="toc-item"><a href="sec-corr-failures.html" class="internal"><span class="codenumber">7.2</span> <span class="title">Failures</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-corr-testing.html" class="internal"><span class="codenumber">7.3</span> <span class="title">Testing</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-corr-testing.html#subsection-55" class="internal"><span class="codenumber">7.3.1</span> <span class="title">The Oracle Problem</span></a></div></li>
+<li><div class="toc-item"><a href="sec-corr-testing.html#subsection-56" class="internal"><span class="codenumber">7.3.2</span> <span class="title">Black-box Testing</span></a></div></li>
+<li><div class="toc-item"><a href="sec-corr-testing.html#sec-corr-coverage" class="internal"><span class="codenumber">7.3.3</span> <span class="title">White-box Testing and Coverage</span></a></div></li>
+<li><div class="toc-item"><a href="sec-corr-testing.html#subsection-58" class="internal"><span class="codenumber">7.3.4</span> <span class="title">Fuzzing</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-corr-hoare.html" class="internal"><span class="codenumber">7.4</span> <span class="title">Verification</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-corr-hoare.html#sec-corr-hoare-logic" class="internal"><span class="codenumber">7.4.1</span> <span class="title">Hoare Logic</span></a></div></li>
+<li><div class="toc-item"><a href="sec-corr-hoare.html#sec-corr-hoare-mech" class="internal"><span class="codenumber">7.4.2</span> <span class="title">Mechanizing Verification</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="section-50.html" class="internal"><span class="codenumber">7.5</span> <span class="title">Summary and Further Reading</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-java.html" class="internal"><span class="codenumber">8</span> <span class="title">Object-Oriented Programming with Java</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-java-overview.html" class="internal"><span class="codenumber">8.1</span> <span class="title">Compilation, Main Method, Packages</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-java-overview.html#subsection-61" class="internal"><span class="codenumber">8.1.1</span> <span class="title">Multiple Classes</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-overview.html#subsection-62" class="internal"><span class="codenumber">8.1.2</span> <span class="title">Packages</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-java-types.html" class="internal"><span class="codenumber">8.2</span> <span class="title">Types</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-java-reftypes.html" class="internal"><span class="codenumber">8.3</span> <span class="title">Reference Types</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-java-reftypes.html#subsection-63" class="internal"><span class="codenumber">8.3.1</span> <span class="title">Arrays</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-java-oo.html" class="internal"><span class="codenumber">8.4</span> <span class="title">Classes</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-java-oo.html#subsection-64" class="internal"><span class="codenumber">8.4.1</span> <span class="title">Constructors</span></a></div></li></ul>
+</li>
+<li><div class="toc-item"><a href="sec-java-encapsulation.html" class="internal"><span class="codenumber">8.5</span> <span class="title">Encapsulation</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-java-immutable.html" class="internal"><span class="codenumber">8.6</span> <span class="title">References, Aliasing, and Immutable Objects</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-java-immutable.html#subsection-65" class="internal"><span class="codenumber">8.6.1</span> <span class="title">Aliases</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-immutable.html#subsection-66" class="internal"><span class="codenumber">8.6.2</span> <span class="title">Immutable Classes</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-immutable.html#subsection-67" class="internal"><span class="codenumber">8.6.3</span> <span class="title">When to Use Immutable Classes?</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-java-inherit.html" class="internal"><span class="codenumber">8.7</span> <span class="title">Inheritance</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-java-inherit.html#subsection-68" class="internal"><span class="codenumber">8.7.1</span> <span class="title">Interfaces</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-inherit.html#subsection-69" class="internal"><span class="codenumber">8.7.2</span> <span class="title">Overriding Methods</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-inherit.html#subsection-70" class="internal"><span class="codenumber">8.7.3</span> <span class="title">Calling a Method</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-inherit.html#subsection-71" class="internal"><span class="codenumber">8.7.4</span> <span class="title">The Class <code class="code-inline tex2jax_ignore">Object</code></span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-inherit.html#subsection-72" class="internal"><span class="codenumber">8.7.5</span> <span class="title"><code class="code-inline tex2jax_ignore">equals</code></span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-inherit.html#sec-equals-hashCode" class="internal"><span class="codenumber">8.7.6</span> <span class="title"><code class="code-inline tex2jax_ignore">hashCode</code></span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-inherit.html#subsection-74" class="internal"><span class="codenumber">8.7.7</span> <span class="title"><code class="code-inline tex2jax_ignore">toString</code></span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-java-overload.html" class="internal"><span class="codenumber">8.8</span> <span class="title">Overloading Methods</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="sec-java-overload.html#subsection-75" class="internal"><span class="codenumber">8.8.1</span> <span class="title">Overloading and overriding</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-java-collections.html" class="internal"><span class="codenumber">8.9</span> <span class="title">The Java Collections Framework</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-java-collections.html#subsection-76" class="internal"><span class="codenumber">8.9.1</span> <span class="title">Maps</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-collections.html#subsection-77" class="internal"><span class="codenumber">8.9.2</span> <span class="title">Hash Sets</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-collections.html#subsection-78" class="internal"><span class="codenumber">8.9.3</span> <span class="title">Iteration</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-collections.html#subsection-79" class="internal"><span class="codenumber">8.9.4</span> <span class="title">Genericity</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-java-proper-oo.html" class="internal"><span class="codenumber">8.10</span> <span class="title">Using Object Orientation Properly</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-java-expr-problem.html" class="internal"><span class="codenumber">8.11</span> <span class="title">The Expression Problem and the Visitor Pattern</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-java-expr-problem.html#subsection-80" class="internal"><span class="codenumber">8.11.1</span> <span class="title">Extensions</span></a></div></li>
+<li><div class="toc-item"><a href="sec-java-expr-problem.html#subsection-81" class="internal"><span class="codenumber">8.11.2</span> <span class="title">The Visitor Pattern</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-java-oo-with-c.html" class="internal"><span class="codenumber">8.12</span> <span class="title">Object-Oriented Programming with C</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sec-comp.html" class="internal"><span class="codenumber">9</span> <span class="title">A Simple Compiler</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-comp-synana.html" class="internal"><span class="codenumber">9.1</span> <span class="title">A Brief Overview of Syntactic Analysis</span></a></div></li>
+<li class="active"><div class="toc-item"><a href="sec-comp-tychk.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Type Checking</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-comp-codegen.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Syntax-Directed Code Generation</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sec-comp-codegen.html#subsection-82" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Expressions</span></a></div></li>
+<li><div class="toc-item"><a href="sec-comp-codegen.html#subsection-83" class="internal"><span class="codenumber">9.3.2</span> <span class="title">Statements</span></a></div></li>
+<li><div class="toc-item"><a href="sec-comp-codegen.html#sec-comp-codegen-prg" class="internal"><span class="codenumber">9.3.3</span> <span class="title">Programs</span></a></div></li>
+<li><div class="toc-item"><a href="sec-comp-codegen.html#subsection-85" class="internal"><span class="codenumber">9.3.4</span> <span class="title">The Function Prologue and Epilogue</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter.html" class="internal"><span class="title">Backmatter</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sec-mipsref.html" class="internal"><span class="codenumber">A</span> <span class="title">MIPS Assembler Reference</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="app-mips-ref-insn.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Instruction Set Reference</span></a></div></li>
+<li><div class="toc-item"><a href="app-mips-ref-os.html" class="internal"><span class="codenumber">A.2</span> <span class="title">OS Calls</span></a></div></li>
+<li><div class="toc-item"><a href="section-68.html" class="internal"><span class="codenumber">A.3</span> <span class="title">Assembler Directives</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="sec-ascii.html" class="internal"><span class="codenumber">B</span> <span class="title">ASCII Table</span></a></div></li>
+<li>
+<div class="toc-item"><a href="sec-schedule.html" class="internal"><span class="codenumber">C</span> <span class="title">Course Structure</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-69.html" class="internal"><span class="codenumber">C.1</span> <span class="title">I: Course Introduction</span></a></div></li>
+<li><div class="toc-item"><a href="section-70.html" class="internal"><span class="codenumber">C.2</span> <span class="title">R1: Computer Arithmetic</span></a></div></li>
+<li><div class="toc-item"><a href="section-71.html" class="internal"><span class="codenumber">C.3</span> <span class="title">R2: Computer Arithmetic</span></a></div></li>
+<li><div class="toc-item"><a href="section-72.html" class="internal"><span class="codenumber">C.4</span> <span class="title">M1: Introduction to Machine Code Programming</span></a></div></li>
+<li><div class="toc-item"><a href="section-73.html" class="internal"><span class="codenumber">C.5</span> <span class="title">M2: Simple Algorithms in Machine Code</span></a></div></li>
+<li><div class="toc-item"><a href="section-74.html" class="internal"><span class="codenumber">C.6</span> <span class="title">M3: Function Calls</span></a></div></li>
+<li><div class="toc-item"><a href="section-75.html" class="internal"><span class="codenumber">C.7</span> <span class="title">C1: Introduction to C</span></a></div></li>
+<li><div class="toc-item"><a href="section-76.html" class="internal"><span class="codenumber">C.8</span> <span class="title">C2: Expressions and Pointers</span></a></div></li>
+<li><div class="toc-item"><a href="section-77.html" class="internal"><span class="codenumber">C.9</span> <span class="title">C3: Arrays, Structs, I/O</span></a></div></li>
+<li><div class="toc-item"><a href="section-78.html" class="internal"><span class="codenumber">C.10</span> <span class="title">A1: Lists and Trees</span></a></div></li>
+<li><div class="toc-item"><a href="section-79.html" class="internal"><span class="codenumber">C.11</span> <span class="title">A2: Dynamic Programming</span></a></div></li>
+<li><div class="toc-item"><a href="section-80.html" class="internal"><span class="codenumber">C.12</span> <span class="title">S1: C0 Syntax and Semantics</span></a></div></li>
+<li><div class="toc-item"><a href="section-81.html" class="internal"><span class="codenumber">C.13</span> <span class="title">S2: Extending C0 to Pointers and Scopes</span></a></div></li>
+<li><div class="toc-item"><a href="section-82.html" class="internal"><span class="codenumber">C.14</span> <span class="title">S3: Correctness</span></a></div></li>
+<li><div class="toc-item"><a href="section-83.html" class="internal"><span class="codenumber">C.15</span> <span class="title">S4: Testing</span></a></div></li>
+<li><div class="toc-item"><a href="section-84.html" class="internal"><span class="codenumber">C.16</span> <span class="title">J1: Intro to Java</span></a></div></li>
+<li><div class="toc-item"><a href="section-85.html" class="internal"><span class="codenumber">C.17</span> <span class="title">J2: Immutable Objects, Interfaces, Subtyping</span></a></div></li>
+<li><div class="toc-item"><a href="section-86.html" class="internal"><span class="codenumber">C.18</span> <span class="title">J3: Abstract Classes, <code class="code-inline tex2jax_ignore">Object</code>, Overriding and Overloading Methods</span></a></div></li>
+<li><div class="toc-item"><a href="section-87.html" class="internal"><span class="codenumber">C.19</span> <span class="title">J4: Using OO Properly, OO in C, The Expression Problem, Visitor Pattern</span></a></div></li>
+<li><div class="toc-item"><a href="section-88.html" class="internal"><span class="codenumber">C.20</span> <span class="title">A3: Java Collections Framework and Hashing</span></a></div></li>
+<li><div class="toc-item"><a href="section-89.html" class="internal"><span class="codenumber">C.21</span> <span class="title">A4: Project Specific</span></a></div></li>
+<li><div class="toc-item"><a href="section-90.html" class="internal"><span class="codenumber">C.22</span> <span class="title">O1: Compiler Introduction (Syntax Analysis, Static Semantics)</span></a></div></li>
+<li><div class="toc-item"><a href="section-91.html" class="internal"><span class="codenumber">C.23</span> <span class="title">O2: Type Checking Examples, Implementation of Type Checking</span></a></div></li>
+<li><div class="toc-item"><a href="section-92.html" class="internal"><span class="codenumber">C.24</span> <span class="title">O3: Syntax-Directed Code Generation</span></a></div></li>
+<li><div class="toc-item"><a href="section-93.html" class="internal"><span class="codenumber">C.25</span> <span class="title">V1: Hoare Logics</span></a></div></li>
+<li><div class="toc-item"><a href="section-94.html" class="internal"><span class="codenumber">C.26</span> <span class="title">V2: Loop Invariants and Mechanizing Verification</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="appendix-4.html" class="internal"><span class="codenumber">D</span> <span class="title">List of Symbols</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="references.html" class="internal"><span class="title">Literature</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="sec-comp-tychk"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">9.2</span> <span class="title">Type Checking</span>
+</h2>
+<div class="para" id="p-1051">We have discussed the static semantics of C0 in <a href="sec-c0-type.html" class="internal" title="Section 6.6: A Simple Type System (C0t)">Section 6.6</a>. The static semantics for expressions is modelled as a relation that relates a type environment with expressions and a type. The static semantics for statements relates the type environment with statements. The static expression semantics is <em class="emphasis">deterministic</em> (or functional) which means that each type environment and each expression are related to exactly one type. This means that we can easily implement it as a method (in the interface <code class="code-inline tex2jax_ignore">Expression</code>) that takes a type environment (here implemented by a class <code class="code-inline tex2jax_ignore">Scope</code> which we will discuss below), an expression and delivers a type. Statements can be handled similarly: we implement the static statement semantics as a method (in the interface <code class="code-inline tex2jax_ignore">Statement</code>) that takes a type environment as a parameter and check if a statement is well-typed. Both methods generate an error (using a <code class="code-inline tex2jax_ignore">Diagnostic</code> object) that is shown to the user if the statement/expression is not well-typed. </div>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public interface Expression {
+  Type checkType(Diagnostic d, Scope d);
+}
+</code></pre></div>
+<div class="para" id="p-1052">The following code shows how type checking looks like for a simple add expression. It effectively implements rule [TArith] in <a href="sec-c0-type.html" class="internal" title="Section 6.6: A Simple Type System (C0t)">Section 6.6</a>. The code determines the types of the sub-expressions and computes the type of the expression based on this information.</div>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Arith implements Expression, Locatable {
+  // ...
+  public Type checkType(Diagnostic d, Scope s) {
+    Type l = getLeft().checkType(d, s);
+    Type r = getRight().checkType(d, s);
+    if (!l.isIntType())
+      d.printError(this, "...");
+    if (!r.isIntType())
+      d.printError(this, "...");
+    return Types.getIntType();
+  }
+}
+</code></pre></div>
+<section class="paragraphs" id="paragraphs-46"><h3 class="heading"><span class="title">Scope.</span></h3> <div class="para" id="p-1053">The type environment is implemented by the class <code class="code-inline tex2jax_ignore">Scope</code> that maps an identifier to the AST node of its declaration in the <em class="emphasis">current</em> scope. Scope objects are created during the type checking process: Whenever we enter a new block, we create a new scope to collect the variable declarations in that scope (see rule [TBlock] in <a href="sec-c0-type.html" class="internal" title="Section 6.6: A Simple Type System (C0t)">Section 6.6</a>). To access the declarations of variables in outer scopes, a scope also links to its parent scope via a reference, making it effectively a stack of scopes. When type checking for this block is finished, we can pop the scope of the block from the scope stack. This corresponds naturally to the scope nesting of the programming language. The following code shows the handling of scopes when type checking a block:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Block implements Statement, Locatable {
+  private final &lt;Statement&gt; body;
+
+  public void checkType(Diagnostic d, Scope parent) {
+    Scope scope = parent.newNestedScope();
+    // local variables are added by declaration statements
+    // in the statement list that constitutes the block's body
+    for (Statement s : body)
+      s.checkType(d, scope);
+  }
+}
+</code></pre></div> <div class="para" id="p-1054">When looking up the type of an identifier we have to consult the top scope if it has a declaration for that identifier. If so, we return it, if not, we look in the parent scope and repeat the process until we reach the root scope. If we do not find a definition for the identifier there, we have to signal an error because it means that an identifier is used without being declared.</div> <figure class="figure figure-like" id="figure-40"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;">
+<pre class="program"><code class="language-c">{ // Scope 1
+  int x; 
+  int y;
+  x = 1;
+  y = 1;
+  { // Scope 2
+    int z;
+    z = x + y;
+  }
+  { // Scope 3
+    int y;
+    y = x + 1;
+  }
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%7B%20%2F%2F%20Scope%201%0A%20%20int%20x%3B%20%0A%20%20int%20y%3B%0A%20%20x%20%3D%201%3B%0A%20%20y%20%3D%201%3B%0A%20%20%7B%20%2F%2F%20Scope%202%0A%20%20%20%20int%20z%3B%0A%20%20%20%20z%20%3D%20x%20%2B%20y%3B%0A%20%20%7D%0A%20%20%7B%20%2F%2F%20Scope%203%0A%20%20%20%20int%20y%3B%0A%20%20%20%20y%20%3D%20x%20%2B%201%3B%0A%20%20%7D%0A%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<div class="sbspanel top" style="width:50%;"><img src="generated/latex-image/image-40.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.1<span class="period">.</span></span><span class="space"> </span>A C0 with multiple nested blocks. For each block there is a type environment / scope. The nesting of the blocks corresponds to a tree of scopes. The type environment of a block only lists the innermost variable declarations and points to the next outer scope via a pointer. Note that each scope maps the declared identifier to the AST node of the declaration (which is not shown in the figure).</figcaption></figure> <div class="para" id="p-1055">The following code shows a sample implementation for the class <code class="code-inline tex2jax_ignore">Scope</code>.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Scope {
+  private final Map&lt;String, Declaration&gt; table;
+  private final Scope parent;
+
+  public Scope() {
+    this(null);
+  }
+
+  private Scope(Scope parent) {
+    this.parent = parent;
+    this.table  = new HashMap&lt;String, Declaration&gt;();
+  }
+
+  public Scope newNestedScope() {
+    return new Scope(this);
+  }
+
+  public void add(String id, Declaration d)
+    throws IdAlreadyDeclared {
+    if (table.contains(id))
+      throw new IdAlreadyDeclared(id);
+    table.put(id, d);
+  }
+
+  public Declaration lookup(String id) throws IdUndeclared {
+    // ...
+  }
+}
+</code></pre></div> <div class="para" id="p-1056">When visiting an AST node during type checking, it is advisable to store references to the significant declaration in the AST node that represents the using occurrence of an identifier. By this reference, the type can later on be looked up again. This may be important for successive passes like code generation which we discuss in the next section. In general, the AST node of the declaration stands for the variable itself and the compiler may want to associate other information with variables in later stages. The following code shows an example implementation of the AST node that represents the using occurrence of a variable.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Var implements Expression, Locatable {
+  private String id;
+  private Declaration decl = null;
+
+  public Type checkType(Diagnostic d, Scope s) {
+    try {
+      this.decl = s.lookup(id);
+      return this.decl.getType();
+    }
+    catch (IdUndeclared e) {
+      d.printError(this, "Variable " + id + " not declared");
+      return Types.getErrorType();
+    }
+  }
+}
+</code></pre></div></section></section></div>
+<div class="ptx-content-footer">
+<input xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" id="toggle" name="darkmode" class="toggle save-cb-state" type="checkbox"><a class="previous-button button" href="sec-comp-synana.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="sec-comp-codegen.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" class="runestone-link" href="https://cdltools.cs.uni-saarland.de/prog2interpreter/playground" title="CDL Programming Tools"><img class="logo" src="https://www.gravatar.com/avatar/f76d08beeac8604f40bdc5550339aeab?s=256"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+<script src="external/custom.js"></script><script src="external/prism-line-numbers.js"></script>
+</body>
+</html>

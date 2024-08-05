@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">With no semantics at all (as it is done in C). The exact rules on when an expression with side effects has a semantics in C is complicated. As a rule of thumb, we can assume the evaluation of an expression to be undefined if it writes more than once into the same container. This does not extend to side effects in called functions:</div>
+<pre class="code-display tex2jax_ignore">
+                int a(void) { printf("A"); return 1; }
+                int b(void) { printf("B"); return 2; }
+                int c(void) { return a() + b(); }
+              </pre>
+<div class="para">Every call to <code class="code-inline tex2jax_ignore">c</code> returns the value <code class="code-inline tex2jax_ignore">3</code>. However, either of <code class="code-inline tex2jax_ignore">AB</code> and <code class="code-inline tex2jax_ignore">BA</code> are correct outputs of the program. Since the rules for side effects in C are complicated and easy to misunderstand, it is best to reduce side effects to a minimum: At most one operator with side effects per expression.</div>
+</div>
+<span class="incontext"><a href="sec-c-expr.html#p-335" class="internal">in-context</a></span>
+</body>
+</html>

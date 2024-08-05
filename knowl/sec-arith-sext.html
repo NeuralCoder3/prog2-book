@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Sign and Zero Extension.</span></h3> <div class="para">It happens frequently that we want to convert a bit string of length <span class="process-math">\(m\)</span> into a longer bit string of length <span class="process-math">\(n\)</span> so that the longer bit string represents the same number as the shorter one.</div> <aside class="aside aside-like"><div class="para">This happens for example if we want to load a single byte from memory but the computer internally works on bit strings of 32 bits.</div></aside> <div class="para">In such a situation it is important how we want to interpret the bit string: as a signed or an unsigned number because for either case the conversion is different. Converting a shorter to longer bit sequence such that their value stays the same under the unsigned interpretation is called <dfn class="terminology">zero extension</dfn> where as <dfn class="terminology">sign extension</dfn> preserves their value under the signed interpretation.</div> <figure class="figure figure-like"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:33.3333333333333%;"><div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{rrr}
+b           \amp \bsintp{b}   \amp \buintp{b} \\
+\hline
+0000  \amp 0       \amp 0     \\
+\vdots\amp \vdots  \amp \vdots     \\
+0111  \amp 7       \amp 7     \\
+1000  \amp -8      \amp 8     \\
+\vdots\amp \vdots  \amp \vdots     \\
+1111  \amp -1      \amp 15    \\
+\end{array}
+\end{equation*}
+</div></div></div>
+<div class="sbspanel top" style="width:33.3333333333333%;"><div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{rrr}
+b           \amp \bsintp{b}   \amp \buintp{b} \\
+\hline
+000   \amp 0       \amp 0     \\
+001   \amp 1       \amp 1     \\
+010   \amp 2       \amp 2     \\
+011   \amp 3       \amp 3     \\
+100   \amp -4      \amp 4     \\
+101   \amp -3      \amp 5     \\
+110   \amp -2      \amp 6     \\
+111   \amp -1      \amp 7     \\
+\end{array}
+\end{equation*}
+</div></div></div>
+<div class="sbspanel top" style="width:33.3333333333333%;"><div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{rrr}
+b           \amp \bsintp{b}   \amp \buintp{b} \\
+\hline
+00   \amp 0       \amp 0     \\
+01   \amp 1       \amp 1     \\
+10   \amp -2      \amp 2     \\
+11   \amp -1      \amp 3     \\
+\end{array}
+\end{equation*}
+</div></div></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">1.4.9<span class="period">.</span></span><span class="space"> </span>Bit strings of lengths 4, 3, and 2. Preserving the value under the unsigned interpretation means extending with zeros. Preserving the value under the signed interpretation means replicating the most significant bit.</figcaption></figure> <div class="para">
+<a href="" class="xref" data-knowl="./knowl/fig-bitsign.html" title="Figure 1.4.9">Figure 1.4.9</a> shows all bit strings of lengths 4, 3, and 2. Apparently, when the longer bit string preserves the value of the shorter under <span class="process-math">\(\buintp\cdot\)</span> the bit string is extended with zeros. In the case where the signed value shall be preserved, the most significant bit is replicated: 11 becomes 111 becomes 1111, whereas 01 becomes 001 and 0001. Proving that zero extension preserves the unsigned value is straightforward. The signed case is slightly more interesting:</div> <article class="lemma theorem-like"><h4 class="heading">
+<span class="type">Lemma</span><span class="space"> </span><span class="codenumber">1.4.10</span><span class="period">.</span>
+</h4>
+<div class="para"><span class="process-math">\(\bsintp{b_{n-1}\bseq bn}=\bsintp{\bseq bn}\)</span></div></article><article class="hiddenproof"><a href="" class="proof-knowl original" data-knowl="./knowl/proof-7-hidden.html" title="Proof 1.4.10.1"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article></section><span class="incontext"><a href="sec-arith-int.html#sec-arith-sext" class="internal">in-context</a></span>
+</body>
+</html>

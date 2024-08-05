@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public interface Env {
+    int get(String varName);
+}
+
+public interface Exp {
+    public int eval(Env e);
+    public String toString();
+}
+
+public class Add implements Exp {
+    private Exp left, right;
+
+    public Add(Exp left, Exp right) {
+        this.left = left;
+        this.right = right;
+    }
+
+    public int eval(Env e) {
+        return left.eval(e) + right.eval(e);
+    }
+
+    public String toString() {
+        return "" + left + " + " + right;
+    }
+}
+
+public class Var implements Exp {
+    private String name;
+
+    public Var(String name) {
+        this.name = name;
+    }
+
+    public int eval(Env e) {
+        return e.get(this.name);
+    }
+
+    public toString() {
+        return this.name;
+    }
+}
+</code></pre></div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">8.10.3<span class="period">.</span></span><span class="space"> </span>Implementation of the abstract syntax of the simple expression language in Java.</figcaption></figure><span class="incontext"><a href="sec-java-proper-oo.html#fig-oo-exp-java" class="internal">in-context</a></span>
+</body>
+</html>

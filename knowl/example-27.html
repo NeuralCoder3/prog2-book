@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.2.6</span><span class="period">.</span>
+</h3>
+<div class="para">Consider a function that is supposed find the minimum of all elements of an array. This operation is not well defined on empty arrays. So it should not be possible to call the function with an empty array. We document this by the assertion <code class="code-inline tex2jax_ignore">assert(n &gt; 0);</code>. In debug builds, this assertion is checked during runtime and readers of the code will see that the precondition is that we don't pass empty arrays.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">unsigned min_arr(unsigned* arr, unsigned n) {
+    assert(n &gt; 0);
+    unsigned res = arr[0];
+    for (unsigned i = 1; i &lt; n; i++)
+        res = min(res, arr[i]);
+    return res;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0Aunsigned%20min_arr(unsigned*%20arr%2C%20unsigned%20n)%20%7B%0A%20%20%20%20assert(n%20%3E%200)%3B%0A%20%20%20%20unsigned%20res%20%3D%20arr%5B0%5D%3B%0A%20%20%20%20for%20(unsigned%20i%20%3D%201%3B%20i%20%3C%20n%3B%20i%2B%2B)%0A%20%20%20%20%20%20%20%20res%20%3D%20min(res%2C%20arr%5Bi%5D)%3B%0A%20%20%20%20return%20res%3B%0A%7D%0A">Run</a>
+</div> <div class="para">Note that checking the assertion in debug builds has a concrete benefit: If we accessed the first element of an empty array, the behavior of the program would be undefined with all the consequences outlined in <a href="" class="xref" data-knowl="./knowl/bem-corr-stuck.html" title="Remark 7.2.2">Remark 7.2.2</a>. Checking the assertion at runtime however directly aborts the program in this situation and the failure we get from that brings us closer to the error location.</div></article><span class="incontext"><a href="sec-corr-failures.html#example-27" class="internal">in-context</a></span>
+</body>
+</html>

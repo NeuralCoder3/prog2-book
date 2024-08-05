@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-pc.html ./knowl/eq-corr-hoare-mech.html">
+\begin{align*}
+\hvc \denot{\CAssign{\CVar q}{\CConst 0}\dots}\,Q \amp = \hvc \denot{\CAssign{\CVar q}{\CConst 0}}\,(\hpc \denot{\mathtt{while}\ \dots}\,Q)\cup \hvc \denot{\mathtt{while}\dots}\,Q\\
+\amp = \hvc \denot{\mathtt{while}\dots}\,Q\\
+\hvc \denot{\mathtt{while}\ \dots}\,Q      \amp = (\hvc s\,I)\cup \{\CBinary{\lt}{\CVar x}{\CVar y}\land I\simp Q,I\land\CBinary{\ge}{\CVar x}{\CVar y}\simp\hpc s\,I \} \\
+\hvc s\,I                                  \amp = \emptyset\\
+\hpc s\,I                                  \amp = \left[(\CVar q+\CConst 1)*\CVar y+(\CVar x-\CVar y)=\CVar X\right]
+\end{align*}
+</div>
+<span class="incontext"><a href="sec-corr-hoare.html#md-34" class="internal">in-context</a></span>
+</body>
+</html>

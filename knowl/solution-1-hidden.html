@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><div class="solution solution-like">This is the truth table for nand.<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{|c|c|c|}
+\hline
+a \amp b \amp \bneg{a\band b}\\
+\hline
+0\amp 0 \amp 1\\
+0\amp 1 \amp 1\\
+1\amp 0 \amp 1\\
+1\amp 1 \amp 0\\
+\hline
+\end{array}
+\end{equation*}
+</div>We can express negation using nand:<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{|c|c|c|}
+\hline
+a \amp \bneg{a\band a} \amp \bneg{a}\\
+\hline
+0\amp 1 \amp 1\\
+1\amp 0 \amp 0\\
+\hline
+\end{array}
+\end{equation*}
+</div>We can express conjunction (and) using nand. We can use plain old negation, since we already know how to encode it just using nand.<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{|c|c|c|c|}
+\hline
+a \amp b \amp \bneg{\bneg{a\band b}} \amp a \band b\\
+\hline
+0\amp 0 \amp 0 \amp 0\\
+0\amp 1 \amp 0 \amp 0\\
+1\amp 0 \amp 0 \amp 0\\
+1\amp 1 \amp 1 \amp 1\\
+\hline
+\end{array}
+\end{equation*}
+</div>We can now express disjunction (or) using nand. Again, we also use negation and conjunction since we know how to express them.<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+a \amp b \amp \bneg{a} \amp \bneg{b} \amp \bneg{\bneg{a}\band\bneg{b}} \amp a \bor b\\
+\hline
+0\amp 0 \amp 1 \amp 1 \amp 0 \amp 0\\
+0\amp 1 \amp 1 \amp 0 \amp 1 \amp 1\\
+1\amp 0 \amp 0 \amp 1 \amp 1 \amp 1\\
+1\amp 1 \amp 0 \amp 0 \amp 1 \amp 1\\
+\hline
+\end{array}
+\end{equation*}
+</div>We have already shown that we can express and and or with nand. So it is enough to show that xor can be expressed with and and or to prove that we can only express it with nand.<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{|c|c|c|c|c|c|c|c|}
+\hline
+a \amp b \amp \bneg{a} \amp \bneg{b} \amp \bneg{a}\band b \amp a\band \bneg{b} \amp (\bneg{a}\band b)\bor(a\band\bneg{b}) \amp a\bxor b\\
+\hline
+0\amp 0 \amp 1 \amp 1 \amp 0 \amp 0 \amp 0 \amp 0\\
+0\amp 1 \amp 1 \amp 0 \amp 1 \amp 0 \amp 1 \amp 1\\
+1\amp 0 \amp 0 \amp 1 \amp 0 \amp 1 \amp 1 \amp 1\\
+1\amp 1 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0\\
+\hline
+\end{array}
+\end{equation*}
+</div>Another elementary operation like nand is nor. It is <span class="process-math">\(1\)</span> if <span class="process-math">\(a=b=0\)</span> and <span class="process-math">\(0\)</span> otherwise.</div></body>
+</html>

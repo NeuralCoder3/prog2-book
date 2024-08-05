@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Implementation.</span></h4> <div class="para">The most straightforward implementation of a tree is to have a struct containing fields for the label(s) and pointers to the children of a node. It is common that the number of possible children is fixed, e.g. in a binary tree there are at most two children. In that case, the child pointers can be either individual fields in that struct (like a <code class="code-inline tex2jax_ignore">left</code> and <code class="code-inline tex2jax_ignore">right</code> field in the case of a binary tree) or an array of constant size. A child pointer is set to <code class="code-inline tex2jax_ignore">NULL</code> if the node does not have any children. If each child pointer equals <code class="code-inline tex2jax_ignore">NULL</code> then the node is a leaf.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c"> struct binary_tree_t {
+  int key;
+  struct binary_tree_t *left;
+  struct binary_tree_t *right;
+};
+
+struct tree_t {
+  int key;
+  struct tree_t *children[10];
+};
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%20struct%20binary_tree_t%20%7B%0A%20%20int%20key%3B%0A%20%20struct%20binary_tree_t%20*left%3B%0A%20%20struct%20binary_tree_t%20*right%3B%0A%7D%3B%0A%0Astruct%20tree_t%20%7B%0A%20%20int%20key%3B%0A%20%20struct%20tree_t%20*children%5B10%5D%3B%0A%7D%3B%0A%0Astruct%20key_value_binary_tree_t%20%7B%0A%20%20int%20key%3B%0A%20%20char*%20value%3B%0A%20%20struct%20key_value_tree_t%20*left%3B%0A%20%20struct%20key_value_tree_t%20*right%3B%0A%7D%3B%0A%0Atypedef%20struct%20binary_tree_t%20binary_tree_t%3B%0A%0Aint%20max(int%20a%2C%20int%20b)%20%7B%0A%20%20return%20a%20%3E%20b%20%3F%20a%20%3A%20b%3B%0A%7D%0A%0Aint%20binary_tree_height(binary_tree_t*%20n)%20%7B%0A%20%20if%20(n)%0A%20%20%20%20return%201%20%2B%20max(binary_tree_height(n-%3Eleft)%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20binary_tree_height(n-%3Eright))%3B%0A%20%20else%0A%20%20%20%20return%200%3B%0A%7D%0A%0Abinary_tree_t*%20binary_tree_search(binary_tree_t*%20root%2C%20int%20k)%20%7B%0A%20%20if%20(!root%20%7C%7C%20root-%3Ekey%20%3D%3D%20k)%0A%20%20%20%20return%20root%3B%0A%20%20else%20if%20(k%20%3C%20root-%3Ekey)%0A%20%20%20%20return%20binary_tree_search(root-%3Eleft%2C%20k)%3B%0A%20%20else%0A%20%20%20%20return%20binary_tree_search(root-%3Eright%2C%20k)%3B%0A%7D%0A%0Abinary_tree_t*%20binary_tree_insert(binary_tree_t**%20root%2C%20int%20k)%20%7B%0A%20%20binary_tree_t*%20y%20%3D%20NULL%3B%0A%20%20binary_tree_t*%20x%20%3D%20*root%3B%0A%0A%20%20while%20(x)%20%7B%0A%20%20%20%20%2F%2F%20y%20now%20points%20to%20the%20parent%20of%20x%0A%20%20%20%20y%20%3D%20x%3B%0A%20%20%20%20if%20(k%20%3D%3D%20x-%3Ekey)%0A%20%20%20%20%20%20return%20x%3B%0A%20%20%20%20else%20if%20(k%20%3C%20x-%3Ekey)%0A%20%20%20%20%20%20x%20%3D%20x-%3Eleft%3B%0A%20%20%20%20else%0A%20%20%20%20%20%20x%20%3D%20x-%3Eright%3B%0A%20%20%7D%0A%0A%20%20%2F%2F%20The%20key%20is%20not%20in%20the%20tree%2C%20so%20allocate%20a%20new%20tree%20node%0A%20%20binary_tree_t*%20new_node%20%3D%20malloc(sizeof(*new_node))%3B%0A%20%20new_node-%3Eleft%20%3D%20NULL%3B%0A%20%20new_node-%3Eright%20%3D%20NULL%3B%0A%20%20new_node-%3Ekey%20%3D%20k%3B%0A%0A%20%20if%20(y)%20%7B%0A%20%20%20%20%2F%2F%20y%20points%20to%20a%20leaf%0A%20%20%20%20if%20(k%20%3C%20y-%3Ekey)%0A%20%20%20%20%20%20y-%3Eleft%20%3D%20new_node%3B%0A%20%20%20%20else%20%0A%20%20%20%20%20%20y-%3Eright%20%3D%20new_node%3B%0A%20%20%7D%0A%20%20else%20%7B%0A%20%20%20%20%2F%2F%20if%20y%20is%20NULL%2C%20then%20the%20tree%20is%20empty%0A%20%20%20%20*root%20%3D%20new_node%3B%0A%20%20%7D%0A%0A%20%20return%20new_node%3B%0A%7D%0A%20%0A%0Aint%20main()%20%7B%0A%20%20%20%20binary_tree_t*%20t%20%3D%20NULL%3B%0A%20%20%20%20binary_tree_insert(%26t%2C7)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C5)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C6)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C3)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C42)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C13)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C65)%3B%0A%20%20%20%20binary_tree_t*%20r12%20%3D%20binary_tree_search(t%2C12)%3B%0A%20%20%20%20binary_tree_t*%20r6%20%20%3D%20binary_tree_search(t%2C16)%3B%0A%7D%0A%20%20%20">Run</a>
+</div> <article class="remark remark-like"><h5 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">5.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Sets as Maps.</span>
+</h5> <div class="para logical">
+<div class="para">A set can be seen as a map where</div>
+<ul class="disc">
+<li><div class="para">the domain of the map is the set</div></li>
+<li><div class="para">the codomain of the map is a singleton set (a set with one member)</div></li>
+<li><div class="para">the map maps each set element to the singleton</div></li>
+</ul>
+<div class="para">So, often one implements the more general map case where each tree node has a <em class="emphasis">key</em> and a <em class="emphasis">value</em>. The key acts as the label of the node and the value is the value the key is mapped to. When one is just interested in a set, the value is just set to a default value (like 0 or <code class="code-inline tex2jax_ignore">NULL</code> for example).</div>
+</div></article></section><span class="incontext"><a href="sec-ds-trees.html#paragraphs-21" class="internal">in-context</a></span>
+</body>
+</html>

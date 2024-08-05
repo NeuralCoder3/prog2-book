@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Encapsulating Constructors.</span></h3> <div class="para">Sometimes, we also want to encapsulate object construction and forbid other classes' code direct access to the constructor(s) of a class. In Java, this can be achieved by setting the constructor <code class="code-inline tex2jax_ignore">private</code>. Object construction has then to be performed by a method. Typically, in a class with private constructors there is a <code class="code-inline tex2jax_ignore">static</code> <dfn class="terminology">factory method</dfn> that creates new objects of the class using the private constructor, like in the following example:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Vec2 {
+  private double x, y;
+
+  private Vec2(double x, double y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  public static Vec2 cartesian(double x, double y) {
+    return new Vec2(x, y);
+  }
+
+  public static Vec2 polar(double r, double phi) {
+    return new Vec2(r * Math.cos(phi), r * Math.sin(phi));
+  }
+}
+</code></pre></div> <div class="para">Here, the methods <code class="code-inline tex2jax_ignore">cartesian</code> and <code class="code-inline tex2jax_ignore">polar</code> serve the purpose of constructing a <code class="code-inline tex2jax_ignore">Vec2</code> in different ways. <code class="code-inline tex2jax_ignore">polar</code> transforms the polar coordinates into cartesian ones and then calls the constructor while <code class="code-inline tex2jax_ignore">cartesian</code> just passes its arguments through. Both methods also carry a sensible name that makes it possible for the programmer to understand how the parameters of the object construction is interpreted (cartesian vs polar).</div> <div class="para logical">
+<div class="para">Other very common application of private constructors are:</div>
+<dl class="description-list">
+<dt>Controlling the number of objects of a an <em class="emphasis">immutable</em> class (see Section 8.6)</dt>
+<dd>
+<div class="para">For example, nothing prevents us to create multiple distinct objects that all represent the <code class="code-inline tex2jax_ignore">Vec2</code> <span class="process-math">\((1, 0)\text{.}\)</span> Sometimes one wants to make sure that there is only <em class="emphasis">one</em> object for a specific value. In that case, a factory method could look up in a map if an object was already created for a specific set of parameters and return this object instead of creating a new one.</div>
+<div class="para">An extreme variant of this case is the <dfn class="terminology">singleton</dfn> where one wants to permit only one object per class.</div>
+</dd>
+<dt>Delegating the construction of the object</dt>
+<dd><div class="para">Sometimes, it turns out that for specific combinations of parameters to the constructor, an object of another (sub-) class is better suited. In this case, a factory method can select which object to create.</div></dd>
+</dl>
+</div></section><span class="incontext"><a href="sec-java-encapsulation.html#paragraphs-37" class="internal">in-context</a></span>
+</body>
+</html>

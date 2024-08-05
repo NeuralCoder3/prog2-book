@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">1.3.8</span><span class="period">.</span><span class="space"> </span><span class="title">Practical Considerations.</span>
+</h3> <div class="para">
+<a href="" class="xref" data-knowl="./knowl/def-arith-sub.html" title="Definition 1.3.6: Subtraction">Definition 1.3.6</a> already suggests how an adder has to be extended to support subtraction: The right operand of the ALU must be optionally negateable and the carry bit into the least position must be presettable to either <span class="process-math">\(0\)</span> or <span class="process-math">\(1\text{.}\)</span>
+</div> <div class="para">Many processors provide the carry out of the last position in a special register, the so-called <dfn class="terminology">flag register</dfn>. It is then often just called the <em class="emphasis">carry bit</em> because all the intermediate carries are unaccessible to the programmer. Some architectures negate the carry bit when subtracting, actually making it a <em class="emphasis">borrow bit</em>. For example, on an x86 machine the carry bit is <em class="emphasis">clear</em> when computing <span class="process-math">\(3-2\)</span> whereas an ARM processor would set the carry in that case. </div> <div class="para">Pro comment: This is why on x86 the instruction that subtracts and reading <span class="process-math">\(c_0\)</span> from the flags is called <code class="code-inline tex2jax_ignore">sbb</code> (sub with borrow) while it is called <code class="code-inline tex2jax_ignore">sbc</code> (sub with carry) on ARM processors. Such instructions are used when implementing arithmetic on bit strings that are longer than the word size of the processors.</div></article><span class="incontext"><a href="sec-arith-add.html#remark-2" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Genericity.</span></h4> <div class="para">So far, our list elements were ints. However, one typically does not only want lists of ints but lists holding elements of an arbitrary type. We also say that the list (or the data structure in general) shall be <dfn class="terminology">generic</dfn>. This means that the type of the elements is not known beforehand but the data structure is <em class="emphasis">parametric</em> in that data type, meaning that the data structure can be <em class="emphasis">instantiated</em> for arbitrary element types.</div> <div class="para">Genericity cannot be achieved very elegantly in C because C's type system does not provide a mechanism where types can be parameters to another type declaration like the declaration of the <code class="code-inline tex2jax_ignore">array_list_t</code> struct. The standard way of attaining genericity in C is by using void pointers. By substituting <code class="code-inline tex2jax_ignore">int element</code> by <code class="code-inline tex2jax_ignore">void* element</code>, we indicate that the list element resides somewhere else in memory (not directly <em class="emphasis">inside</em> the array that holds the list). This makes the array list work with arbitrary element types.</div> <div class="para">However, the type system of C is too weak to provide helpful guarantees. Other programming languages like C++, Java, ML, and many others provide some sort of parametricity where the programmer can indicate that the list is actually a list of elements of some type <span class="process-math">\(T\text{.}\)</span> Such type systems then ensure that the programmer can only add elements of type <span class="process-math">\(T\)</span> to the list and, in turn guarantees that everything that is taken out of the list is also of type <span class="process-math">\(T\text{.}\)</span> From a type system perspective, when using void pointers, we are essentially forgetting everything about the type so it is up to the programmer to cast the void pointer into appropriate element pointers.</div></section><span class="incontext"><a href="sec-ds-lists.html#sec-ds-genericity" class="internal">in-context</a></span>
+</body>
+</html>

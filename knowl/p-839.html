@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">To define the proof rule for the while loop we resort to the concept of a <dfn class="terminology">loop invariant</dfn>. A loop invariant is an assertion that holds true before and after the execution of a loop body. Hence, if some assertion <span class="process-math">\(I\)</span> is a loop invariant, it will also hold before the loop was entered and after the loop was left (if it was left at all). This gives rise to the following proof rule:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare{I\land e}s{I}$}
+\LeftLabel{[While]}
+\UnaryInfC{$\vdash\hoare{I}{\CWhile es}{I\land\neg e}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="para">The premise expresses that <span class="process-math">\(I\)</span> must be a loop invariant. Note that we can strengthen the precondition because whenever <span class="process-math">\(s\)</span> is executed, <span class="process-math">\(e\)</span> also holds. In a similar way we know that as soon as we have left the loop, <span class="process-math">\(e\)</span> will be false, hence we can stipulate the postcondition <span class="process-math">\(I\land\neg e\text{.}\)</span>
+</div>
+</div>
+<span class="incontext"><a href="sec-corr-hoare.html#p-839" class="internal">in-context</a></span>
+</body>
+</html>

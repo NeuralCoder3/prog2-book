@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h4 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">7.3.5</span><span class="period">.</span>
+</h4>
+<div class="para">In C0, branch and statement coverage is the same: for every branch there is a statement whose execution also implies the execution of the corresponding branch. For languages that allow for ifs without elses, this does no longer hold:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">r = 0;
+if (x &lt; 0)
+    r = -x;
+/* next statement */
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20r%20%3D%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20(x%20%3C%200)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20r%20%3D%20-x%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20next%20statement%20*%2F%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div></article><span class="incontext"><a href="sec-corr-testing.html#remark-36" class="internal">in-context</a></span>
+</body>
+</html>

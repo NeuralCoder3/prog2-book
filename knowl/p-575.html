@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">The simplest approach to surjective probing is <dfn class="terminology">linear probing</dfn>:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/lst-ds-hash-probe.html">
+\begin{equation*}
+h'(k,i)\defeq (h(k)+i)\mathrel{\%}m
+\end{equation*}
+</div>
+<div class="para">Linear probing trivially guarantees that each bucket will be searched for <span class="process-math">\(k\text{,}\)</span> i.e. if there is a free bucket, linear probing will find it. A disadvantage of linear probing is that in practice sometimes clusters will form at certain entries which can impede performance of the search operation (see <a href="" class="xref" data-knowl="./knowl/lst-ds-hash-probe.html" title="Listing 5.3.5">Listing 5.3.5</a>): The larger the clusters the further away from <span class="process-math">\(h'(k,0)\)</span> will be the actual bucket for a key <span class="process-math">\(k\)</span> and the more the run time for searching increases. An advantage however is the linear access pattern in which the table is traversed. This may lead to better cache locality and favor several microarchitectural optimizations modern processors make.</div>
+</div>
+<span class="incontext"><a href="sec-ds-hash.html#p-575" class="internal">in-context</a></span>
+</body>
+</html>

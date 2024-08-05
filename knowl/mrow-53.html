@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<div class="displaymath process-math">
+\begin{align*}
+\config{\CSeq{\CAssign le}p}{(\rho,\mu)} \amp\steprel\config p{(\rho,\mu[a\mapsto v])}  \amp\amp\text{if }\denotR{e}\sigma=v\in\Val \amp\text{[Assign]}\\
+\amp                                           \amp\amp\text{and }\denotL{l}\sigma=a\in\Addr\\
+\config{\CSeq{\CIf e{s_1}{s_2}}p}\sigma  \amp\steprel\config{\CSeq{s_1}{p}}{\sigma}     \amp\amp\text{if } \denotR{e}\sigma\ne 0 \amp\text{[IfTrue]}\\
+\config{\CSeq{\CIf e{s_1}{s_2}}p}\sigma  \amp\steprel\config{\CSeq{s_2}{p}}{\sigma}     \amp\amp\text{if } \denotR{e}\sigma=0 \amp\text{[IfFalse]}\\
+\config{\CSeq{\CWhile es}p}\sigma        \amp\steprel\config{\CSeq{s}{\CSeq{\CWhile es}{p}}}{\sigma} \amp\amp\text{if } \denotR{e}\sigma\ne 0 \amp\text{[WhileTrue]}\\
+\config{\CSeq{\CWhile es}p}\sigma        \amp\steprel\config{p}{\sigma}                 \amp\amp\text{if } \denotR{e}\sigma=0 \amp\text{[WhileFalse]}\\
+\config{\CSeq{\CBlock{p_1}}p_2}\sigma    \amp\steprel\config{\CConcat{p_1}{p_2}}{\sigma}\amp\amp                              \amp\text{[Block]}\\
+\config{\CSeq{\CAbort}p}\sigma           \amp\steprel\config{\ACrash}{\sigma}           \amp\amp                              \amp\text{[Crash]}
+\end{align*}
+</div>
+<span class="incontext"><a href="sec-c0-sem.html#md-13" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h3 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">7.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Defensive Programming.</span>
+</h3> <div class="para">Programming <em class="emphasis">defensively</em> means that one does not only consider the <dfn class="terminology">happy path</dfn>, that is the simplest situation in which a piece of code is supposed to work in which no exceptional or erroneous situations occur.  Defensive programming means that one considers <em class="emphasis">all</em> possible inputs also those that violate the precondition. This essentially means that one carefully makes sure that all preconditions are met.</div> <div class="para">Often, this is misunderstood to mean that the code should not abort in any case, i.e. that it is best, if the precondition is <span class="process-math">\(\ltrue\text{.}\)</span> Some programmers try to make this happen by “inventing” default values that are returned in the error case. In principle, it is a design choice where errors shall be handled.</div> <div class="para">Consider the following example code. The function <code class="code-inline tex2jax_ignore">min_idx</code> shall return the index of a smallest elements in an array. Of course, the function is not defined on empty arrays, because they don't have a minimum. The programmer could indicate the error situation by returning <span class="process-math">\(-1\)</span> or something similar:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int min_arr(int* arr, unsigned n) {
+    if (n == 0)
+        return -1;
+    int min = arr[0];
+    int idx = 0;
+    for (unsigned i = 1; i &lt; n; i++) {
+        if (arr[i] &lt; min) {
+            min = arr[i];
+            idx = i;
+        }
+    }
+    return idx;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0Aint%20min_arr(int*%20arr%2C%20unsigned%20n)%20%7B%0A%20%20%20%20if%20(n%20%3D%3D%200)%0A%20%20%20%20%20%20%20%20return%20-1%3B%0A%20%20%20%20int%20min%20%3D%20arr%5B0%5D%3B%0A%20%20%20%20int%20idx%20%3D%200%3B%0A%20%20%20%20for%20(unsigned%20i%20%3D%201%3B%20i%20%3C%20n%3B%20i%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20if%20(arr%5Bi%5D%20%3C%20min)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20min%20%3D%20arr%5Bi%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20idx%20%3D%20i%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20return%20idx%3B%0A%7D%0A%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">Here, returning <span class="process-math">\(-1\)</span> does not really help. That <span class="process-math">\(-1\)</span> is not the minimum of the array. Instead of checking for the result being <span class="process-math">\(-1\)</span> <em class="emphasis">after</em> calling <code class="code-inline tex2jax_ignore">min_arr</code>, the programmer could have checked for the length of the array being greater than <span class="process-math">\(0\)</span> equally well. There is nothing gained from making <code class="code-inline tex2jax_ignore">min_arr</code> “work” on all inputs. On the contrary, there is the risk of moving a possible error further away from the failure. Here, it would be best to just start <code class="code-inline tex2jax_ignore">min_arr</code> with an assertion:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int min_arr(int* arr, unsigned n) {
+    assert (n &gt; 0);
+    ...
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0Aint%20min_arr(int*%20arr%2C%20unsigned%20n)%20%7B%0A%20%20%20%20assert%20(n%20%3E%200)%3B%0A%20%20%20%20...%0A%7D%0A%20%20%20%20%20%20%20%20">Run</a>
+</div></article><span class="incontext"><a href="sec-corr-failures.html#bem-corr-defensive" class="internal">in-context</a></span>
+</body>
+</html>

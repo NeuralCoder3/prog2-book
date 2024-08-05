@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="exercise exercise-like"><h4 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.8.6</span><span class="period">.</span><span class="space"> </span><span class="title">Bit Operators.</span>
+</h4>
+<div class="para">The goal of this exercise is to learn how bit operations that you have encountered in the previous sections are realized in C.</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b0 r0 l0 t0 lines">C</td>
+<td class="c m b0 r0 l0 t0 lines">Arithmetic</td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">a &amp; b</code></td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(a \band b\)</span></td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">a ^ b</code></td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(a \bxor b\)</span></td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">a | b</code></td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(a \bor b\)</span></td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">a &lt;&lt; b</code></td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(a \bsll b\)</span></td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">a &gt;&gt; b</code></td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(a \bsrl b\)</span></td>
+</tr>
+<tr>
+<td class="c m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">~a</code></td>
+<td class="c m b0 r0 l0 t0 lines"><span class="process-math">\(\overline{a}\)</span></td>
+</tr>
+</table></div> <div class="para logical">
+<div class="para">Write a functions with the prototype</div>
+<pre class="code-display tex2jax_ignore">
+      unsigned int f(unsigned int k, unsigned int n);
+    </pre>
+</div> <ol class="decimal">
+<li><div class="para">that flips the <code class="code-inline tex2jax_ignore">k</code>-th bit in <code class="code-inline tex2jax_ignore">n</code> if <code class="code-inline tex2jax_ignore">k</code> is between 0 and 31.</div></li>
+<li><div class="para">that sets the <code class="code-inline tex2jax_ignore">k</code>-th bit in <code class="code-inline tex2jax_ignore">n</code> if <code class="code-inline tex2jax_ignore">k</code> is between 0 and 31.</div></li>
+<li><div class="para">that clears the <code class="code-inline tex2jax_ignore">k</code>-th bit in <code class="code-inline tex2jax_ignore">n</code> if <code class="code-inline tex2jax_ignore">k</code> is between 0 and 31.</div></li>
+<li><div class="para">that rotates <code class="code-inline tex2jax_ignore">n</code> by <code class="code-inline tex2jax_ignore">k</code> to the left if <code class="code-inline tex2jax_ignore">k</code> is between 1 and 31.</div></li>
+<li><div class="para">that rotates <code class="code-inline tex2jax_ignore">n</code> by <code class="code-inline tex2jax_ignore">k</code> to the right if <code class="code-inline tex2jax_ignore">k</code> is between 1 and 31.</div></li>
+</ol> <div class="para">You may assume here that <code class="code-inline tex2jax_ignore">unsigned int</code> represents 32-bit unsigned integers.</div>
+<div class="debug">202408041548</div>
+<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-3-hidden.html" title="Solution 4.8.6.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><span class="incontext"><a href="sec-c-expr.html#exercise-8" class="internal">in-context</a></span>
+</body>
+</html>

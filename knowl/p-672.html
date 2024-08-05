@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">Let us briefly reflect on how we as programmers experience that a program gets stuck and how we can distinguish it from termination, divergence, and abort. If we execute programs on paper using the <a href="" class="xref" data-knowl="./knowl/def-c0-stmt-sem.html" title="Definition 6.3.4: Operational Semantics of C0">rules above 6.3.4</a>, we can easily detect if a program got stuck. In practice however, we typically would use a <em class="emphasis">compiler</em> that translates some C/C0 program <span class="process-math">\(s\)</span> to a machine code program <span class="process-math">\(\hat s\text{.}\)</span> The C standard mandates that <span class="process-math">\(\hat p\)</span> shows one of the defined behaviors of <span class="process-math">\(p\)</span> if it terminates, aborts, or diverges. However, since C is all about performance, it defines situations where <span class="process-math">\(p\)</span> gets stuck as <em class="emphasis">undefined behavior</em>. This means that there are no constraints on <span class="process-math">\(\hat p\)</span> as soon as <span class="process-math">\(p\)</span> gets stuck: The machine program may behave in any possible way. Notoriously this means that we cannot tell if <span class="process-math">\(p\)</span> got stuck by observing <span class="process-math">\(\hat p\text{.}\)</span>
+</div>
+<span class="incontext"><a href="sec-c0-sem.html#p-672" class="internal">in-context</a></span>
+</body>
+</html>

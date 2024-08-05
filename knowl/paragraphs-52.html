@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">While and If.</span></h4> <div class="para">The code of the while loop and the if-then-else is composed from the code that implements the bodies of the statements and the code that implements the R-evaluation of the conditional. Note that the labels in the machine code have to be unique, i.e. for each instance of a while loop or an if-then-else in the program, we have to use <em class="emphasis">fresh</em> label names.</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:75%;"><div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\codeR{(r\lcc rs)}{\denot e\enspace k}{c_1}$}
+\noLine 
+\UnaryInfC{$\codeS{\denot{s}}{c_2}$}
+\LeftLabel{[CWhile]}
+\UnaryInfC{$\codeS{\denot{\CWhile es}}{c_\mathsf{While}}$}
+\end{prooftree}
+\end{equation*}
+</div></div></div>
+<div class="sbspanel top" style="width:25%;">
+<pre class="program"><code class="language-nasm">    # c_while
+    b T
+L:
+    c2
+T:
+    c1
+    bnez r L
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%23%20c_while%0A%20%20%20%20b%20T%0AL%3A%0A%20%20%20%20c2%0AT%3A%0A%20%20%20%20c1%0A%20%20%20%20bnez%20r%20L%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+</div></div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:75%;"><div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\codeR{(r\lcc rs)}{\denot e\enspace k}{c}$}
+\noLine 
+\UnaryInfC{$\codeS{\denot{s_1}}{c_1}$}
+\noLine 
+\UnaryInfC{$\codeS{\denot{s_2}}{c_2}$}
+\LeftLabel{[CIf]}
+\UnaryInfC{$\codeS{\denot{\CIf e{s_1}{s_2}}}{c_\mathsf{If}}$}
+\end{prooftree}
+\end{equation*}
+</div></div></div>
+<div class="sbspanel top" style="width:25%;">
+<pre class="program"><code class="language-nasm">    # c_if
+    c
+    beqz r F
+    c1
+    b N
+F:
+    c2
+N:
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%23%20c_if%0A%20%20%20%20c%0A%20%20%20%20beqz%20r%20F%0A%20%20%20%20c1%0A%20%20%20%20b%20N%0AF%3A%0A%20%20%20%20c2%0AN%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+</div></div></section><span class="incontext"><a href="sec-comp-codegen.html#paragraphs-52" class="internal">in-context</a></span>
+</body>
+</html>

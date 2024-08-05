@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="exercise exercise-like"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">2<span class="period">.</span></span><span class="space"> </span><span class="title">Pointers.</span>
+</h4>
+<div class="para">What is the output of the following program? Track the pointers and values manually before you run the program.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(int argc, char* argv[])
+{
+  int *dr, *ds;
+  int **drr, **dss;
+  int i;
+  int aa[5];
+
+  for (i = 0; i &lt; 5; i++) *(aa + i) = -123;
+
+  dr = &amp;aa[3];
+  ds = dr - 3;
+  drr = &amp;dr;
+  dss = &amp;ds;
+  *dr = 23;
+  *ds = 11;
+  *(dr + 1) = 5;
+  ds += 1;
+  *ds = 66;
+  aa[2] = 42;
+  printf("%d %d %d %d %d\n", aa[0], aa[1], aa[2], aa[3], aa[4]);
+
+  aa[0] = *(aa+2) - *(aa + 1);
+  *(*drr - 1) = 7;
+  *(*dss + 3) = 4;
+  **dss = **drr + *(*drr - 2);
+  printf("%d %d %d %d %d\n", aa[0], aa[1], aa[2], aa[3], aa[4]);
+
+  return 0;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%23include%20%3Cstdio.h%3E%0A%0A%20%20%20%20%20%20%20%20int%20main(int%20argc%2C%20char*%20argv%5B%5D)%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20int%20*dr%2C%20*ds%3B%0A%20%20%20%20%20%20%20%20%20%20int%20**drr%2C%20**dss%3B%0A%20%20%20%20%20%20%20%20%20%20int%20i%3B%0A%20%20%20%20%20%20%20%20%20%20int%20aa%5B5%5D%3B%0A%0A%20%20%20%20%20%20%20%20%20%20for%20(i%20%3D%200%3B%20i%20%3C%205%3B%20i%2B%2B)%20*(aa%20%2B%20i)%20%3D%20-123%3B%0A%0A%20%20%20%20%20%20%20%20%20%20dr%20%3D%20%26aa%5B3%5D%3B%0A%20%20%20%20%20%20%20%20%20%20ds%20%3D%20dr%20-%203%3B%0A%20%20%20%20%20%20%20%20%20%20drr%20%3D%20%26dr%3B%0A%20%20%20%20%20%20%20%20%20%20dss%20%3D%20%26ds%3B%0A%20%20%20%20%20%20%20%20%20%20*dr%20%3D%2023%3B%0A%20%20%20%20%20%20%20%20%20%20*ds%20%3D%2011%3B%0A%20%20%20%20%20%20%20%20%20%20*(dr%20%2B%201)%20%3D%205%3B%0A%20%20%20%20%20%20%20%20%20%20ds%20%2B%3D%201%3B%0A%20%20%20%20%20%20%20%20%20%20*ds%20%3D%2066%3B%0A%20%20%20%20%20%20%20%20%20%20aa%5B2%5D%20%3D%2042%3B%0A%20%20%20%20%20%20%20%20%20%20printf(%22%25d%20%25d%20%25d%20%25d%20%25d%5Cn%22%2C%20aa%5B0%5D%2C%20aa%5B1%5D%2C%20aa%5B2%5D%2C%20aa%5B3%5D%2C%20aa%5B4%5D)%3B%0A%0A%20%20%20%20%20%20%20%20%20%20aa%5B0%5D%20%3D%20*(aa%2B2)%20-%20*(aa%20%2B%201)%3B%0A%20%20%20%20%20%20%20%20%20%20*(*drr%20-%201)%20%3D%207%3B%0A%20%20%20%20%20%20%20%20%20%20*(*dss%20%2B%203)%20%3D%204%3B%0A%20%20%20%20%20%20%20%20%20%20**dss%20%3D%20**drr%20%2B%20*(*drr%20-%202)%3B%0A%20%20%20%20%20%20%20%20%20%20printf(%22%25d%20%25d%20%25d%20%25d%20%25d%5Cn%22%2C%20aa%5B0%5D%2C%20aa%5B1%5D%2C%20aa%5B2%5D%2C%20aa%5B3%5D%2C%20aa%5B4%5D)%3B%0A%0A%20%20%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20">Run</a>
+</div>
+<div class="debug">202408041548</div>
+<div class="solutions"><a href="" class="solution-knowl original" data-knowl="./knowl/solution-5-hidden.html" title="Solution 4.10.3.2.1"><span class="type">Solution</span><span class="period">.</span></a></div></article><span class="incontext"><a href="sec-c-ptr.html#exercise-10" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">Consider the division program from <a href="" class="xref" data-knowl="./knowl/ex-corr-hoare-while.html" title="Example 7.4.7">Example 7.4.7</a>.</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-corr-hoare-while.html">
+\begin{equation*}
+\CAssign{\CVar q}{\CConst 0}
+\CWhileInv{\CBinary{\ge}{\CVar x}{\CVar y}}{
+\underbrace{\CBlock{
+\CAssign{\CVar x}{\CBinary{-}{\CVar x}{\CVar y}}
+\CAssign{\CVar q}{\CBinary{+}{\CVar q}{\CConst 1}}
+}}_{s}
+}{\CVar q*\CVar y+\CVar x=\CVar X}
+\end{equation*}
+</div>
+<div class="para">which we want to prove correct with respect to the specification</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-corr-hoare-while.html">
+\begin{align*}
+P \amp = \CVar x=\CVar X\\
+Q \amp = \CVar q*\CVar y+\CVar x=\CVar X\land \CVar x\lt\CVar y
+\end{align*}
+</div>
+<div class="para">using the loop invariant</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex-corr-hoare-while.html">
+\begin{align*}
+I \amp = \CVar q*\CVar y+\CVar x=\CVar X
+\end{align*}
+</div>
+</div>
+<span class="incontext"><a href="sec-corr-hoare.html#p-860" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">The stack frame (see <a href="" class="xref" data-knowl="./knowl/asm-fig-stackframe.html" title="Figure 2.8.1">Figure 2.8.1</a>) typically contains the following elements:</div>
+<ul class="disc">
+<li><div class="para">
+<dfn class="terminology">Arguments</dfn>, i.e. values that are passed to the procedure. (The convention in MIPS is that the first four arguments are passed in registers <code class="code-inline tex2jax_ignore">$a0</code> to <code class="code-inline tex2jax_ignore">$a3</code>, hence their name. Remaining arguments are passed on the stack.)</div></li>
+<li><div class="para logical">
+<div class="para">Space to store the contents of registers that …</div>
+<ul class="circle">
+<li><div class="para">the procedure wants to overwrite but the caller expects to be unchanged. These are so-called <dfn class="terminology">callee-save</dfn> registers because the <em class="emphasis">callee</em> has to make sure the values of these registers are preserved from entering the procedure to its return.</div></li>
+<li><div class="para">might be overwritten by procedures that are called by the procedure. These are so-called <dfn class="terminology">caller-save</dfn> registers because the caller needs to preserve their value across a procedure call.</div></li>
+</ul>
+</div></li>
+<li><div class="para">space for further data local to the procedure that don't fit into a register because there is either no free register available or the data is too big to fit into a 32-bit register.</div></li>
+</ul>
+</div>
+<span class="incontext"><a href="sec-asm-call.html#p-172" class="internal">in-context</a></span>
+</body>
+</html>

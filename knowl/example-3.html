@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">Dynamically Allocated Containers.</span>
+</h4> <div class="para">Consider the following function:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int *unit_vector(int dimension, int n_dimensions) {
+  int *res = malloc(sizeof(res[0]) * n_dimensions);
+  for (int i = 0; i &lt; n_dimensions; i++)
+      res[i] = 0;
+  res[dimension] = 1;
+  return res;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=int%20*unit_vector(int%20dimension%2C%20int%20n_dimensions)%20%7B%0A%20%20int%20*res%20%3D%20malloc(sizeof(res%5B0%5D)%20*%20n_dimensions)%3B%0A%20%20for%20(int%20i%20%3D%200%3B%20i%20%3C%20n_dimensions%3B%20i%2B%2B)%0A%20%20%20%20%20%20res%5Bi%5D%20%3D%200%3B%0A%20%20res%5Bdimension%5D%20%3D%201%3B%0A%20%20return%20res%3B%0A%7D%0A%0Aint%20main()%20%7B%0A%20%20unit_vector(3%2C5)%3B%0A%7D">Run</a>
+</div> <div class="para">The statement in the first line allocates two new containers: The first one can carry an <em class="emphasis">address</em>; its address is bound to the variable <code class="code-inline tex2jax_ignore">res</code>. The second one originates from the call to <code class="code-inline tex2jax_ignore">malloc</code>. The argument to the <code class="code-inline tex2jax_ignore">malloc</code> call determines the size of this container. <code class="code-inline tex2jax_ignore">sizeof(res[0])</code> is the size of an <code class="code-inline tex2jax_ignore">int</code> (see <a href="sec-c-ptr.html" class="internal" title="Section 4.10: Pointers">Section 4.10</a>), and the container should have <code class="code-inline tex2jax_ignore">n_dimensions</code>-times this size. So, this call to <code class="code-inline tex2jax_ignore">malloc</code> requests a container that is large enough to carry <code class="code-inline tex2jax_ignore">n_dimensions</code> many <code class="code-inline tex2jax_ignore">int</code>s. <code class="code-inline tex2jax_ignore">malloc</code> returns the address of such a container, which is then stored in the container bound to <code class="code-inline tex2jax_ignore">res</code>.</div> <div class="para">The subsequent loop writes into each space for an <code class="code-inline tex2jax_ignore">int</code> in the container a 0. In the following statement, a 1 is written to the <code class="code-inline tex2jax_ignore">dimension</code>-th position of the container. Lastly, the function returns the address of the allocated container to its caller.</div> <div class="para">It is noteworthy that the life time of the dynamically (with <code class="code-inline tex2jax_ignore">malloc</code>) allocated container does not end with the return to the calling function, in contrast to the local variable <code class="code-inline tex2jax_ignore">res</code> that carries its address.</div></article><span class="incontext"><a href="sec-c-object.html#example-3" class="internal">in-context</a></span>
+</body>
+</html>

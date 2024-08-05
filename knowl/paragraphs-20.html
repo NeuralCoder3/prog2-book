@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Removal.</span></h4> <div class="para">When removing a node, we specify the node directly and dismount it from the list by setting the next pointer of its predecessor to its next node and the previous pointer of its next element to its previous element:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">void list_remove(list_node_t* n) {
+    n-&gt;next-&gt;prev = n-&gt;prev;
+    n-&gt;prev-&gt;next = n-&gt;next;
+    free(n);
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%20struct%20list_node_t%20%7B%0A%20%20%20%20int%20element%3B%0A%20%20%20%20struct%20list_node_t*%20prev%3B%0A%20%20%20%20struct%20list_node_t*%20next%3B%0A%7D%3B%0Atypedef%20struct%20list_node_t%20list_node_t%3B%0A%0Alist_node_t*%20list_root_init(list_node_t*%20n)%20%7B%0A%20%20%20%20n-%3Enext%20%3D%20n%3B%0A%20%20%20%20n-%3Eprev%20%3D%20n%3B%0A%7D%0A%0Alist_node_t*%20list_append(list_node_t*%20where%2C%20int%20element)%20%7B%0A%20%20%20%20list_node_t*%20n%20%3D%20malloc(sizeof(*n))%3B%0A%20%20%20%20n-%3Eelement%20%20%20%20%3D%20element%3B%0A%20%20%20%20n-%3Enext%20%20%20%20%20%20%20%3D%20where-%3Enext%3B%0A%20%20%20%20n-%3Eprev%20%20%20%20%20%20%20%3D%20where%3B%0A%20%20%20%20where-%3Enext%20%20%20%3D%20n%3B%0A%20%20%20%20n-%3Enext-%3Eprev%20%3D%20n%3B%0A%20%20%20%20return%20n%3B%0A%7D%0A%0Avoid%20list_remove(list_node_t*%20n)%20%7B%0A%20%20%20%20n-%3Enext-%3Eprev%20%3D%20n-%3Eprev%3B%0A%20%20%20%20n-%3Eprev-%3Enext%20%3D%20n-%3Enext%3B%0A%20%20%20%20free(n)%3B%0A%7D%0A%0Alist_node_t*%20list_search(list_node_t*%20root%2C%20int%20value)%20%7B%0A%20%20%20%20list_node_t*%20n%20%3D%20root-%3Enext%3B%0A%20%20%20%20while(n%20!%3D%20root)%20%7B%0A%20%20%20%20%20%20%20%20if%20(n-%3Eelement%20%3D%3D%20value)%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20n%3B%0A%20%20%20%20%20%20%20%20n%20%3D%20n-%3Enext%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20NULL%3B%0A%7D%0A%0Aint%20main()%20%7B%0A%20%20%20%20list_node_t%20head%3B%0A%20%20%20%20list_root_init(%26head)%3B%0A%20%20%20%20list_node_t*%20tail%20%3D%20%26head%3B%0A%20%20%20%20tail%20%3D%20list_append(tail%2C%2032)%3B%0A%20%20%20%20tail%20%3D%20list_append(tail%2C%2022)%3B%0A%20%20%20%20list_append(%26head%2C%2041)%3B%0A%20%20%20%20tail%20%3D%20list_append(tail%2C%2012)%3B%0A%20%20%20%20list_node_t*%20n%20%3D%20list_search(%26head%2C%2022)%3B%0A%20%20%20%20list_remove(n)%3B%0A%20%20%20%20return%200%3B%0A%7D%20">Run</a>
+</div></section><span class="incontext"><a href="sec-ds-lists.html#paragraphs-20" class="internal">in-context</a></span>
+</body>
+</html>

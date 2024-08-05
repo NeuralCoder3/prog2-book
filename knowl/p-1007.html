@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">Because type variables have only been added to Java later, they have not made it into Java byte code. The Java compiler replaces type variables by <code class="code-inline tex2jax_ignore">Object</code> when compiling the Java program into Java byte code in a process called <dfn class="terminology">type erasure</dfn>. This is the cause of some inconsistencies that occasionally cause trouble. Most prominently has Java been designed with <em class="emphasis">covariant</em> arrays, i.e. you can write <code class="code-inline tex2jax_ignore">Vec2[] o = new PolarVec2[10];</code>. This requires the language to perform dynamic type checks when you assign to an array. For example, when writing <code class="code-inline tex2jax_ignore">o = new CartesianVec2(...);</code> an <code class="code-inline tex2jax_ignore">ArrayStoreException</code> has to be thrown. This in turn requires that the array knows its element type at run time to be able to perform this check. However, since type variables are erased to <code class="code-inline tex2jax_ignore">Object</code>, you cannot create arrays with type variables, i.e. the following is not possible: <code class="code-inline tex2jax_ignore">T[] a = new T[10];</code>
+</div>
+<span class="incontext"><a href="sec-java-collections.html#p-1007" class="internal">in-context</a></span>
+</body>
+</html>

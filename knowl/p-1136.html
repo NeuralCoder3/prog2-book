@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical"><ul class="disc">
+<li><div class="para logical">
+<div class="para">Start with a discussion of immutable vs mutable object.</div>
+<ul class="circle">
+<li><div class="para">Immutability allows objects to be used like values</div></li>
+<li><div class="para">Effects of shared ownership through aliasing are hard to control.</div></li>
+<li><div class="para">Work through immutable objects with the Vec2 example.</div></li>
+<li><div class="para">Discuss factory methods in light of this example: Need a way to make a Vec2 by cartesian and by polar coordinates. Same arguments, cannot overload the constructor. Static factory method is nice because we can also give it a proper name.</div></li>
+</ul>
+</div></li>
+<li><div class="para">Motivate inheritance with Vec2: Why only cartesian <em class="emphasis">or</em> polar.</div></li>
+<li><div class="para">We want to have both. But typing forces us to be specific when using a Vec2, doesn't it? We don't want to be specific with respect to the concrete type, but just say, we expect something that is a Vec2.</div></li>
+<li><div class="para">Java has interfaces to specify that. They introduce a <em class="emphasis">subtyping</em> relation.</div></li>
+<li><div class="para">Introduce Vec2 interface and implement classes PolarVec2 and CartesianVec2. Demonstrate how the type system enforces that all methods required by the interface are implemented in the classes. Show how the Rectangle class can “retreat” to Vec2 and use Polar and Cartesian Vec2's interchangeably.</div></li>
+<li><div class="para">Introduce dynamic dispatch. There are two types: The static type of a reference and the dynamic type. The dynamic type is a property of a program execution: It is the type the object was constructed from which is evident at the constructor call. The static type is an upper bound to each dynamic type: “If the static type is T, in every execution, the referenced object is a subtype of T”. The method to call is determined by the dynamic type and selected at the run time of the program. The Java type system ensures that this method exists.</div></li>
+</ul></div>
+<span class="incontext"><a href="section-85.html#p-1136" class="internal">in-context</a></span>
+</body>
+</html>

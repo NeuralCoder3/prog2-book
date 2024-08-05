@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="table table-like"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">4.8.4<span class="period">.</span></span><span class="space"> </span>Operators with side effects. <span class="process-math">\(\oplus\)</span> represents an arbitrary binary operator (see Table 4.8.1). The expression <span class="process-math">\(e\)</span> needs to be L-evaluable for these operators.</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b1 r1 l0 t0 lines">Expression</td>
+<td class="l m b1 r1 l0 t0 lines">Name</td>
+<td class="l m b1 r1 l0 t0 lines">Value of the Expression</td>
+<td class="l m b1 r0 l0 t0 lines">Side Effects</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{++e}\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">pre-increment</td>
+<td class="l m b0 r1 l0 t0 lines">new value of <span class="process-math">\(\mathtt{e}\)</span>
+</td>
+<td class="l m b0 r0 l0 t0 lines">write <span class="process-math">\(\mathtt{e + 1}\)</span> to <span class="process-math">\(\mathtt{e}\)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{--e}\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">pre-decrement</td>
+<td class="l m b0 r1 l0 t0 lines">new value of <span class="process-math">\(\mathtt{e}\)</span>
+</td>
+<td class="l m b0 r0 l0 t0 lines">write <span class="process-math">\(\mathtt{e - 1}\)</span> to <span class="process-math">\(\mathtt{e}\)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{e++}\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">post-increment</td>
+<td class="l m b0 r1 l0 t0 lines">old value of <span class="process-math">\(\mathtt{e}\)</span>
+</td>
+<td class="l m b0 r0 l0 t0 lines">write <span class="process-math">\(\mathtt{e + 1}\)</span> to <span class="process-math">\(\mathtt{e}\)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{e--}\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">post-decrement</td>
+<td class="l m b0 r1 l0 t0 lines">old value of <span class="process-math">\(\mathtt{e}\)</span>
+</td>
+<td class="l m b0 r0 l0 t0 lines">write <span class="process-math">\(\mathtt{e - 1}\)</span> to <span class="process-math">\(\mathtt{e}\)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{e1 = e2}\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">assignment</td>
+<td class="l m b0 r1 l0 t0 lines">new value of <span class="process-math">\(\mathtt{e1}\)</span>
+</td>
+<td class="l m b0 r0 l0 t0 lines">write <span class="process-math">\(\mathtt{e2}\)</span> to <span class="process-math">\(\mathtt{e1}\)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{e1 \mathrel{\oplus=} e2}\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">assignment</td>
+<td class="l m b0 r1 l0 t0 lines">new value of <span class="process-math">\(\mathtt{e1}\)</span>
+</td>
+<td class="l m b0 r0 l0 t0 lines">write <span class="process-math">\(\mathtt{e1\oplus e2}\)</span> to <span class="process-math">\(\mathtt{e1}\)</span>
+</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{f(...)}\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">function call</td>
+<td class="l m b0 r1 l0 t0 lines">
+<span class="process-math">\(\mathtt{f}\)</span>'s return value</td>
+<td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\mathtt{f}\)</span>'s side effects</td>
+</tr>
+</table></div></figure><span class="incontext"><a href="sec-c-expr.html#fig-cop_side" class="internal">in-context</a></span>
+</body>
+</html>

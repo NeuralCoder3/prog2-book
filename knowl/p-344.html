@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">How exactly are parameters passed to <code class="code-inline tex2jax_ignore">factorial</code>? When a function is called, a container for each parameter with the appropriate size is allocated. Practically, the parameters are additional local variables of the called function. Their scope extends over the entire function and their life time ends when the function is left. Before execution continuous with the first statement of the function, all (comma-separated) <dfn class="terminology">arguments</dfn> are R-evaluated. The resulting values are written to the corresponding containers. The parameters' containers are deallocated when the function returns. This approach is called <dfn class="terminology">call by value</dfn>, since the values of the arguments are passed to the called function. Other programming languages (e.g. Pascal or C#) additionally allow to <dfn class="terminology">call by reference</dfn>, that is to pass the containers' addresses to the function. Arguments that are passed by reference need to be L-evaluable. In C, we can simulate passing arguments by reference if we declare the function to take a parameter of pointer type (see <a href="sec-c-ptr.html" class="internal" title="Section 4.10: Pointers">Section 4.10</a>).</div>
+<span class="incontext"><a href="section-28.html#p-344" class="internal">in-context</a></span>
+</body>
+</html>

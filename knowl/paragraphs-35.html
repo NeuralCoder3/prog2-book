@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Assert and Assume.</span></h4> <div class="para logical">
+<div class="para">Let us define two further language elements that will allow us to specify pre- and postconditions directly in the program. Assert is defined as</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\CAssert{e}=\CIf{e}{\CBlock{}}{\CAbort}
+\end{equation*}
+</div>
+<div class="para">and therefore</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\hpc \denot{\CAssert e}\,Q=e\land Q\quad \hvc \denot{\CAssert e}\,Q=\{\}
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">We use the statement <span class="process-math">\(\CAssume{a}\)</span> to specify pre-conditions or give additional constraints. In a more realistic setting, one could for example provide additional information on inputs, like maybe some input is always in a specific range, etc. Assume is directly defined through a while loop that makes the program diverge if the condition <span class="process-math">\(e\)</span> is not fulfilled. This leads to a loop invariant that states that <span class="process-math">\(\neg e\)</span> or <span class="process-math">\(Q\)</span> holds (or written differently: <span class="process-math">\(e\simp Q\)</span>). The <span class="process-math">\(Q\)</span> part comes from the fact that if the loop terminates (in this case equivalent to not being entered), we want the postcondition <span class="process-math">\(Q\)</span> is satisfied.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\CAssume{e}\defeq\CWhileInv{\neg e}{\CBlock{}}{e\simp Q}
+\end{equation*}
+</div>
+<div class="para">and with the loop invariant <span class="process-math">\(e\simp Q\text{,}\)</span> if follows that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\hpc \denot{\CAssume{e}}\,Q=e\simp Q\quad \hvc \denot{\CAssume e}\,Q=\emptyset
+\end{equation*}
+</div>
+</div> <article class="lemma theorem-like"><h5 class="heading">
+<span class="type">Lemma</span><span class="space"> </span><span class="codenumber">7.4.13</span><span class="period">.</span>
+</h5>
+<div class="para"><span class="process-math">\(\hoare{\ltrue}{\CAssume P; s; \CAssert Q;}{\ltrue}
+\quad\text{iff}\quad
+\hoare PsQ\)</span></div></article> <article class="hiddenproof"><a href="" class="proof-knowl original" data-knowl="./knowl/proof-12-hidden.html" title="Proof 1"><h5 class="heading"><span class="type">Proof<span class="period">.</span></span></h5></a></article></section><span class="incontext"><a href="sec-corr-hoare.html#paragraphs-35" class="internal">in-context</a></span>
+</body>
+</html>

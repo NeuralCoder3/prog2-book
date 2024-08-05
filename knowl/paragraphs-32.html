@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Block.</span></h4> <div class="para">The Hoare triple for a block just falls back to the Hoare triple of its constituent program (rule [Block]). The empty program <span class="process-math">\(\CTerm\)</span> does nothing so the Hoare triple <span class="process-math">\(\hoare Q\CTerm Q\)</span> is valid. More interesting is the Hoare triple for the program that consists of a statement and a rest program.</div> <div class="para">In principle, the following rule says that if we can prove Hoare triples of the first statement and the remainder of the block in which the postcondition of the first statement is the precondition of the remainder, we can derive a Hoare triple of the entire block. Intuitively this is justified by the observation that the first Hoare triple yields that, if <span class="process-math">\(s_1\)</span> terminates, it terminates in a state that fulfills the precondition of the remainder of the block which then, by its Hoare triple, will, (if it terminates) terminate in a state that fulfills <span class="process-math">\(Q\text{.}\)</span>
+</div> <article class="definition definition-like"><h5 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Hoare triples for the block statement and programs.</span>
+</h5> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare PsQ$}
+\AxiomC{$\vdash\hoare QpR$}
+\LeftLabel{[Seq]}
+\BinaryInfC{$\vdash\hoare P{\CSeq sp}R$}
+\end{prooftree}
+\qquad
+\begin{prooftree}
+\AxiomC{}
+\LeftLabel{[Term]}
+\UnaryInfC{$\vdash\hoare Q{\CTerm}Q$}
+\end{prooftree}
+\end{equation*}
+</div></div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare PpQ$}
+\LeftLabel{[Block]}
+\UnaryInfC{$\vdash\hoare{P}{\CBlock{p}}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div></div> <div class="para">Because sequences of statements (which form a program) are always terminated by <span class="process-math">\(\varepsilon\text{,}\)</span> we define a convenience rule for a program that contains of two statements. This rule can be used to conveniently “process” the last two statements of a longer program without having to resort to the [Term] rule.</div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare P{s_1}Q$}
+\AxiomC{$\vdash\hoare Q{s_2}R$}
+\LeftLabel{[SeqS]}
+\BinaryInfC{$\vdash\hoare{P}{\CSeq{s_1}{\CSeq{s_2}\CTerm}}{R}$}
+\end{prooftree}
+\end{equation*}
+</div></div></article> <article class="example example-like"><h5 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.4</span><span class="period">.</span>
+</h5>
+<div class="para logical">
+<div class="para">Let us consider the following program, that exchanges the contents of two variables:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq-corr-spec-max-syn-ghost.html">
+\begin{equation*}
+{\CBlock{\CAssnVV tx \CAssnVV xy \CAssnVV yt}}
+\end{equation*}
+</div>
+<div class="para">When formulating the specification, we run into a small problem: We'd like to express in the postcondition that <span class="process-math">\(\CVar y\)</span> equals the value that <span class="process-math">\(\CVar x\)</span> had <em class="emphasis">at the beginning</em> of the program. However, the program overwrites <span class="process-math">\(\CVar x\)</span> and we cannot relate to <span class="process-math">\(\CVar x\)</span> initial value anymore. This can be solved by using <dfn class="terminology">ghost variables</dfn> (see <a href="" class="xref" data-knowl="./knowl/eq-corr-spec-max-syn-ghost.html" title="Equation 7.3">(7.3)</a>) that capture the initial values of all variables in the program but are forbidden to be modified by the program itself.</div>
+</div> <div class="para logical">
+<div class="para">So, the Hoare triple, we'd like to prove is:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vdash\hoare{\CVar Y=\CVar y\land\CVar X=\CVar x}
+{\CBlock{\CAssnVV tx \CAssnVV xy \CAssnVV yt}}{\CVar Y=\CVar x\land\CVar X=\CVar y}
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">For now, we know only the precondition and the postcondition because they are part of our proof goal. But the [Seq] rule requires that we come up with a condition <span class="process-math">\(R\)</span> to split up the block Hoare triple into smaller ones. We have to <em class="emphasis">choose</em> <span class="process-math">\(R\)</span> so that we can complete the proofs. Initially, it may not be clear how to pick the right <span class="process-math">\(R\)</span> so that the proof goes through. In our simple example, we can however exploit the fact that the constituent statements solely are assignment statements: looking back at <a href="" class="xref" data-knowl="./knowl/def-corr-hoare-assign.html" title="Definition 7.4.1: Hoare triple for the assignment statement">Definition 7.4.1</a> we see that the precondition of the Hoare triple of an assignment is actually <em class="emphasis">derived</em> from the postcondition. We can use this insight to derive all the <span class="process-math">\(R\)</span>s in our proof tree. To this end, let us sketch the proof tree first and then derive all the missing <span class="process-math">\(R\)</span>s using the assignment's Hoare triple.</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-assign.html ./knowl/sec-corr-hoare-mech.html">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare{R_3}{\CAssnVV tx}{R_2}$}
+\AxiomC{$\vdash\hoare{R_2}{\CAssnVV xy}{R_1}$}
+\AxiomC{$\vdash\hoare{R_1}{\CAssnVV yt}{Q}$}
+\LeftLabel{[SeqS]}
+\BinaryInfC{$\vdash\hoare{R_2}{\CAssnVV xy \CAssnVV yt}{Q}$}
+\LeftLabel{[Seq]}
+\BinaryInfC{$\vdash\hoare{\CVar Y=\CVar y\land\CVar X=\CVar x}{\CAssnVV tx \CAssnVV xy \CAssnVV yt}{\CVar Y=\CVar x\land\CVar X=\CVar y}$}
+\LeftLabel{[Block]}
+\UnaryInfC{$\vdash\hoare{\underbrace{\CVar Y=\CVar y\land\CVar X=\CVar x}_{=P}}{\CBlock{\CAssnVV tx \CAssnVV xy \CAssnVV yt}}{\underbrace{\CVar Y=\CVar x\land\CVar X=\CVar y}_{=Q}}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="para">Now, the assignment Hoare triple determines the <span class="process-math">\(R\)</span>s in the following way:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-assign.html ./knowl/sec-corr-hoare-mech.html">
+\begin{align*}
+R_1\amp =\CVar Y=\CVar x\land\CVar X=\CVar t\\
+R_2\amp =\CVar Y=\CVar y\land\CVar X=\CVar t\\
+R_3\amp =\CVar Y=\CVar y\land\CVar X=\CVar x
+\end{align*}
+</div>
+<div class="para">We see that the assertions <span class="process-math">\(R_3\)</span> and <span class="process-math">\(P\)</span> are <em class="emphasis">syntactically</em> the same which completes the proof. We come back to this kind of proof technique in <a href="sec-corr-hoare.html#sec-corr-hoare-mech" class="internal" title="Subsection 7.4.2: Mechanizing Verification">Subsection 7.4.2</a> where we actually develop an algorithm to determine the missing invariants.</div>
+</div></article></section><span class="incontext"><a href="sec-corr-hoare.html#paragraphs-32" class="internal">in-context</a></span>
+</body>
+</html>

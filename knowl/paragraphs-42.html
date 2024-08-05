@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Adding a new Operation.</span></h4> <div class="para">When adding a new operation, the locality of change is just the other way around. Let us explore this by extending our implementation by a feature that allows for formatting an AST as an XML document. In the OCaml implementation, it is sufficient to add a new function <code class="code-inline tex2jax_ignore">to_xml</code> that contains the implementation of this feature for all existing variants. This is a <em class="emphasis">local</em> change because none of the existing code needs to be modified.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-ocaml"> | Const i -&gt; i
+
+let rec to_xml e =
+  match e with
+  | Var v -&gt; "&lt;var&gt;" ^ v ^ "&lt;/var&gt;"
+  | Add (l, r) -&gt; "&lt;add&gt;" ^ (to_xml l) ^ (to_xml r) ^ "&lt;/add&gt;"
+  | Const i -&gt; "&lt;const&gt;" ^ (string_of_int i) ^ "&lt;/const&gt;"
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://v2202201167307177506.ultrasrv.de/editor?code=type%20exp%20%3D%0A%20%20%7C%20Var%20of%20string%0A%20%20%7C%20Add%20of%20exp%20*%20exp%0A%20%20%7C%20Const%20of%20int%0A%0Alet%20rec%20to_string%20e%20%3D%20%0A%20%20match%20e%20with%0A%20%20%7C%20Var%20v%20-%3E%20v%0A%20%20%7C%20Add%20(l%2C%20r)%20-%3E%20(to_string%20l)%20%5E%20%22%20%2B%20%22%20%5E%20(to_string%20r)%0A%20%20%7C%20Const%20i%20-%3E%20string_of_int%20i%0A%0Alet%20rec%20eval%20e%20st%20%3D%0A%20%20match%20e%20with%0A%20%20%7C%20Var%20v%20-%3E%20st%20v%20%0A%20%20%7C%20Add%20(l%2C%20r)%20-%3E%20(eval%20l%20st)%20%2B%20(eval%20r%20st)%0A%20%20%7C%20Const%20i%20-%3E%20i%0A%0Alet%20rec%20to_xml%20e%20%3D%0A%20%20match%20e%20with%0A%20%20%7C%20Var%20v%20-%3E%20%22%3Cvar%3E%22%20%5E%20v%20%5E%20%22%3C%2Fvar%3E%22%0A%20%20%7C%20Add%20(l%2C%20r)%20-%3E%20%22%3Cadd%3E%22%20%5E%20(to_xml%20l)%20%5E%20(to_xml%20r)%20%5E%20%22%3C%2Fadd%3E%22%0A%20%20%7C%20Const%20i%20-%3E%20%22%3Cconst%3E%22%20%5E%20(string_of_int%20i)%20%5E%20%22%3C%2Fconst%3E%22">Run</a>
+</div> <div class="para">In the Java implementation however, this extension is <em class="emphasis">non-local</em>. It requires to add a new method <code class="code-inline tex2jax_ignore">toXML</code> to the interface and each class that implements it.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public interface Exp {
+    public int eval(Env e);
+    public String toString();
+    public String toXML();
+}
+
+public class Add implements Exp {
+    private Exp left, right;
+    // ...
+    public String toXML() {
+      return "&lt;add&gt;" + left.toXML() + right.toXML() + "&lt;/add&gt;";
+    }
+}
+
+public class Var implements Exp {
+    private String name;
+    // ...
+    public String toXML() {
+      return "&lt;var&gt;" + name + "&lt;/var&gt;";
+    }
+}
+
+public class Const implements Exp {
+    private int value;
+    // ...
+    public String toXML() {
+      return "&lt;const&gt;" + value + "&lt;/const&gt;";
+    }
+}
+</code></pre></div></section><span class="incontext"><a href="sec-java-expr-problem.html#paragraphs-42" class="internal">in-context</a></span>
+</body>
+</html>

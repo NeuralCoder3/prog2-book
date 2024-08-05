@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">When we delete the <code class="code-inline tex2jax_ignore">factorial</code> function from the translation unit in <a href="" class="xref" data-knowl="./knowl/fig-c-facmain.html" title="Listing 4.5.3">Listing 4.5.3</a>, the compiler rejects the translation unit since it does not know <code class="code-inline tex2jax_ignore">factorial</code>'s type. For a successful translation, the compiler needs to know the type of every called function. <a href="" class="fn-knowl original" data-knowl="./knowl/fn-8-hidden.html" title="Footnote 8"><sup> 8 </sup></a> The type of <code class="code-inline tex2jax_ignore">factorial</code> can be established in the <code class="code-inline tex2jax_ignore">main.c</code> translation unit by providing the <dfn class="terminology">prototype</dfn> of <code class="code-inline tex2jax_ignore">factorial</code>. The prototype of a function consists of its name, its return type, and the types of its parameters:</div>
+<pre class="code-display tex2jax_ignore">
+        int factorial(int);
+        </pre>
+<div class="para">This is commonly called a <dfn class="terminology">function declaration</dfn>, in contrast to a <dfn class="terminology">function definition</dfn> where additionally, the function's code is provided in a body. In practice, we do not manually duplicate the prototype of every function into every translation unit in which it is used. On the one hand, this would require writing a lot of redundant code. On the other hand, it would be prone to errors since all translation units would need to be adjusted if we change the function, e.g., by adding or changing a parameter. For this reason, we create <dfn class="terminology">header files</dfn> that are included by the <dfn class="terminology">C preprocessor</dfn>.</div>
+</div>
+<span class="incontext"><a href="sec-c-tu.html#p-293" class="internal">in-context</a></span>
+</body>
+</html>

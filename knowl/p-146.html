@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">At the beginning, the program counter contains address 0x00400000. The instruction at this address is <code class="code-inline tex2jax_ignore">addiu $v0 $0 1</code>. This instruction adds the constant 1 to the contents of register <code class="code-inline tex2jax_ignore">$0</code> and puts the result into register <code class="code-inline tex2jax_ignore">$v0</code>. (Of course, it also increases the program counter by 4.) Therefore, the next instruction to execute is located at address 0x00400004. This instruction, <code class="code-inline tex2jax_ignore">bgez $0 2</code>, branches 2+1 instructions ahead if the content of register <code class="code-inline tex2jax_ignore">$0</code> equals 0, which it always does. In fact, this instruction is an unconditional jump that sets the program counter 3 instructions ahead and so on and so forth. We'll stop the execution trace for this example when reaching the <code class="code-inline tex2jax_ignore">jr $ra</code> instruction that would return to the caller of this function. (More on functions later in <a href="sec-asm-call.html" class="internal" title="Section 2.8: Calling Functions">Section 2.8</a>).</div>
+<span class="incontext"><a href="sec-asm-trace.html#p-146" class="internal">in-context</a></span>
+</body>
+</html>

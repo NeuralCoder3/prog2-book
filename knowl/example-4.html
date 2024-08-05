@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.4.1</span><span class="period">.</span>
+</h3>
+<div class="para">Consider the following function and an execution trace for it:</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:7.5%;margin-right:7.5%;">
+<div class="sbspanel middle" style="width:47.0588235294118%;">
+<pre class="program"><code class="language-c">void foo() {
+  int a[2];
+  int *p = a;
+  int *q = a + 1;
+  *p = 1;
+  *q = 2;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=int%20main()%20%7B%0A%20%20int%20a%5B2%5D%3B%0A%20%20int%20*p%20%3D%20a%3B%0A%20%20int%20*q%20%3D%20a%20%2B%201%3B%0A%20%20*p%20%3D%201%3B%0A%20%20*q%20%3D%202%3B%0A%20%20return%200%3B%0A%7D">Run</a>
+</div>
+<div class="sbspanel middle" style="width:35.2941176470588%;"><img src="generated/latex-image/image-13.svg" role="img" class="contained"></div>
+</div></div> <div class="para">Line 2 allocates a container for two <code class="code-inline tex2jax_ignore">int</code>s as a local variable <code class="code-inline tex2jax_ignore">a</code>. Lines 3 and 4 allocate more containers, bound to <code class="code-inline tex2jax_ignore">p</code> and <code class="code-inline tex2jax_ignore">q</code>, both of which can carry addresses. In line 3, the address of <code class="code-inline tex2jax_ignore">a</code>'s first <code class="code-inline tex2jax_ignore">int</code> is stored in <code class="code-inline tex2jax_ignore">p</code>'s container. Similarly, in line 4, the address of <code class="code-inline tex2jax_ignore">a</code>'s second <code class="code-inline tex2jax_ignore">int</code> is stored in <code class="code-inline tex2jax_ignore">q</code>'s container. The last two statements store the values 1 and 2 in the first and second <code class="code-inline tex2jax_ignore">int</code> component of <code class="code-inline tex2jax_ignore">a</code>. In execution traces, we denote addresses as arrows to the referenced container.</div></article><span class="incontext"><a href="sec-c-memmodel.html#example-4" class="internal">in-context</a></span>
+</body>
+</html>

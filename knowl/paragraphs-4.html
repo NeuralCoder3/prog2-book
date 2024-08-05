@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Memory Management on the Heap.</span></h3> <div class="para">When executing machine code that has been produced by a compiler from a higher-level programming language, the heap is usually managed by the <dfn class="terminology">runtime system</dfn> of the language. The runtime system of a language implements some of the abstractions the language provides, for example dynamic memory allocation. When programming machine code directly, there is no runtime system and we have to manage the heap ourselves. </div> <div class="para">Note that because of virtual memory, we cannot just access memory on the heap because initially there are no physical memory pages mapped into our virtual address space beyond this point. We need to tell the operating system before that we want to do so. The operating system then takes care of providing us with enough (if available) physical memory in our virtual address space. Again, this is beyond the scope of this text and we will just ignore heap memory for the rest of <em class="emphasis">this chapter</em>.</div> <div class="para">A simple memory management system typically provides two functions: One to allocate memory and one to free previously allocated memory. In C they are called <code class="code-inline tex2jax_ignore">malloc</code> and <code class="code-inline tex2jax_ignore">free</code>. Calling <code class="code-inline tex2jax_ignore">malloc</code>, the program can obtain a fresh chunk of memory of a size that the program can specify. <code class="code-inline tex2jax_ignore">malloc</code> guarantees that it never returns the address of a chunk that has been malloc'ed before and not been freed yet. Internally, <code class="code-inline tex2jax_ignore">malloc</code> organizes the heap in such a way that these guarantees are fulfilled. It also deals with the operating system to map enough physical memory into the heap's address space. </div> <div class="para">We will talk more about dynamic memory allocation in <a href="sec-c-dyn-mem-management.html" class="internal" title="Section 4.12: Dynamic Memory Management">Section 4.12</a>. One thing that is important to understand is that from the perspective of the processor, dynamic memory allocation does not exist and neither is there a difference between static data or data in dynamically-allocated memory. These are just abstractions that we conceived to better align the organization of the flat address space with the way we want to program our computer.</div></section><span class="incontext"><a href="sec-asm-segments.html#paragraphs-4" class="internal">in-context</a></span>
+</body>
+</html>

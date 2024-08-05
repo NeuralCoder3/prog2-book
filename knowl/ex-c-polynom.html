@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.13.5</span><span class="period">.</span><span class="space"> </span><span class="title">Polynomials.</span>
+</h4> <div class="para">The following struct represents a polynomial of degree <code class="code-inline tex2jax_ignore">n</code>:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">typedef struct {
+  unsigned degree;
+  int *coeffs;
+} poly_t;
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20typedef%20struct%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20unsigned%20degree%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20int%20*coeffs%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20poly_t%3B%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">The coefficients are implemented through aggregation. This is necessary, since we do not want to assume a statically known fixed length for the polynomials. Therefore, an array for the coefficients need to be allocated separately (see <a href="" class="xref" data-knowl="./knowl/exercise-c-polynom.html" title="Exercise 4.13.3.1: Polynomial">Exercise 4.13.3.1</a>).</div></article><span class="incontext"><a href="sec-c-structs.html#ex-c-polynom" class="internal">in-context</a></span>
+</body>
+</html>

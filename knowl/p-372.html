@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">Apparently, it attempts to return an array with the first <span class="process-math">\(n\)</span> non-negative integers. However, the life time of <code class="code-inline tex2jax_ignore">a</code> is restricted to the execution of the body of the <code class="code-inline tex2jax_ignore">numbers</code> function, since it is the innermost block that surrounds the declaration. When the execution returns from <code class="code-inline tex2jax_ignore">numbers</code> to the caller, the container of <code class="code-inline tex2jax_ignore">a</code> is thus deallocated. The corresponding pointer to the first element of the array <em class="emphasis">dangles</em>: It points to no existing container.  Therefore, the program is incorrect. There are two ways to solve this problem:</div>
+<ol class="decimal">
+<li><div class="para">We pass the address of a previously allocated result array to <code class="code-inline tex2jax_ignore">numbers</code>. The function is then no longer concerned with allocating a container for the resulting array. Most of the time, this solution is to be preferred since it is more flexible. The array could (but does not need to) be declared as a local variable in the calling function.</div></li>
+<li><div class="para">The <code class="code-inline tex2jax_ignore">numbers</code> function can itself allocate a container for the array. Since a local variable is not fit for this task, a container on the <dfn class="terminology">heap</dfn> is the only option. These are allocate with the <code class="code-inline tex2jax_ignore">malloc</code> function.</div></li>
+</ol>
+</div>
+<span class="incontext"><a href="sec-c-dyn-mem-management.html#p-372" class="internal">in-context</a></span>
+</body>
+</html>

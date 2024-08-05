@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Synopsis.</span></h3> <div class="para logical">
+<div class="para">This lecture shall consolidate the understanding of OO software (design) by giving different perspective. We do this in three parts.</div>
+<ol class="decimal">
+<li><div class="para">We introduce a small example (abstract syntax of a small expression language) and model the data structure in a functional, imperative, and OO language. Functional languages have algebraic data types and matching that make the life of the programmer easy. In C one needs to literally implement tagged unions and do the case distinctions on a very low level. In OO, each variant becomes a class and the name of the ADT is typically an interface. The cases of the functional and imperative programs become individual methods in the respective classes.</div></li>
+<li><div class="para">We discuss how virtual method calls are actually implemented by looking at a corresponding implementation in C. The important thing here is to understand that the address of the vtab corresponds to the dynamic type of the object. Instead of doing a case distinction as in (1), we use a double indirection to directly (and efficiently) jump to the right code.</div></li>
+<li><div class="para">The Expression Problem shows the difference of the case-distinction style and OO style when <em class="emphasis">extending</em> a class hierarchy. Adding new variants, can be locally done in OO but requires global changes in case-distinction languages. Adding new functionality can be done locally in case-distinction approaches but require global changes in OO. The visitor pattern can help here because it allows for “factoring out” the extension point. Here, understanding the interplay between overriding and overloading is intricate and crucial and can help to understand these two techniques in general.</div></li>
+</ol>
+</div></section><span class="incontext"><a href="section-87.html#paragraphs-91" class="internal">in-context</a></span>
+</body>
+</html>

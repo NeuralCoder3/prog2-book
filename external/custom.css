@@ -1,0 +1,543 @@
+/* Align Index References */
+
+.ptx-content .subindexitem {
+  margin-top: 0%;
+}
+
+.ptx-content .indexitem,
+.ptx-content .subindexitem,
+.ptx-content .subsubindexitem {
+  width: 70%;
+}
+
+.ptx-content .subindexitem .indexknowl a {
+  margin-right: 2em;
+}
+
+.ptx-content .subsubindexitem .indexknowl a {
+  margin-right: 4em;
+}
+
+.ptx-content .indexknowl a {
+  float: right;
+}
+
+
+
+/* Better design for 'full' layout buttons */
+
+@media screen and (min-width: 801px) {
+
+  #ptx-navbar .previous-button:before,
+  #ptx-navbar-sticky-wrapper .previous-button:before {
+    padding-top: 5px;
+    padding-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #dm-toggle div {
+    padding-top: 5px;
+  }
+}
+
+/*
+thick arrows for navigation buttons
+*/
+/* #ptx-navbar .previous-button:before,
+#ptx-navbar-sticky-wrapper .previous-button:before {
+  content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTAuNDc3IDBoLTguOTc3bDEyLjAyNCAxMi0xMi4wMjQgMTJoOC45NzdsMTIuMDIzLTEyeiIvPjwvc3ZnPg==");
+  transform: rotate(180deg);
+}
+
+#ptx-navbar .next-button:after,
+#ptx-navbar-sticky-wrapper .next-button:after {
+  content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTAuNDc3IDBoLTguOTc3bDEyLjAyNCAxMi0xMi4wMjQgMTJoOC45NzdsMTIuMDIzLTEyeiIvPjwvc3ZnPg==");
+  padding-top: 5px;
+  padding-bottom: 0px;
+}
+
+#ptx-navbar .up-button:before,
+#ptx-navbar-sticky-wrapper .up-button:before {
+  content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjQgMTJsLTEyLTl2NWgtMTJ2OGgxMnY1bDEyLTl6Ii8+PC9zdmc+");
+  transform: rotate(270deg);
+} */
+
+#ptx-navbar .navbar-bottom-buttons>.toolbar-item {
+  width: 20% !important;
+}
+
+/* (Un-)fold menu */
+#ptx-toc ul li:not(.active, .expand) ul {
+  display: none;
+}
+
+
+.code-box {
+  background-image: none !important;
+}
+
+:root {
+  --subtitlecolor: #333333;
+  --mastheadbackground: #fafafa;
+  --background: #fff;
+  --textcolor: #000;
+  --highlight: #eeeeee;
+  --highlightborder: #dddddd;
+
+  --aside-gradient-top: rgba(255, 255, 255, 0.4);
+  --aside-gradient-bottom: rgba(255, 255, 255, 1);
+
+  --buttonbackground: #ededed;
+  --tocbackground: #e0e0e0;
+
+  --solutionbackground: #fef;
+  --hintbackground: #efe;
+}
+
+body,
+html body,
+body.pretext,
+.pretext .ptx-page>.ptx-main,
+.page>.main {
+  background: var(--background);
+  color: var(--textcolor);
+}
+
+.pretext #ptx-masthead,
+#masthead {
+  background: var(--mastheadbackground);
+}
+
+#masthead .byline {
+  color: var(--textcolor);
+}
+
+.ptx-content .code-inline {
+  background: var(--highlight);
+  border: 1px solid var(--highlightborder);
+}
+
+.ptx-content .aside-like {
+  background: var(--highlight);
+  /* #f5faff */
+  box-shadow: 0 0 0 0px var(--highlightborder);
+}
+
+.ptx-content .aside-like.front,
+.ptx-content .example-like .aside-like.front {
+  border: 2px solid var(--highlightborder);
+}
+
+
+.pretext #ptx-masthead,
+#ptx-navbar,
+#masthead.smallbuttons #ptx-navbar .navbar-top-buttons .toolbar-divisor-3 {
+  background-color: var(--mastheadbackground);
+}
+
+#ptx-navbar .button,
+#ptx-navbar .button:link,
+#ptx-navbar .button:visited,
+#ptx-navbar-sticky-wrapper .button,
+#ptx-navbar-sticky-wrapper .button:link,
+#ptx-navbar-sticky-wrapper .button:visited,
+#ptx-navbar .navbar-bottom-buttons #dm-toggle {
+  color: var(--textcolor);
+  background-color: var(--buttonbackground);
+}
+
+#ptx-toc ul li.part a,
+#ptx-toc ul li.frontmatter>a:first-child,
+#ptx-toc ul li.backmatter>a:first-child {
+  color: var(--textcolor);
+}
+
+#ptx-toc>ul>li.part+li,
+#ptx-toc>ul>li.frontmatter+li,
+#ptx-toc>ul>li.backmatter+li {
+  margin-top: 0.3em !important;
+}
+
+.ptx-content .summary-links a {
+  background: var(--mastheadbackground);
+}
+
+#ptx-navbar .button.active,
+#ptx-navbar .button:active,
+#ptx-navbar-sticky-wrapper .button.active,
+#ptx-navbar-sticky-wrapper .button:active {
+  background-color: var(--tocbackground);
+}
+
+.knowl-output.original {
+  background: var(--mastheadbackground);
+}
+
+.mag_popup_container {
+  background: var(--background) !important;
+}
+
+.knowl-output .knowl-output {
+  background: var(--mastheadbackground);
+}
+
+.ptx-content .knowl-output .knowl .knowl-content>.solution-like.hint {
+  border-left: 1px solid #0f0;
+  padding-left: 0.35em;
+  background: var(--hintbackground);
+}
+
+.knowl-output .knowl-output .knowl-output {
+  background: var(--mastheadbackground);
+}
+
+.knowl-output {
+  background: var(--mastheadbackground) !important;
+}
+
+.knowl-output .knowl-output .knowl-output .knowl-output {
+  background: var(--mastheadbackground);
+}
+
+.ptx-content .knowl-output .knowl .knowl-content>.solution-like.solution {
+  border-left: 3px solid #c0c;
+  padding-left: 0.5em;
+  background: var(--solutionbackground);
+}
+
+/* Darkmode themes */
+/* https://uxdesign.cc/dark-mode-ui-design-the-definitive-guide-part-1-color-53dcfaea5129 */
+/* https://material.io/design/color/dark-theme.html */
+
+:root.dark-mode {
+  --documenttitle: #5a6980;
+  --bodytitle: #627c9e;
+  /* often a darker version of documenttitle  */
+  --bodysubtitle: #2B5F82;
+  /* can be the same as bodytitle  */
+  --bodytitlehighlight: #333333;
+  /* light, and contrasting to bodytitle  */
+  --bodysubtitlehighlight: #292929;
+  /* light, and contrasting to bodysubtitle  */
+  /*
+       The bodytitle and bodysubtitle colors must have at least a 3:1 contrast
+       ratio with black, and at least 5:1 ratio with with the corresponding highlight.
+       (The second condition will guarantee an adequate contrast with white.)
+     */
+
+  --chaptertoc: #3572a0;
+  --chaptertoctext: rgb(24, 24, 24);
+  --chaptertocactive: var(--documenttitle);
+  /* often the same as documenttitle */
+  --chaptertoctextactive: rgb(32, 32, 32);
+  --sectiontoc: rgb(26, 26, 26);
+  /* can also write it as #ffffff  */
+  --sectiontoctext: #a0b8cc;
+  --sectiontocactive: var(--documenttitle);
+  /* often the same as documenttitle */
+  --sectiontoctextactive: rgb(172, 172, 172);
+  --tocborder: #185f65;
+
+  --highlighttoc: #728392;
+  /* often a dark version of documenttitle */
+  --highlighttoctext: rgb(22, 22, 22);
+  --highlighttocborder: var(--chaptertoc);
+
+  --videoplay: var(--bodytitle);
+  --assemblagebackground: #242424;
+  --assemblagebackground: #2c2c2c;
+  --assemblageborder: #5B2F82;
+  --assemblageborder: #B793D7;
+  --assemblageborder: #CAAEE0;
+  --assemblagedarkborder: #472664;
+
+  --knowlborder: var(--bodytitlehighlight);
+  --knowlbackground: var(--assemblagebackground);
+
+  --subtitlecolor: #E0E0E0;
+  --mastheadbackground: #424242;
+  --background: #121212;
+  --textcolor: #F5F5F5;
+
+  --highlight: #333333;
+  --highlightborder: #616161;
+
+  --aside-gradient-top: rgba(66, 66, 66, 0.4);
+  /* --aside-gradient-bottom: rgba(41, 41, 41, 1); */
+  --aside-gradient-bottom: var(--background);
+
+  --buttonbackground: #212121;
+  --tocbackground: var(--bodytitlehighlight);
+
+  --solutionbackground: #322;
+  --hintbackground: #232;
+}
+
+.ptx-content .aside-like::after {
+  background-image: linear-gradient(to bottom, var(--aside-gradient-top), var(--aside-gradient-bottom) 90%);
+}
+
+.ptx-content a .code-inline {
+  background: var(--highlight);
+}
+
+.pretext #ptx-masthead,
+#ptx-navbar,
+#ptx-navbar-sticky-wrapper {
+  background: var(--mastheadbackground);
+}
+
+
+html.dark-mode img,
+html.dark-mode a.toolbar-item:before,
+html.dark-mode a.toolbar-item:after {
+  filter: invert(100%) !important;
+}
+
+
+
+.toggle {
+  --size: 1.7rem;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  width: var(--size);
+  height: var(--size);
+  box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
+  -webkit-appearance: none;
+  border-radius: 999px;
+  color: #e6e6ff;
+  transition: all 500ms;
+  float: left;
+}
+
+.toggle:checked {
+  --ray-size: calc(var(--size) * -0.4);
+  --offset-orthogonal: calc(var(--size) * 0.65);
+  --offset-diagonal: calc(var(--size) * 0.45);
+  transform: scale(0.75);
+  color: #fa0;
+  box-shadow: inset 0 0 0 var(--size), calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size), var(--offset-orthogonal) 0 0 var(--ray-size), 0 calc(var(--offset-orthogonal) * -1) 0 var(--ray-size), 0 var(--offset-orthogonal) 0 var(--ray-size), calc(var(--offset-diagonal) * -1) calc(var(--offset-diagonal) * -1) 0 var(--ray-size), var(--offset-diagonal) var(--offset-diagonal) 0 var(--ray-size), calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0 var(--ray-size), var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size);
+  -webkit-appearance: none;
+}
+
+@media screen and (max-width: 800px) {
+  .toggle {
+    display: none;
+  }
+}
+
+.toggle {
+  z-index: 1;
+}
+
+.toggle:checked~.background {
+  --bg: white;
+}
+
+.toggle:checked~.title {
+  --color: #fa0;
+}
+
+
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
+  --color: #33a;
+  --textShadow: #fff;
+  --comment: #6e6e6e;
+  --punctuation: #4e4e4e;
+  --property: #905;
+  --operator: #70b;
+  --selector: #487b00;
+  --url: #8d6640;
+  --urlBg: hsla(0, 0%, 100%, .5);
+  --boolean: #905;
+  --atrule: #0075a8;
+  --keyword: #0075a8;
+  --function: #c93654;
+  --regex: #860;
+  --boxShadow: hsla(0, 0%, 0%, .3);
+  --focusOutline: hsla(214, 100%, 85%, 1);
+
+  --codeBgImg: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 64'%3E%3Ccircle stroke='rgba(0,64,0,.3)' stroke-width='2' fill='none' cx='20' cy='49' r='12'/%3E%3Cpath fill='%23fcfcfa' fill-rule='evenodd' d='M1920 64H0V0h1920v64zM20 36a11 11 0 110 22 11 11 0 010-22z'/%3E%3Cpath stroke='%23edf3ed' stroke-width='2' d='M0 1h1920M0 5h1920M0 9h1920M0 13h1920M0 17h1920M0 21h1920M0 25h1920M0 29h1920'/%3E%3Cpath stroke='%23e4ede4' stroke-dasharray='2 6 2 6' stroke-width='2' d='M40 2v60'/%3E%3C/svg%3E");
+}
+
+
+
+.dark-mode code[class*="language-"]:not([contenteditable]),
+.dark-mode pre[class*="language-"] {
+
+  /* Exactly the same as prefers-color-scheme: dark */
+  --color: #6ae;
+  --textShadow: #000;
+
+  --comment: #9ab;
+  --punctuation: #ccc;
+  --property: #e70;
+  --operator: #d7f;
+  --selector: #8b2;
+  --url: #cde;
+  --urlBg: rgba(0, 0, 0, .5);
+  --boolean: #8af;
+  --atrule: #ffb;
+  --keyword: #fe6;
+  --function: #f55;
+  --regex: #f91;
+
+  --boxShadow: #000;
+  --focusOutline: hsla(214, 100%, 85%, .6);
+
+  --codeBgImg: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 64'%3E%3Ccircle stroke='rgba(0,0,0,.7)' stroke-width='2' fill='none' cx='20' cy='49' r='12'/%3E%3Cpath fill='%23101610' fill-rule='evenodd' d='M1920 64H0V0h1920v64zM20 36a11 11 0 110 22 11 11 0 010-22z'/%3E%3Cpath stroke='%23121' stroke-width='2' d='M0 1h1920M0 5h1920M0 9h1920M0 13h1920M0 17h1920M0 21h1920M0 25h1920M0 29h1920'/%3E%3Cpath stroke='%23131' stroke-dasharray='2 6 2 6' stroke-width='2' d='M40 2v60'/%3E%3C/svg%3E");
+}
+
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: var(--color);
+  text-shadow: 0 1px var(--textShadow);
+}
+
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
+  background-image: var(--codeBgImg);
+}
+
+pre[class*="language-"]:hover,
+pre[class*="language-"]:focus-within {
+  box-shadow: 0 .25rem .25rem var(--boxShadow);
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--comment);
+}
+
+.token.punctuation {
+  color: var(--punctuation);
+}
+
+.token.property,
+.token.symbol,
+.token.tag,
+.token.constant,
+.token.deleted {
+  color: var(--property);
+}
+
+.token.boolean,
+.token.number {
+  color: var(--boolean);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: var(--selector);
+}
+
+.token.operator {
+  color: var(--operator);
+}
+
+.token.url,
+.token.entity,
+.language-css .token.string,
+.style .token.string {
+  color: var(--url);
+  background-color: var(--urlBg);
+}
+
+.token.atrule,
+.token.attr-value {
+  color: var(--atrule);
+}
+
+.token.keyword {
+  color: var(--keyword);
+}
+
+.token.function {
+  color: var(--function);
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: var(--regex);
+}
+
+
+
+@media print {
+
+  code[class*="language-"],
+  pre[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  background: hsla(0, 0%, 100%, .0);
+}
+
+
+.ptx-content .MJXc-display,
+.ptx-content .knowl-output .knowl-output .knowl-output .knowl-output .MJXc-display,
+.ptx-content pre.prettyprint,
+.ptx-content pre.plainprint,
+.ptx-content pre.console,
+.ptx-content .code-box {
+  background-image: linear-gradient(to right, var(--background), var(--background)), linear-gradient(to right, var(--background), var(--background)), linear-gradient(to right, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0)), linear-gradient(to left, rgba(0, 0, 0, .25), rgba(255, 255, 255, 0));
+}
+
+.debug {
+  display: none;
+}
+
+.ptx-content .autopermalink {
+  opacity: 0.3;
+}
+
+h4.heading+p>div.autopermalink,
+li>div>div.autopermalink {
+  opacity: 0;
+}
+
+.ptx-content-footer {
+  display: none !important;
+}
+
+/*
+
+body.pretext
+
+.pretext #ptx-masthead
+
+#ptx-navbar
+
+.pretext .ptx-page > .ptx-main
+*/
+
+.pretext #ptx-page-footer {
+  display: none;
+}
+
+#ptx-toc::after {
+  /* override the pretext logo */
+  display: none;
+}
+
+/* hide the activecode save&run button */
+button.btn.btn-success.run-button {
+  display: none;
+}

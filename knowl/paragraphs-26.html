@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Insertion.</span></h4> <div class="para">Insertion is very similar to searching. The only difference is that if we want to visit a child that is not in the trie, we do not abort and return false but create a new node and insert it.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int_trie_t* int_trie_insert(int_trie_t* root, int key, T value) {
+  int n = sizeof(key) * 8; // number of bits in key
+  while (n &gt; 0) {
+    _Assert(root != NULL, "A correctly initilized tree can not be NULL.");
+    int_trie_t* next = root-&gt;next[key &amp; 1];
+    if (! next) {
+        next = int_trie_create();
+        root-&gt;next[key &amp; 1] = next;
+    }
+    root = next;
+    key = key &gt;&gt; 1;
+    n--;
+  }
+  root-&gt;value = value;
+  return root;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%20%20typedef%20int%20T%3B%0A%0Astruct%20int_trie_t%20%7B%0A%20%20T%20value%3B%0A%20%20struct%20int_trie_t*%20next%5B2%5D%3B%0A%7D%3B%0Atypedef%20struct%20int_trie_t%20int_trie_t%3B%0A%0Aint_trie_t*%20int_trie_create(void)%20%7B%0A%20%20int_trie_t*%20trie%20%3D%20malloc(sizeof(*trie))%3B%0A%20%20trie-%3Evalue%20%3D%200%3B%0A%20%20for%20(int%20i%20%3D%200%3B%20i%20%3C%202%3B%20i%2B%2B)%20%7B%0A%20%20%20%20trie-%3Enext%5Bi%5D%20%3D%20NULL%3B%0A%20%20%7D%0A%20%20return%20trie%3B%0A%7D%0A%0Aint_trie_t*%20int_trie_search(int_trie_t*%20root%2C%20int%20key)%20%7B%0A%20%20int%20n%20%3D%20sizeof(key)%20*%208%3B%0A%20%20while%20(n%20%3E%201)%20%7B%0A%20%20%20%20_Assert%20(root%20!%3D%20NULL%2C%20%22A%20correctly%20initilized%20tree%20can%20not%20be%20NULL.%22)%3B%0A%20%20%20%20int_trie_t*%20next%20%3D%20root-%3Enext%5Bkey%20%26%201%5D%3B%0A%20%20%20%20if%20(!%20next)%0A%20%20%20%20%20%20%20%20return%20NULL%3B%0A%20%20%20%20root%20%3D%20next%3B%0A%20%20%20%20key%20%3D%20key%20%3E%3E%201%3B%0A%20%20%20%20n--%3B%0A%20%20%7D%0A%0A%20%20_Assert(n%20%3D%3D%201%2C%20%22We%20should%20be%20at%20the%20leaves%20in%20the%20end.%22)%3B%0A%20%20return%20root%3B%0A%7D%0A%0Aint_trie_t*%20int_trie_insert(int_trie_t*%20root%2C%20int%20key%2C%20T%20value)%20%7B%0A%20%20int%20n%20%3D%20sizeof(key)%20*%208%3B%20%2F%2F%20number%20of%20bits%20in%20key%0A%20%20while%20(n%20%3E%200)%20%7B%0A%20%20%20%20_Assert(root%20!%3D%20NULL%2C%20%22A%20correctly%20initilized%20tree%20can%20not%20be%20NULL.%22)%3B%0A%20%20%20%20int_trie_t*%20next%20%3D%20root-%3Enext%5Bkey%20%26%201%5D%3B%0A%20%20%20%20if%20(!%20next)%20%7B%0A%20%20%20%20%20%20%20%20next%20%3D%20int_trie_create()%3B%0A%20%20%20%20%20%20%20%20root-%3Enext%5Bkey%20%26%201%5D%20%3D%20next%3B%0A%20%20%20%20%7D%0A%20%20%20%20root%20%3D%20next%3B%0A%20%20%20%20key%20%3D%20key%20%3E%3E%201%3B%0A%20%20%20%20n--%3B%0A%20%20%7D%0A%20%20root-%3Evalue%20%3D%20value%3B%0A%20%20return%20root%3B%0A%7D%0A%0Aint%20main()%20%7B%0A%20%20%20%20%2F%2F%20maybe%20limit%20n%20to%204%20or%208%20for%20a%20better%20preview%0A%20%20%20%20int_trie_t*%20t%20%3D%20int_trie_create()%3B%0A%20%20%20%20int_trie_insert(t%2C7%2C42)%3B%0A%20%20%20%20int_trie_insert(t%2C5%2C13)%3B%0A%20%20%20%20int_trie_insert(t%2C6%2C7)%3B%0A%20%20%20%20int_trie_insert(t%2C42%2C-5)%3B%0A%20%20%20%20int_trie_insert(t%2C13%2C92)%3B%0A%20%20%20%20int_trie_t*%20r12%20%3D%20int_trie_search(t%2C12)%3B%0A%20%20%20%20int_trie_t*%20r6%20%20%3D%20int_trie_search(t%2C6)%3B%0A%7D%0A%20">Run</a>
+</div></section><span class="incontext"><a href="sec-ds-trees.html#paragraphs-26" class="internal">in-context</a></span>
+</body>
+</html>

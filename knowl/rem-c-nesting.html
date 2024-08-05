@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="remark remark-like"><h4 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">4.1.4</span><span class="period">.</span>
+</h4>
+<div class="para">Since blocks can be nested, variable declarations can be shadowed, as in this example:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">void foo(int x) {
+    int y = 0;
+    if (x &gt; 0) {
+        int y = 0;
+        y += 1;
+    }
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=void%20foo(int%20x)%20%7B%0A%20%20%20%20int%20y%20%3D%200%3B%0A%20%20%20%20if%20(x%20%3E%200)%20%7B%0A%20%20%20%20%20%20%20%20int%20y%20%3D%200%3B%0A%20%20%20%20%20%20%20%20y%20%2B%3D%201%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%20y%3B%0A%7D%0A%0Aint%20main()%20%7B%0A%20%20int%20z%20%3D%2042%3B%0A%20%20foo(z)%3B%0A%7D">Run</a>
+</div> <div class="para">Here, the using occurrence of <code class="code-inline tex2jax_ignore">y</code> inside the <code class="code-inline tex2jax_ignore">if</code> statement refers to the innermost declaration, not the one in the second line.</div></article><span class="incontext"><a href="sec-c-basics.html#rem-c-nesting" class="internal">in-context</a></span>
+</body>
+</html>

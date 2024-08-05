@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Hashing.</div>
+<ul class="disc">
+<li><div class="para">Discussed binary search trees as an implementation for maps/sets.</div></li>
+<li><div class="para">Recap that implementing maps subsumes sets</div></li>
+<li><div class="para">New idea that is popular in practice: Use function to map keys to array indexes.</div></li>
+<li><div class="para">Works well if function is injective: Hardly the case in practice because key set is too large and would be dependent on array size.</div></li>
+<li><div class="para">Non-injective function means that we have collisions.</div></li>
+<li><div class="para">First idea: Use collision chains/lists to list all collisions per bucket.</div></li>
+<li><div class="para">Discuss simple code to search/add in a hash table with separate chaining.</div></li>
+<li><div class="para">Discuss the hashCode/equals problem. Refer to Java Collections Framework.</div></li>
+<li><div class="para">Introduce load factor. If load factor less than one and hash function scatters elements evenly, time for search constant.</div></li>
+<li><div class="para">Needs however resizing of hash table upon insertion based on a threshold.</div></li>
+<li><div class="para">Resizing of hash table requires re-hashing: keys can end up in different bins.</div></li>
+<li><div class="para">Mention problem of mutability: Mutating objects such that their hash value changes after they have been inserted may make them “vanish”.</div></li>
+<li><div class="para">Introduce probing. Chaining conceptionally nice but linked lists require more memory and provoke not so local accesses; bad for the cache.</div></li>
+<li><div class="para">New hash function that takes hash value and index into collision chain: determines array index.</div></li>
+<li><div class="para">Linear probing: simple, contiguous accesses but easy cluster formation.</div></li>
+<li><div class="para">Quadratic probing: more complex, not so contiguous but maybe less cluster formation. Interesting question if the it fully utilizes table, i.e. if probing hash function is surjective on array. Yes, if <span class="process-math">\(c=d=1/2\)</span> and table size is power of two.</div></li>
+<li><div class="para">Final example with all three presented techniques.</div></li>
+</ul>
+</div>
+<span class="incontext"><a href="section-88.html#p-1149" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Instruction Encoding.</span></h3> <div class="para">Let us look at an example of how instruction words look like. As mentioned before, an instruction is just a 32-bit word. The bits in the word encode the operation that the processor shall carry out, the registers it accesses, and potential immediates. Let us consider the word <code class="code-inline tex2jax_ignore">0x00641021</code>. It consists of individual bit fields that represent the different properties mentioned above.</div> <div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="generated/latex-image/image-5.svg" role="img" class="contained"></div> <div class="para logical"><dl class="description-list">
+<dt>opcode, funct</dt>
+<dd><div class="para">Specifies the operation to be carried out. Here, opcode=0 funct=33 means that the ALU shall add the numbers.</div></dd>
+<dt>rs, rt, rd</dt>
+<dd><div class="para">Specifies the registers of the first and second operand and the register where the result shall be placed.</div></dd>
+</dl></div></section><span class="incontext"><a href="sec-asm-mips.html#paragraphs-3" class="internal">in-context</a></span>
+</body>
+</html>

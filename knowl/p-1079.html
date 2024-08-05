@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">It turns out there is. The following observation is key: Consider a binary expression <span class="process-math">\(e\text{.}\)</span> Assume we knew the register consumption of both sub-expressions of <span class="process-math">\(e\text{:}\)</span> Say the code for the left sub-expression <span class="process-math">\(e_1\)</span> uses <span class="process-math">\(\mathit{regs}(e_1)\)</span> registers and the code for the right sub-expression uses <span class="process-math">\(\mathit{regs}(e_2)\)</span> registers. If <span class="process-math">\(\mathit{regs}(e_1)=\mathit{regs}(e_2)\text{,}\)</span> it doesn't matter which sub-expression we evaluate first because we need one register to keep the result of one sub-expression while evaluating the other. So, in total, we need <span class="process-math">\(\mathit{regs}(e_1)+1\)</span> registers to evaluate <span class="process-math">\(e\)</span> itself. However, if <span class="process-math">\(\mathit{regs}(e_1)\ne\mathit{regs}(e_2)\text{,}\)</span> then we evaluate the one with the higher register demand first, and then we can use one of the registers we used to evaluate that sub-expression that won't be used by the other in which we can keep the value. So, in conclusion: We should always generate code for the sub-expression first that has the higher register demand. We can determine the register demand recursively by the following function that implements the considerations above:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/sethi-ullman.html">
+\begin{align*}
+\mathit{regs}(x) \amp = 1\\
+\mathit{regs}(c) \amp = 1\\
+\mathit{regs}(e_1\mathbin{o}e_2) \amp =
+\begin{cases}
+\mathit{regs}(e_1)+1\amp \text{if }\mathit{regs}(e_1)=\mathit{regs}(e_2) \\ 
+\max(\mathit{regs}(e_1),\mathit{regs}(e_2))  \amp \text{otherwise}
+\end{cases}
+\end{align*}
+</div>
+<div class="para">One can show <a href="" class="xref" data-knowl="./knowl/sethi-ullman.html" title="Bibliographic Entry 17: The Generation of Optimal Code for Arithmetic Expressions">[17]</a> that generating code this way results in <em class="emphasis">minimal</em> register consumption. In summary, our compiler can use the function <span class="process-math">\(\mathit{regs}\)</span> to break the non-determinism of [CBinary] and [CBinary2] and always select the one that leads to minimal register consumption.</div>
+</div>
+<span class="incontext"><a href="sec-comp-codegen.html#p-1079" class="internal">in-context</a></span>
+</body>
+</html>

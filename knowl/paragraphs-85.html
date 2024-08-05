@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Synopsis.</span></h3> <div class="para logical"><ul class="disc">
+<li>
+<div class="para">Start with comparison of C and Java.</div>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b2 r1 l0 t0 lines">C</td>
+<td class="l m b2 r0 l0 t0 lines">Java</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">struct</td>
+<td class="l m b0 r0 l0 t0 lines">class</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">container</td>
+<td class="l m b0 r0 l0 t0 lines">object</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">function</td>
+<td class="l m b0 r0 l0 t0 lines">method</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">pointer</td>
+<td class="l m b0 r0 l0 t0 lines">reference</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">malloc</td>
+<td class="l m b0 r0 l0 t0 lines">new</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">free</td>
+<td class="l m b0 r0 l0 t0 lines">garbage collection (no leaks, no dangling pointers)</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">unsigned</td>
+<td class="l m b0 r0 l0 t0 lines">—</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">undefined behavior</td>
+<td class="l m b0 r0 l0 t0 lines">—</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">sanitizer</td>
+<td class="l m b0 r0 l0 t0 lines">totalized semantics</td>
+</tr>
+</table></div>
+</li>
+<li><div class="para">Outline basic compilation process. .java <span class="process-math">\(\to\)</span> .class <span class="process-math">\(\to\)</span> JVM</div></li>
+<li><div class="para logical">
+<div class="para">Overview over Types. Base types vs reference types.</div>
+<ul class="circle">
+<li><div class="para">Cannot take address of base type variables, cannot allocate them on the heap, lifetime determined by scopes.</div></li>
+<li><div class="para">No * and &amp;.</div></li>
+<li><div class="para">Reference types are classes and arrays.</div></li>
+<li><div class="para">Allocated with new, life time governed by garbage collection.</div></li>
+<li><div class="para">A reference either contains “null” or references a live object.</div></li>
+</ul>
+</div></li>
+<li><div class="para logical">
+<div class="para">Intro arrays.</div>
+<ul class="circle">
+<li><div class="para">Array contains elements <em class="emphasis">and</em> length.</div></li>
+<li><div class="para">You can query the length with “.length”.</div></li>
+<li><div class="para">Cannot increase the length, use “ArrayList” for array lists.</div></li>
+<li><div class="para">No multi-dimensional arrays.</div></li>
+<li><div class="para">String is a class that consists of character array.</div></li>
+</ul>
+</div></li>
+<li><div class="para">First simple example: HelloWorld, compile manually with “javac” and run with JVM “java”.</div></li>
+<li><div class="para logical">
+<div class="para">Switch to IDE. Start with “Vec2” example. Use C program to motivate classes.</div>
+<ul class="circle">
+<li><div class="para">Proper way of encapsulation in C: Header file with anonymous struct, set of functions, first parameter is always ptr to struct that represents data structure.</div></li>
+<li><div class="para">In Java, you have more syntactic sugar. You can put functions/methods inside the class, “this” is implicit first parameter: reference to object of class.</div></li>
+<li><div class="para">Objects need to be constructed: Introduce constructors, default constructors.</div></li>
+<li><div class="para">Add main method and run example.</div></li>
+<li><div class="para">Add “Rectangle” class. How does it interact with “Vec2”? Encapsulate fields using getters and setter. Motivation: Can change internal implementation of “Vec2” to polar coordinates.</div></li>
+</ul>
+</div></li>
+<li><div class="para">Show that setters are also a good means of asserting class invariants (Fraction example, <code class="code-inline tex2jax_ignore">setDenominator</code>).</div></li>
+</ul></div></section><span class="incontext"><a href="section-84.html#paragraphs-85" class="internal">in-context</a></span>
+</body>
+</html>

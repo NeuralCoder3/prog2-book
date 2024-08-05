@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">In our setting, code starts at address 0x00400000 and the data segment starts at 0x10000000. The addresses above 0x10000000 + <span class="process-math">\(n\text{,}\)</span> where <span class="process-math">\(n\)</span> is the size of the static data, is called the <dfn class="terminology">heap</dfn>. The heap can be used freely by the program (see below). The upper 2GB of the address space (starting from address 0x80000000) are reserved for the operating system. Right below starts the <dfn class="terminology">stack</dfn>. The stack is used to hold <dfn class="terminology">stack frames</dfn> which are used to keep temporary values during a functions call. Essentially, the stack is also an area where memory is allocated dynamically, however with a specific policy that we will discuss in further detail in <a href="sec-asm-call.html" class="internal" title="Section 2.8: Calling Functions">Section 2.8</a>. Note that the stack grows downwards. </div>
+<span class="incontext"><a href="sec-asm-segments.html#p-157" class="internal">in-context</a></span>
+</body>
+</html>

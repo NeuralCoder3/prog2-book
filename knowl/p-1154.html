@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical"><ul class="disc">
+<li><div class="para">Work through a couple of type checking examples to discuss how our typing rules work.</div></li>
+<li><div class="para">Discuss pros and cons of type systems (not in the lecture notes) by means of statically and dynamically typed languages. Statically typed language typically require more programming effort to get the types right. One can generally generate faster code from them, because types don't have to be checked at runtime. With dynamically-typed languages you typically get your code with less hassle because you don't need to care about making the code type. However, you might spend that time of fixing bugs that typing would have prevented. Dynamically-typed languages typically run slower because type checking is performed at runtime. This can be to some extent alleviated by modern just-in-time compilers.</div></li>
+<li><div class="para">Outline implementation of type checking in our small compiler.</div></li>
+<li><div class="para">For most language elements this is just bottom-up (recursive) tree traversal.</div></li>
+<li><div class="para">Interesting are variables occurrences and declarations.</div></li>
+<li><div class="para">Need appropriate implementation of type environment.</div></li>
+<li><div class="para">Use a stack of maps. Whenever entering a block, push new map with variable names to declaration AST nodes to it. Point to parent environment. When looking up a variable, traverse stack of type environments from top to bottom and look for variable in the respective map.</div></li>
+</ul></div>
+<span class="incontext"><a href="section-91.html#p-1154" class="internal">in-context</a></span>
+</body>
+</html>

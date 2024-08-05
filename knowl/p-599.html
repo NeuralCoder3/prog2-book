@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">The binomial coefficient  of two natural numbers <span class="process-math">\(k\le n\)</span> is defined as:</div>
+<div class="displaymath process-math">
+\begin{equation}
+\binom nk \defeq \frac{n!}{k!(n-k)!}\qquad\text{with } n! \defeq n\cdot (n-1)\cdots 2\text{ and } 0! \defeq 1\tag{5.1}
+\end{equation}
+</div>
+<div class="para">To compute the binomial coefficient by the formula above, we will need</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(n - 2) + (k - 2) + (n- k -2) + 2 = 2n -4
+\end{equation*}
+</div>
+<div class="para">multiplications. This can be optimized a little by the following observation: The terms <span class="process-math">\(k!\)</span> and <span class="process-math">\((n-k)!\)</span> are intermediate results when computing <span class="process-math">\(n!\text{.}\)</span> Hence, we can memorize their value and re-use it in the computation of <span class="process-math">\(n!\)</span> like so:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\binom nk = \frac{n(n-1)\cdots (n-m+1)}{m!}\qquad\text{with } m \defeq \min(k, n-k)\le n/2
+\end{equation*}
+</div>
+<div class="para">Then, we only need <span class="process-math">\((n-(n-m+1))+(m-2) + 1=2m-2\)</span> multiplications. This means <span class="process-math">\(n-2\)</span> multiplications in the worst case because <span class="process-math">\(m\lt n/2\text{.}\)</span>
+</div>
+</div>
+<span class="incontext"><a href="sec-ds-dynpro.html#p-599" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Scope.</span></h3> <div class="para">The type environment is implemented by the class <code class="code-inline tex2jax_ignore">Scope</code> that maps an identifier to the AST node of its declaration in the <em class="emphasis">current</em> scope. Scope objects are created during the type checking process: Whenever we enter a new block, we create a new scope to collect the variable declarations in that scope (see rule [TBlock] in <a href="sec-c0-type.html" class="internal" title="Section 6.6: A Simple Type System (C0t)">Section 6.6</a>). To access the declarations of variables in outer scopes, a scope also links to its parent scope via a reference, making it effectively a stack of scopes. When type checking for this block is finished, we can pop the scope of the block from the scope stack. This corresponds naturally to the scope nesting of the programming language. The following code shows the handling of scopes when type checking a block:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Block implements Statement, Locatable {
+  private final &lt;Statement&gt; body;
+
+  public void checkType(Diagnostic d, Scope parent) {
+    Scope scope = parent.newNestedScope();
+    // local variables are added by declaration statements
+    // in the statement list that constitutes the block's body
+    for (Statement s : body)
+      s.checkType(d, scope);
+  }
+}
+</code></pre></div> <div class="para">When looking up the type of an identifier we have to consult the top scope if it has a declaration for that identifier. If so, we return it, if not, we look in the parent scope and repeat the process until we reach the root scope. If we do not find a definition for the identifier there, we have to signal an error because it means that an identifier is used without being declared.</div> <figure class="figure figure-like"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;">
+<pre class="program"><code class="language-c">{ // Scope 1
+  int x; 
+  int y;
+  x = 1;
+  y = 1;
+  { // Scope 2
+    int z;
+    z = x + y;
+  }
+  { // Scope 3
+    int y;
+    y = x + 1;
+  }
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%7B%20%2F%2F%20Scope%201%0A%20%20int%20x%3B%20%0A%20%20int%20y%3B%0A%20%20x%20%3D%201%3B%0A%20%20y%20%3D%201%3B%0A%20%20%7B%20%2F%2F%20Scope%202%0A%20%20%20%20int%20z%3B%0A%20%20%20%20z%20%3D%20x%20%2B%20y%3B%0A%20%20%7D%0A%20%20%7B%20%2F%2F%20Scope%203%0A%20%20%20%20int%20y%3B%0A%20%20%20%20y%20%3D%20x%20%2B%201%3B%0A%20%20%7D%0A%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<div class="sbspanel top" style="width:50%;"><img src="generated/latex-image/image-40.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.1<span class="period">.</span></span><span class="space"> </span>A C0 with multiple nested blocks. For each block there is a type environment / scope. The nesting of the blocks corresponds to a tree of scopes. The type environment of a block only lists the innermost variable declarations and points to the next outer scope via a pointer. Note that each scope maps the declared identifier to the AST node of the declaration (which is not shown in the figure).</figcaption></figure> <div class="para">The following code shows a sample implementation for the class <code class="code-inline tex2jax_ignore">Scope</code>.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Scope {
+  private final Map&lt;String, Declaration&gt; table;
+  private final Scope parent;
+
+  public Scope() {
+    this(null);
+  }
+
+  private Scope(Scope parent) {
+    this.parent = parent;
+    this.table  = new HashMap&lt;String, Declaration&gt;();
+  }
+
+  public Scope newNestedScope() {
+    return new Scope(this);
+  }
+
+  public void add(String id, Declaration d)
+    throws IdAlreadyDeclared {
+    if (table.contains(id))
+      throw new IdAlreadyDeclared(id);
+    table.put(id, d);
+  }
+
+  public Declaration lookup(String id) throws IdUndeclared {
+    // ...
+  }
+}
+</code></pre></div> <div class="para">When visiting an AST node during type checking, it is advisable to store references to the significant declaration in the AST node that represents the using occurrence of an identifier. By this reference, the type can later on be looked up again. This may be important for successive passes like code generation which we discuss in the next section. In general, the AST node of the declaration stands for the variable itself and the compiler may want to associate other information with variables in later stages. The following code shows an example implementation of the AST node that represents the using occurrence of a variable.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public class Var implements Expression, Locatable {
+  private String id;
+  private Declaration decl = null;
+
+  public Type checkType(Diagnostic d, Scope s) {
+    try {
+      this.decl = s.lookup(id);
+      return this.decl.getType();
+    }
+    catch (IdUndeclared e) {
+      d.printError(this, "Variable " + id + " not declared");
+      return Types.getErrorType();
+    }
+  }
+}
+</code></pre></div></section><span class="incontext"><a href="sec-comp-tychk.html#paragraphs-46" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-ocaml">type exp =
+  | Var of string
+  | Add of exp * exp
+
+let rec to_string e = 
+  match e with
+  | Var v -&gt; v
+  | Add (l, r) -&gt; (to_string l) ^ " + " ^ (to_string r)
+
+let rec eval e st =
+  match e with
+  | Var v -&gt; st v 
+  | Add (l, r) -&gt; (eval l st) + (eval r st)
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://v2202201167307177506.ultrasrv.de/editor?code=type%20exp%20%3D%0A%20%20%7C%20Var%20of%20string%0A%20%20%7C%20Add%20of%20exp%20*%20exp%0A%0Alet%20rec%20to_string%20e%20%3D%20%0A%20%20match%20e%20with%0A%20%20%7C%20Var%20v%20-%3E%20v%0A%20%20%7C%20Add%20(l%2C%20r)%20-%3E%20(to_string%20l)%20%5E%20%22%20%2B%20%22%20%5E%20(to_string%20r)%0A%0Alet%20rec%20eval%20e%20st%20%3D%0A%20%20match%20e%20with%0A%20%20%7C%20Var%20v%20-%3E%20st%20v%20%0A%20%20%7C%20Add%20(l%2C%20r)%20-%3E%20(eval%20l%20st)%20%2B%20(eval%20r%20st)%0A%0Alet%20st%20v%20%3D%20if%20v%20%3D%20%22x%22%20then%203%20else%200%3B%3B%0Alet%20e%20%3D%20Add%20(Var%20%22x%22%2C%20Var%20%22x%22)%3B%3B%0Aprint_endline%20(to_string%20e)%3B%3B%0Aprint_endline%20(string_of_int%20(eval%20e%20st))%3B%3B%0A">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">8.10.1<span class="period">.</span></span><span class="space"> </span>Implementation of the abstract syntax of the simple expression language in OCaml.</figcaption></figure><span class="incontext"><a href="sec-java-proper-oo.html#fig-oo-exp-ocaml" class="internal">in-context</a></span>
+</body>
+</html>

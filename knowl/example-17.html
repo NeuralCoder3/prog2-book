@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.3.9</span><span class="period">.</span><span class="space"> </span><span class="title">Swapping.</span>
+</h4> <div class="para">The following program swaps the contents of two variables.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">t = x; x = y; y = t;
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20t%20%3D%20x%3B%20x%20%3D%20y%3B%20y%20%3D%20t%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para logical">
+<div class="para">We will now derive the execution trace of this program started on the initial state</div>
+<div class="displaymath process-math">
+\begin{align*}
+\rho \amp \defeq \{\CVar x\mapsto\adra, \CVar y\mapsto\adrb, \CVar t\mapsto\adrc\} \\
+\mu  \amp \defeq \{\adra\mapsto 1, \adrb\mapsto 2,\adrc\mapsto ?\} 
+\end{align*}
+</div>
+<div class="para">The symbols <span class="process-math">\(\adra\text{,}\)</span> <span class="process-math">\(\adrb\text{,}\)</span> <span class="process-math">\(\adrc\)</span> denote concrete addresses. We use geometric symbols here to emphasize that the address of a container in C/C0 is something different than the address of a memory cell in a computer.</div>
+</div> <div class="para logical"><div class="displaymath process-math">
+\begin{align*}
+\amp\config{\CSeqThree{\CAssign{\CVar t}{\CVar x}}{\CAssign{\CVar x}{\CVar y}}{\CAssign{\CVar y}{\CVar t}}} {(\rho, \{\adra\mapsto 1, \adrb\mapsto 2, \adrc\mapsto \indetval\})} \amp \text{}\\
+\steprel\amp\config{\CSeq                                 {\CAssign{\CVar x}{\CVar y}}{\CAssign{\CVar y}{\CVar t}}} {(\rho, \{\adra\mapsto 1, \adrb\mapsto 2, \adrc\mapsto 1        \})} \amp \text{[Assign]}\\
+\steprel\amp\config{                                                                  {\CAssign{\CVar y}{\CVar t}}} {(\rho, \{\adra\mapsto 2, \adrb\mapsto 2, \adrc\mapsto 1        \})} \amp \text{[Assign]}\\
+\steprel\amp\config{\CTerm}{(\rho, \{\adra\mapsto 2, \adrb\mapsto 1, \adrc\mapsto 1\})} \amp \text{[Assign]}
+\end{align*}
+</div></div></article><span class="incontext"><a href="sec-c0-sem.html#example-17" class="internal">in-context</a></span>
+</body>
+</html>

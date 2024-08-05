@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">We have discussed the static semantics of C0 in <a href="sec-c0-type.html" class="internal" title="Section 6.6: A Simple Type System (C0t)">Section 6.6</a>. The static semantics for expressions is modelled as a relation that relates a type environment with expressions and a type. The static semantics for statements relates the type environment with statements. The static expression semantics is <em class="emphasis">deterministic</em> (or functional) which means that each type environment and each expression are related to exactly one type. This means that we can easily implement it as a method (in the interface <code class="code-inline tex2jax_ignore">Expression</code>) that takes a type environment (here implemented by a class <code class="code-inline tex2jax_ignore">Scope</code> which we will discuss below), an expression and delivers a type. Statements can be handled similarly: we implement the static statement semantics as a method (in the interface <code class="code-inline tex2jax_ignore">Statement</code>) that takes a type environment as a parameter and check if a statement is well-typed. Both methods generate an error (using a <code class="code-inline tex2jax_ignore">Diagnostic</code> object) that is shown to the user if the statement/expression is not well-typed. </div>
+<span class="incontext"><a href="sec-comp-tychk.html#p-1051" class="internal">in-context</a></span>
+</body>
+</html>

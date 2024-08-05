@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">The whole point of the visitor is to use dynamic type information to select the appropriate <code class="code-inline tex2jax_ignore">accept</code> method in the visitor object. At first sight, it seems superfluous to implement the <code class="code-inline tex2jax_ignore">accept</code> method in every subclass of <code class="code-inline tex2jax_ignore">Exp</code>. However, this is where the selection is made: The static type of <code class="code-inline tex2jax_ignore">this</code> in each method of a class <span class="process-math">\(T\)</span> is <span class="process-math">\(T\text{.}\)</span> In the <code class="code-inline tex2jax_ignore">accept</code> methods, the static type of <code class="code-inline tex2jax_ignore">this</code> is used to select one of the overloaded <code class="code-inline tex2jax_ignore">visit</code> methods. Hence, if the <em class="emphasis">dynamic</em> type of an object <span class="process-math">\(o\)</span> is <span class="process-math">\(T\)</span> in some execution, <code class="code-inline tex2jax_ignore">o.accept(visitor)</code> will call the method <code class="code-inline tex2jax_ignore">visit(T obj)</code> of the visitor class. This technique avoids an <code class="code-inline tex2jax_ignore">instanceof</code> if-then-else cascade by using the accept/visit method call sequence to promote dynamic type information into static one.</div>
+<span class="incontext"><a href="sec-java-expr-problem.html#p-1034" class="internal">in-context</a></span>
+</body>
+</html>

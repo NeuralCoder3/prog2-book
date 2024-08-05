@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Lexing.</span></h3> <div class="para logical">
+<div class="para">The first step in syntax analysis is <dfn class="terminology">lexing</dfn>. The name lexer comes from the greek word lexis which means “word”. The job of the lexer is to form “words” from the sequence of input characters. These words are called <dfn class="terminology">tokens</dfn>. Hence, the <dfn class="terminology">lexer</dfn> translates the stream of input characters that constitute the program text into a stream of <dfn class="terminology">tokens</dfn> which represent the “words” of the program. Each token consists of</div>
+<ol class="decimal">
+<li><div class="para">a lexical category (“identifier”, “addition sign”, “open parentheses”, etc.).</div></li>
+<li><div class="para">the original text (if not apparent from the category)</div></li>
+<li><div class="para">the source code coordinates (file, line, column) for error reports.</div></li>
+</ol>
+<div class="para">All other things (mostly whitespace and comments) are discarded by the lexer because they are not relevant for the syntactic correctness of the program. <a href="" class="xref" data-knowl="./knowl/fig-comp-tokens.html" title="Figure 9.1.1">Figure 9.1.1</a> shows an example program with its corresponding token stream.</div>
+</div> <figure class="figure figure-like"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:30%;">
+<pre class="program"><code class="language-c">q = 0;
+r = x;
+while (y &lt;= r) {
+    r = r - y;
+    q = q + 1;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20q%20%3D%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20r%20%3D%20x%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20while%20(y%20%3C%3D%20r)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20r%20%3D%20r%20-%20y%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20q%20%3D%20q%20%2B%201%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<div class="sbspanel top" style="width:70%;"><pre class="code-block tex2jax_ignore">ID("q") ASSIGN INT_CONST("0") SEMI
+ID("r") ASSIGN ID("x") SEMI
+WHILE LPAREN VAR("y") LE VAR("r") RPAREN LBRACE
+ID("r") ASSIGN ID("r") MINUS ID("y") SEMI
+ID("q") ASSIGN ID("q") PLUS INT_CONST("1") SEMI
+RBRACE
+</pre></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.1.1<span class="period">.</span></span><span class="space"> </span>An example program and its corresponding token stream. Each token consists of a name and, if important, the original text in the program that corresponds to the token.</figcaption></figure> <div class="para">The lexer can already detect some simple errors: If a sequence of characters cannot constitute a valid token of the programming language, the lexer can report this error and abort the compilation process. For example <code class="code-inline tex2jax_ignore">123abc</code> is not a valid token in C or Java because numbers cannot contain letters and identifiers must start with a non-numeral character. Lexers can however not detect structural errors such as <code class="code-inline tex2jax_ignore">123 abc + - *</code>. Each part of that text is a valid C token, however the way they are combined is not correct. It is the job of the parser to identify such errors.</div></section><span class="incontext"><a href="sec-comp-synana.html#paragraphs-43" class="internal">in-context</a></span>
+</body>
+</html>

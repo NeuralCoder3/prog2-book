@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical"><ol class="decimal">
+<li>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">A a = new A();
+a.m(5);
+</code></pre></div>
+<div class="para">prints <code class="code-inline tex2jax_ignore">A.m(double)</code>. Trivial, since the concrete type is equal to the static type.</div>
+</li>
+<li>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">A a = new B();
+a.m(5);
+</code></pre></div>
+<div class="para">prints <code class="code-inline tex2jax_ignore">A.m(double)</code>. The static type of <code class="code-inline tex2jax_ignore">a</code> is <code class="code-inline tex2jax_ignore">A</code>, but the concrete type is here <code class="code-inline tex2jax_ignore">B</code>. However, <code class="code-inline tex2jax_ignore">B</code> does not override the method <code class="code-inline tex2jax_ignore">A.m(double)</code>, but only overloads the methods <code class="code-inline tex2jax_ignore">m(double)</code> and <code class="code-inline tex2jax_ignore">m(boolean)</code> again with the parameter type <code class="code-inline tex2jax_ignore">int</code>. Since the overloaded method is selected by the static type (here: <code class="code-inline tex2jax_ignore">A.m(double)</code>), the method <code class="code-inline tex2jax_ignore">m(int)</code> in the concrete type <code class="code-inline tex2jax_ignore">B</code> is irrelevant.</div>
+</li>
+<li>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">B b = new B();
+b.m(5);
+</code></pre></div>
+<div class="para">prints <code class="code-inline tex2jax_ignore">B.m(int)</code>. The static type is now <code class="code-inline tex2jax_ignore">B</code> and <code class="code-inline tex2jax_ignore">m</code> is overloaded three times in <code class="code-inline tex2jax_ignore">B</code>.</div>
+</li>
+</ol></div>
+<span class="incontext"><a href="sec-java-overload.html#p-983" class="internal">in-context</a></span>
+</body>
+</html>

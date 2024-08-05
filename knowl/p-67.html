@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">We use the same trick to subtract two bit strings of length <span class="process-math">\(n\)</span> and therefore define subtraction to fulfill the following specification:</div>
+<div class="displaymath process-math">
+\begin{equation}
+\buintp{a-b}\defeq\buintp{a}+(2^n-\buintp{b})\tag{1.4}
+\end{equation}
+</div>
+<div class="para">So, instead of subtracting <span class="process-math">\(\buintp b\)</span> from <span class="process-math">\(\buintp a\)</span> we are <em class="emphasis">adding</em> <span class="process-math">\((2^n-\buintp b)\)</span> to <span class="process-math">\(\buintp a\text{.}\)</span> Let us first observe that the result <span class="process-math">\(\buintp a+(2^n-\buintp b)\)</span> is equivalent to <span class="process-math">\(\buintp a-\buintp b\)</span> modulo <span class="process-math">\(2^n\)</span> analogously to the example above. This means that the lower <span class="process-math">\(n\)</span> bits of <span class="process-math">\(\buintp a+(2^n-\buintp b)\)</span> and lower <span class="process-math">\(n\)</span> bits of the true difference are equal which is exactly what we wanted. The number <span class="process-math">\(2^n-\buintp b\)</span> is called the <dfn class="terminology">two's complement</dfn> of <span class="process-math">\(\buintp b\text{.}\)</span>
+</div>
+</div>
+<span class="incontext"><a href="sec-arith-add.html#p-67" class="internal">in-context</a></span>
+</body>
+</html>

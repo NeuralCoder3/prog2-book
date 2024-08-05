@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">The type of a <em class="emphasis">Variable</em> in Java (if its type is a class), is only an <em class="emphasis">upper bound</em> to the concrete type of the object that it references.  The variable declaration <code class="code-inline tex2jax_ignore">T a;</code> only states that the container for <code class="code-inline tex2jax_ignore">a</code> contains a reference to an object whose type is <em class="emphasis">at least</em> <code class="code-inline tex2jax_ignore">T</code>. Objects of any subclass of <code class="code-inline tex2jax_ignore">T</code> are allowed as well. This property of Java's type system enables the easy replacement of implementations (subclasses). This however means that there can be an ambiguity when calling a method. Consider the above example: The method <code class="code-inline tex2jax_ignore">length</code> is implemented by <code class="code-inline tex2jax_ignore">BaseVec2</code> and by <code class="code-inline tex2jax_ignore">PolarVec2</code>. Which method is actually called depends on the <dfn class="terminology">concrete type</dfn> of the object. The concrete type of an object is that whose constructor was used to initialize the object.</div>
+<span class="incontext"><a href="sec-java-inherit.html#p-946" class="internal">in-context</a></span>
+</body>
+</html>

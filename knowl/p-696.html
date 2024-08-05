@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">Finally, we need to adapt the functions for L- and R-evaluation to cope with stacks of variable assignments. All but the case for the L-evaluation for variables can be just lifted to stacks of variable assignments. The new L-evaluation for variables using variable assignment stacks just searches for the first occurrence of the variable name in the stack from top to bottom:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\denotL{x}\rho_1,\dots,\rho_k;\mu =
+\left\{
+\begin{array}{ll}
+\rho_k\,x \amp \text{if } x\in\domain{\rho_k} \\
+\denotL{x}\rho_1,\dots,\rho_{k-1};\mu \amp \text{otherwise}
+\end{array}
+\right.
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-c0-scopes.html#p-696" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">6.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">Operational Semantics of C0.</span>
+</h4> <div class="para logical">
+<div class="para">We define the small-step semantics <span class="process-math">\(\mathrel{\steprel}\mathrel{\subseteq}\Conf\times\Conf\)</span> of C0 by the following rules:</div>
+<div class="displaymath process-math">
+\begin{align*}
+\config{\CSeq{\CAssign le}p}{(\rho,\mu)} \amp\steprel\config p{(\rho,\mu[a\mapsto v])}  \amp\amp\text{if }\denotR{e}\sigma=v\in\Val \amp\text{[Assign]}\\
+\amp                                           \amp\amp\text{and }\denotL{l}\sigma=a\in\Addr\\
+\config{\CSeq{\CIf e{s_1}{s_2}}p}\sigma  \amp\steprel\config{\CSeq{s_1}{p}}{\sigma}     \amp\amp\text{if } \denotR{e}\sigma\ne 0 \amp\text{[IfTrue]}\\
+\config{\CSeq{\CIf e{s_1}{s_2}}p}\sigma  \amp\steprel\config{\CSeq{s_2}{p}}{\sigma}     \amp\amp\text{if } \denotR{e}\sigma=0 \amp\text{[IfFalse]}\\
+\config{\CSeq{\CWhile es}p}\sigma        \amp\steprel\config{\CSeq{s}{\CSeq{\CWhile es}{p}}}{\sigma} \amp\amp\text{if } \denotR{e}\sigma\ne 0 \amp\text{[WhileTrue]}\\
+\config{\CSeq{\CWhile es}p}\sigma        \amp\steprel\config{p}{\sigma}                 \amp\amp\text{if } \denotR{e}\sigma=0 \amp\text{[WhileFalse]}\\
+\config{\CSeq{\CBlock{p_1}}p_2}\sigma    \amp\steprel\config{\CConcat{p_1}{p_2}}{\sigma}\amp\amp                              \amp\text{[Block]}\\
+\config{\CSeq{\CAbort}p}\sigma           \amp\steprel\config{\ACrash}{\sigma}           \amp\amp                              \amp\text{[Crash]}
+\end{align*}
+</div>
+</div> <div class="para">The rule [Assign] defines the semantics of the assignment statement. The right-hand side expression is R-evaluated to a value and the left-hand side expression is L-evaluated giving an address. In the resulting state, the content of the container bound to the address is updated to the value. Note that [Assign] only relates two configurations if the R-evaluation or the L-evaluation are actually defined, which may not necessarily be the case.</div> <div class="para">The next two rules [IfTrue] and [IfFalse] handle the if-then-else statement which either steps to <span class="process-math">\(s_1\)</span> or <span class="process-math">\(s_2\)</span> depending on how the conditional expression evaluates. Note again that if the R-evaluation of <span class="process-math">\(e\)</span> is not defined, both rules do not relate any two configurations.</div> <div class="para">The two while rules [WhileTrue] and [WhileFalse] are similar to the if rules. [WhileTrue] however appends the while loop to the body to “implement” the iterative behavior of while.</div> <div class="para logical">
+<div class="para">The block rule concatenates programs <span class="process-math">\(p_1\)</span> and <span class="process-math">\(p_2\)</span> which is denoted by the <span class="process-math">\(\CConcat{}{}\)</span> operator. <span class="process-math">\(\CConcat{}{}\)</span> is defined recursively in the following way:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\CConcat\CTerm p\defeq p\qquad \CConcat{(\CSeq sp)}{p'}\defeq \CSeq{s}{(\CConcat p{p'})}
+\end{equation*}
+</div>
+</div></article><span class="incontext"><a href="sec-c0-sem.html#def-c0-stmt-sem" class="internal">in-context</a></span>
+</body>
+</html>

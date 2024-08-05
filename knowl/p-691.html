@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">To this end, we modify the block syntax to contain variable declarations. The statement list of a block is preceded by a (possibly empty) list of variable declarations. Each declaration consists of a type and a variable. In this section, the type does not matter yet, but in the next section, we will add a small type system to C0 and make use of the types. The new block rules look like this:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-c0-type.html">
+\begin{equation*}
+\begin{array}{rclll}
+\mathit{Stmt} \ni s \amp \syndef  \amp \cdots                           \amp \cdots                                \amp \text{like before} \\
+\amp |        \amp \ABlock{x_1,\dots,x_m}{k_1,\dots,k_m,p} \amp \CBlock{k_1\ x_1; \dots k_m\ x_m; p}  \amp \text{block with variables} \\
+\amp |        \amp \cleave                          \amp -                                     \amp \text{dispose local variables } \\
+\end{array}
+\end{equation*}
+</div>
+<div class="para">where the <span class="process-math">\(k_i\)</span> are <em class="emphasis">scalar types</em>, i.e. either pointers or ints which we formally introduce in <a href="" class="xref" data-knowl="./knowl/def-c0-type.html" title="Definition 6.6.4">Definition 6.6.4</a>. Additionally, we require that the variable names are pairwise different.</div>
+</div>
+<span class="incontext"><a href="sec-c0-scopes.html#p-691" class="internal">in-context</a></span>
+</body>
+</html>

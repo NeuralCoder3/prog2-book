@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{lkuml}[2017/08/01 Provides Templates to draw UML Diagrams with LaTeX. Written by Lukas Kirschner]
+\RequirePackage{tikz}
+\definecolor{linecolor}{RGB}{0,0,0}
+\usetikzlibrary{calc}
+\usetikzlibrary{fit}
+\usetikzlibrary{arrows.meta}
+\newcommand{\umlInheritanceArrowStyle}{-{Triangle[angle=45:4.5mm,open]}}
+\newcommand{\umlClassesStyle}[1]{\texttt{#1}}
+\newcommand{\umlCaptionStyle}[1]{\large{\textbf{\texttt{#1}}}}
+\newcommand{\umlBoxHeight}{2.5}
+\newcommand{\drawUmlClass}[4]{
+\draw[linecolor] (#1,#2) rectangle (#1 + 2,#2 - \umlBoxHeight);
+\node[fit={(#1,#2) (#1 + 2,#2 - .85)}, inner sep=0pt] (#3caption) {\umlCaptionStyle{#3}};
+\draw[linecolor] (#1,#2 - .65) -- (#1 + 2, #2 - .65);
+\node[fit={(#1 + .1 , #2 - .75) (#1 + 1.9 , #2 - \umlBoxHeight + .1)}, align=left, inner sep=0pt] (#3classes) {\umlClassesStyle{#4}};
+\node[] at (#1 + 1, #2 - \umlBoxHeight) (#3lowerAnchorPoint) {};
+\node[] at (#1 + 1, #2) (#3upperAnchorPoint) {};
+}
+\newcommand{\drawUmlClassInvisible}[4]{
+	\draw[linecolor, draw=none] (#1,#2) rectangle (#1 + 2,#2 - \umlBoxHeight);
+	\node[fit={(#1,#2) (#1 + 2,#2 - .85)}, inner sep=0pt, draw=none] (#3caption) {\umlCaptionStyle{#3}};
+	\draw[linecolor,draw=none] (#1,#2 - .65) -- (#1 + 2, #2 - .65);
+	\node[fit={(#1 + .1 , #2 - .75) (#1 + 1.9 , #2 - \umlBoxHeight + .1)}, align=left, inner sep=0pt] (#3classes) {\umlClassesStyle{#4}};
+	\node[draw=none] at (#1 + 1, #2 - \umlBoxHeight) (#3lowerAnchorPoint) {};
+	\node[draw=none] at (#1 + 1, #2) (#3upperAnchorPoint) {};
+}

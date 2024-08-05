@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.6.8</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">Let's consider the derivation of the type of an expression with the type environment <span class="process-math">\(\Gamma\defeq\{\CVar x\mapsto\CPtr\CChar,\CVar y\mapsto\CInt\}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\Gamma\ \CVar x=\CPtr\CChar$}
+\LeftLabel{[TVar]}
+\UnaryInfC{$\typeGamma{\CVar x}{\CPtr\CChar}$}
+\LeftLabel{[TIndir]}
+\UnaryInfC{$\typeGamma{\CIndir\CVar x}{\CChar}$}
+\AxiomC{$\Gamma\CVar y=\CInt$}
+\LeftLabel{[TVar]}
+\UnaryInfC{$\typeGamma{\CVar y}{\CInt}$}
+\LeftLabel{[TArith]}
+\BinaryInfC{$\qquad\typeGamma{\CBinary{+}{\CIndir{\CVar x}}{\CVar y}}{\CInt}$}
+\AxiomC{$-2^{31}\le 1 \lt 2^{31}$}
+\LeftLabel{[TConst]}
+\UnaryInfC{$\typeGamma {\CConst 1}{\CInt}$}
+\LeftLabel{[TArith]}
+\BinaryInfC{$\typeGamma{\CBinary{-}{\CBinary{+}{\CIndir{\CVar x}}{\CVar y}}{\CConst 1}}{\CInt}$}
+\end{prooftree}
+\end{equation*}
+</div>
+</div></article><span class="incontext"><a href="sec-c0-type.html#example-23" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="table table-like"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">4.10.1<span class="period">.</span></span><span class="space"> </span>Overview of C's pointer operators</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b1 r1 l0 t0 lines">Operator</td>
+<td class="l m b1 r1 l0 t0 lines">Name</td>
+<td class="l m b1 r1 l0 t0 lines">Evaluation Rule</td>
+<td class="l m b1 r1 l0 t0 lines">L-evaluable</td>
+<td class="l m b1 r1 l0 t0 lines">Operand<br>has Type</td>
+<td class="l m b1 r0 l0 t0 lines">Expression<br>has Type</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore">*</code></td>
+<td class="l m b0 r1 l0 t0 lines">indirection</td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\text{L-eval}(*e) \defeq \text{R-eval}(e)\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">yes</td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(T*\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(T\)</span></td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore">&amp;</code></td>
+<td class="l m b0 r1 l0 t0 lines">address of</td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\text{R-eval}(\&amp;e) \defeq \text{L-eval}(e)\)</span></td>
+<td class="l m b0 r1 l0 t0 lines">no</td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(T\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(T*\)</span></td>
+</tr>
+</table></div></figure><span class="incontext"><a href="sec-c-ptr.html#fig-cops_ptr" class="internal">in-context</a></span>
+</body>
+</html>

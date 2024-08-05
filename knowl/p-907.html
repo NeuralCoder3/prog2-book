@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">At the moment, <code class="code-inline tex2jax_ignore">Vec2</code> uses cartesian coordinates. The implementation of <code class="code-inline tex2jax_ignore">area</code> in <code class="code-inline tex2jax_ignore">Rectangle</code> explicitly relies on this choice: it accesses the <code class="code-inline tex2jax_ignore">x</code> and <code class="code-inline tex2jax_ignore">y</code> members of <code class="code-inline tex2jax_ignore">Vec2</code>. But what if the author of the <code class="code-inline tex2jax_ignore">Vec2</code> class wants to adjust the internal representation of a point, for instance by using polar coordinates instead? Then, all code that directly refers to the member fields of <code class="code-inline tex2jax_ignore">Vec2</code> would break. In fact, by referring to the fields of <code class="code-inline tex2jax_ignore">Vec2</code>, code of other classes makes itself dependent on the <em class="emphasis">internal</em> implementation details of <code class="code-inline tex2jax_ignore">Vec2</code>.</div>
+<span class="incontext"><a href="sec-java-encapsulation.html#p-907" class="internal">in-context</a></span>
+</body>
+</html>

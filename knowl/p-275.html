@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">Let us briefly ponder on what would happen if the program above actually had the semantics (meaning) our inexperienced programmer had in mind. Then, the program's behavior actually was defined and it printed 42. However, this would also entail that if swapped the order in which <code class="code-inline tex2jax_ignore">a</code> and <code class="code-inline tex2jax_ignore">b</code> were declared the program would do something else! We certainly do not want to make our program's behavior dependent on the order in which variables are declared. Furthermore, giving our example program a meaning would also entail that the compiler is much more limited in where it allocates the containers' memory. If address arithmetic on a base address could yield a valid address of another container, it would be much harder for a compiler to allocate a container to a processor register (which is certainly much more pleasant because we have seen that registers are much faster operate on than memory). The more abstract memory model C defines permits the compiler to hold the value of a local variable in a register as long as the address of that variable has not been taken.</div>
+<span class="incontext"><a href="sec-c-memmodel.html#p-275" class="internal">in-context</a></span>
+</body>
+</html>

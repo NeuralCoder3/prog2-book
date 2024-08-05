@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para">The code first ensures that both variables, <code class="code-inline tex2jax_ignore">offset</code> and <code class="code-inline tex2jax_ignore">len</code> are not negative. The condition <code class="code-inline tex2jax_ignore">offset + len &lt; 0</code> attempts to check whether the addition causes an overflow. However, C does not define the behavior of overflowing signed integer arithmetic. From the first if-statement, the compiler concludes that <code class="code-inline tex2jax_ignore">offset</code> and <code class="code-inline tex2jax_ignore">len</code> are not negative at the second if. Adding to non-negative integers either causes undefined behavior (if an overflow occurs), or results in a positive number. The compiler therefore optimizes the second if-statment as follows:</div>
+<span class="incontext"><a href="sec-c-undef.html#p-468" class="internal">in-context</a></span>
+</body>
+</html>

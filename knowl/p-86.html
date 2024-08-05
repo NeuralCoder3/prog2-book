@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Not every operation gives meaningful results on signed and unsigned alike. Consider the <em class="emphasis">less-than</em> operation <span class="process-math">\(a\lt b\)</span> that yields 1 if <span class="process-math">\(a\lt b\)</span> and 0 otherwise. For example:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\buintp{001}=1\lt 6=\buintp{110}\quad\text{but}\quad\bsintp{001}=1\not\lt -2=\bsintp{110}
+\end{equation*}
+</div>
+<div class="para">So, when performing a comparison on two bit strings, one has to decide if the bit strings are to be interpreted as signed or unsigned numbers. Consequently, modern microprocessors have <em class="emphasis">two</em> operations for comparing integers. On MIPS, which we will discuss in the next section, there is <code class="code-inline tex2jax_ignore">slt</code> which interprets the bit strings as signed integers and <code class="code-inline tex2jax_ignore">sltu</code> which interprets them as unsigned integers. </div>
+</div>
+<span class="incontext"><a href="sec-arith-int.html#p-86" class="internal">in-context</a></span>
+</body>
+</html>

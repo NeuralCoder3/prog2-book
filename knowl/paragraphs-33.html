@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">If-Then-Else.</span></h4> <div class="para">A proof for the Hoare triple <span class="process-math">\(\vdash\hoare P{\CIf e{s_1}{s_2}}Q\)</span> can be obtained from proofs about the constituent statements. However, the preconditions of the Hoare triples of the then and else case can be strengthened by the conditional because we know that each case that <span class="process-math">\(s_1\)</span> is executed in also satisfies <span class="process-math">\(e\)</span> (and similarly for <span class="process-math">\(s_2\)</span> and <span class="process-math">\(\neg e\)</span>).</div> <article class="definition definition-like"><h5 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.4.5</span><span class="period">.</span><span class="space"> </span><span class="title">Hoare triple for if-then-else.</span>
+</h5> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare {e\land P}{s_1}Q$}
+\AxiomC{$\vdash\hoare {\neg e\land P}{s_2}Q$}
+\LeftLabel{[If]}
+\BinaryInfC{$\vdash\hoare{P}{\CIf e{s_1}{s_2}}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div></div></article> <article class="example example-like"><h5 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.6</span><span class="period">.</span>
+</h5>
+<div class="para logical">
+<div class="para">Let us consider a small program that computes the minimum two numbers:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-if.html ./knowl/def-corr-hoare-assign.html">
+\begin{equation*}
+\CIf{\CBinary{&lt;}{\CVar x}{\CVar y}}{\CAssnVV rx}{\CAssnVV ry}
+\end{equation*}
+</div>
+<div class="para">The Hoare triple  we would like to prove is:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-if.html ./knowl/def-corr-hoare-assign.html">
+\begin{equation*}
+\vdash\hoare{\ltrue}{\CIf{\CBinary{&lt;}{\CVar x}{\CVar y}}{\CAssnVV rx}{\CAssnVV ry}}{\CVar r\le\CVar x\land\CVar r\le\CVar y\land(\CVar r=\CVar x\lor\CVar r=\CVar y)}
+\end{equation*}
+</div>
+<div class="para">By <a href="" class="xref" data-knowl="./knowl/def-corr-hoare-if.html" title="Definition 7.4.5: Hoare triple for if-then-else">Definition 7.4.5</a>, we get the following first step in our proof tree:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-if.html ./knowl/def-corr-hoare-assign.html">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare{\CBinary{\lt}xy}{\CAssnVV rx}{Q}$}
+\AxiomC{$\vdash\hoare{\CBinary{\ge}xy}{\CAssnVV ry}{Q}$}
+\LeftLabel{[If]}
+\BinaryInfC{$\vdash\hoare{\ltrue}{\CIf{\CBinary{&lt;}{\CVar x}{\CVar y}}{\CAssnVV rx}{\CAssnVV ry}}{\underbrace{\CVar r\le\CVar x\land\CVar r\le\CVar y\land(\CVar r=\CVar x\lor\CVar r=\CVar y)}_{=Q}}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="para">Now, we run into a small problem. Let's consider the triple for the then-part: using rule [Assign] (<a href="" class="xref" data-knowl="./knowl/def-corr-hoare-assign.html" title="Definition 7.4.1: Hoare triple for the assignment statement">Definition 7.4.1</a>), we can prove the triple</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-if.html ./knowl/def-corr-hoare-assign.html">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\vdash\hoare{Q[\CVar x/\CVar r]}{\CAssnVV rx}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="para">but not</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-hoare-if.html ./knowl/def-corr-hoare-assign.html">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{}
+\UnaryInfC{$\vdash\hoare{\CBinary{\lt}xy}{\CAssnVV rx}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="para">Both preconditions are <em class="emphasis">syntactically</em> different (<span class="process-math">\(Q[\CVar x/\CVar r]\ne\CBinary{\lt}xy\)</span>) but logically equivalent (<span class="process-math">\(Q[\CVar x/\CVar r]\equiv\CBinary{\lt}xy\)</span>): they are satisfied by the exact same set of states. So, we cannot apply the rule [Assign] directly.</div>
+</div> <div class="para logical">
+<div class="para">We can solve this problem by using the rule of consequence to generate an appropriate <dfn class="terminology">verification condition</dfn>:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\CBinary{\lt}xy\simp Q[\CVar x/\CVar r]$}
+\AxiomC{}
+\RightLabel{[Assign]}
+\UnaryInfC{$\vdash\hoare{Q[\CVar x/\CVar r]}{\CAssnVV rx}{Q}$}
+\LeftLabel{[Consequence]}
+\BinaryInfC{$\vdash\hoare{\CBinary{\lt}xy}{\CAssnVV rx}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div>
+</div> <div class="para">Verification conditions are logical formulas that result from the [Consequence] rule and constitute additional premises that have to be satisfied in a Hoare-logic proof. We will come back to them in <a href="sec-corr-hoare.html#sec-corr-hoare-mech" class="internal" title="Subsection 7.4.2: Mechanizing Verification">Subsection 7.4.2</a>.</div> <div class="para logical">
+<div class="para">Coming back to the example above, the else case can be dealt with similarly and generates another verification condition:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\CBinary{\ge}xy\simp Q[\CVar y/\CVar r]$}
+\AxiomC{}
+\RightLabel{[Assign]}
+\UnaryInfC{$\vdash\hoare{Q[\CVar y/\CVar r]}{\CAssnVV ry}{Q}$}
+\LeftLabel{[Consequence]}
+\BinaryInfC{$\vdash\hoare{\CBinary{\ge}xy}{\CAssnVV ry}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div>
+</div></article></section><span class="incontext"><a href="sec-corr-hoare.html#paragraphs-33" class="internal">in-context</a></span>
+</body>
+</html>

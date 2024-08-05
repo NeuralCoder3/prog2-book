@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.3.7</span><span class="period">.</span>
+</h4>
+<div class="para">Let us consider the following, erroneous implementation of the specification of <a href="" class="xref" data-knowl="./knowl/ex-corr-roots.html" title="Example 7.3.3">Example 7.3.3</a>.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">unsigned roots_buggy(double a, double b, double c, double *r) {
+    if (a != 0) {                        // 1
+        double p = b / a;                // 2
+        double q = c / a;                // 3
+        double d = p * p / 4 - q;        // 4
+
+        if (d &gt; 0) {                     // 5
+            r[0] = -p / 2 + sqrt(d);     // 6
+            r[1] = -p / 2 - sqrt(d);     // 7
+            return 2;                    // 8
+        }
+
+        r[0] = -p / 2;                   // 9
+        return 1;                        // 10
+    }
+
+    if (b != 0) {                        // 11
+        r[0] = -b / c;                   // 12
+        return 1;                        // 13
+    }
+
+    return 0;                            // 14
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23include%20%3Cmath.h%3E%0A%23include%20%3Cassert.h%3E%0A%0Aunsigned%20roots(double%20a%2C%20double%20b%2C%20double%20c%2C%20double%20*r)%20%7B%0A%20%20%20%20if%20(a%20!%3D%200)%20%7B%0A%20%20%20%20%20%20%20%20%2F*%20Quadratic%20polynom%20*%2F%0A%20%20%20%20%20%20%20%20double%20p%20%3D%20b%20%2F%20a%3B%0A%20%20%20%20%20%20%20%20double%20q%20%3D%20c%20%2F%20a%3B%0A%20%20%20%20%20%20%20%20double%20d%20%3D%20p%20*%20p%20%2F%204%20-%20q%3B%0A%0A%20%20%20%20%20%20%20%20if%20(d%20%3E%200)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20r%5B0%5D%20%3D%20-p%20%2F%202%20%2B%20sqrt(d)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20r%5B1%5D%20%3D%20-p%20%2F%202%20-%20sqrt(d)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%202%3B%0A%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%20%20if%20(d%20%3C%200)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%20%20r%5B0%5D%20%3D%20-p%20%2F%202%3B%0A%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20if%20(b%20!%3D%200)%20%7B%0A%20%20%20%20%20%20%20%20r%5B0%5D%20%3D%20-c%20%2F%20b%3B%0A%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20if%20(c%20%3D%3D%200)%0A%20%20%20%20%20%20%20%20return%20UINT_MAX%3B%0A%20%20%20%20else%0A%20%20%20%20%20%20%20%20return%200%3B%0A%7D%0A%0Aunsigned%20roots_buggy(double%20a%2C%20double%20b%2C%20double%20c%2C%20double%20*r)%20%7B%0A%20%20%20%20if%20(a%20!%3D%200)%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%201%0A%20%20%20%20%20%20%20%20double%20p%20%3D%20b%20%2F%20a%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%202%0A%20%20%20%20%20%20%20%20double%20q%20%3D%20c%20%2F%20a%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%203%0A%20%20%20%20%20%20%20%20double%20d%20%3D%20p%20*%20p%20%2F%204%20-%20q%3B%20%20%20%20%20%20%20%20%2F%2F%204%0A%0A%20%20%20%20%20%20%20%20if%20(d%20%3E%200)%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%205%0A%20%20%20%20%20%20%20%20%20%20%20%20r%5B0%5D%20%3D%20-p%20%2F%202%20%2B%20sqrt(d)%3B%20%20%20%20%20%2F%2F%206%0A%20%20%20%20%20%20%20%20%20%20%20%20r%5B1%5D%20%3D%20-p%20%2F%202%20-%20sqrt(d)%3B%20%20%20%20%20%2F%2F%207%0A%20%20%20%20%20%20%20%20%20%20%20%20return%202%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%208%0A%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%20%20r%5B0%5D%20%3D%20-p%20%2F%202%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%209%0A%20%20%20%20%20%20%20%20return%201%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%2010%0A%20%20%20%20%7D%0A%0A%20%20%20%20if%20(b%20!%3D%200)%20%7B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%2011%0A%20%20%20%20%20%20%20%20r%5B0%5D%20%3D%20-b%20%2F%20c%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%2012%0A%20%20%20%20%20%20%20%20return%201%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%2013%0A%20%20%20%20%7D%0A%0A%20%20%20%20return%200%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%2014%0A%7D%0A">Run</a>
+</div> <div class="para">The tests of <a href="" class="xref" data-knowl="./knowl/ex-corr-roots.html" title="Example 7.3.3">Example 7.3.3</a> cover the following statements: 1, 11, 12, 13, 14. The covered paths are:</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">test_null</code></td>
+<td class="l m b0 r0 l0 t0 lines">1,11,14</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">test_linear</code></td>
+<td class="l m b0 r0 l0 t0 lines">1,11,12,13</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">test_linear_none</code></td>
+<td class="l m b0 r0 l0 t0 lines">1,11,14</td>
+</tr>
+</table></div> <div class="para">The first test fails and exposes the bug that the zero-polynomial case is missing. The second test passes but does not find the bug in statement 12 which should be <code class="code-inline tex2jax_ignore">r[0] = -c / b;</code>. The issue here is that the input <span class="process-math">\(\{\CVar a\mapsto 0, \CVar b\mapsto 2, \CVar\mapsto 2\}\)</span> is not well chosen because it cannot detect the swapping of divisor and dividend. A better test would be:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">void test_linear(void) {
+    double r[2];
+    unsigned res = roots(0, 4, 2, r);
+    assert(res == 1 &amp;&amp; r[0] == -0.5);
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0Avoid%20test_linear(void)%20%7B%0A%20%20%20%20double%20r%5B2%5D%3B%0A%20%20%20%20unsigned%20res%20%3D%20roots(0%2C%204%2C%202%2C%20r)%3B%0A%20%20%20%20assert(res%20%3D%3D%201%20%26%26%20r%5B0%5D%20%3D%3D%20-0.5)%3B%0A%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">
+<code class="code-inline tex2jax_ignore">test_linear_none</code> passes because the code handles the case of a constant polynomial unequal to 0 correctly. None of the tests exposes that the quadratic case is not correctly implemented: If the discriminant is less than 0, the function erroneously returns a root with the value of <span class="process-math">\(-p/2\text{.}\)</span>
+</div> <div class="para logical">
+<div class="para">Also, this test suite does not have a good statement coverage:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\frac{|\{1,11,12,13,14\}|}{|\{1,\dots,14\}|}=\frac 5{14}\approx 35,7\%
+\end{equation*}
+</div>
+</div></article><span class="incontext"><a href="sec-corr-testing.html#example-30" class="internal">in-context</a></span>
+</body>
+</html>

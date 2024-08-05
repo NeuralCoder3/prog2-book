@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Variables.</span></h4> <div class="para">The L-evaluation of a local variable produces the address of the variable in the stack frame. To this end, we use the function <span class="process-math">\(\mathit{offs}\)</span> to lookup the offset <span class="process-math">\(d\)</span> of the variable in the stack frame and add it to the stack pointer. This assumes that the stack frame is sufficiently large. We will ensure this in the code generation for statements by tracking the memory consumption and generating code that allocates a sufficiently large stack frame.</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:75%;"><div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\mathit{offs}\,x=d$}
+\LeftLabel{[CVar]}
+\UnaryInfC{$\codeL{(\rlist)}{\denot{x}\enspace k}{c_\mathsf{var}}$}
+\end{prooftree}
+\end{equation*}
+</div></div></div>
+<div class="sbspanel top" style="width:25%;">
+<pre class="program"><code class="language-nasm"># c_var
+addiu r $sp d
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%23%20c_var%0A%20%20%20%20addiu%20r%20%24sp%20d%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+</div></div></section><span class="incontext"><a href="sec-comp-codegen.html#paragraphs-48" class="internal">in-context</a></span>
+</body>
+</html>

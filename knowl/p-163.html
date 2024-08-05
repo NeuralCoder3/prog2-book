@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">The main object of the linker is to give each instruction and element of the data segment a definitive address and resolve references to global labels. As mentioned in <a href="sec-asm-asm.html" class="internal" title="Section 2.3: The Assembler">Section 2.3</a> one object file can reference a label in another object file. To be able to resolve global labels, each object file carries a <dfn class="terminology">symbol table</dfn> that lists all global labels that the object file defines and references. The linker merges the code and data sections of the individual object files respectively and orders them linearly. Except for code and data from dynamically linked libraries<a href="" class="fn-knowl original" data-knowl="./knowl/fn-5-hidden.html" title="Footnote 5"><sup> 5 </sup></a>, which we ignore here, the address of each datum and each instruction is then fixed. The linker can then <dfn class="terminology">patch</dfn> absolute addresses global relative addresses. Patching means that the bytes take the address of a referenced label are overwritten with the final absolute or relative address. </div>
+<span class="incontext"><a href="sec-asm-link.html#p-163" class="internal">in-context</a></span>
+</body>
+</html>

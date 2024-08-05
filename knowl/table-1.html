@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="table table-like"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">2.8.3<span class="period">.</span></span><span class="space"> </span>MIPS registers with their short name, role in the calling convention, and purpose.</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b1 r0 l0 t0 lines">Number</td>
+<td class="l m b1 r0 l0 t0 lines">Name</td>
+<td class="l m b1 r0 l0 t0 lines">save</td>
+<td class="l m b1 r0 l0 t0 lines">Comment</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">0</td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">$zero</code></td>
+<td class="l m b0 r0 l0 t0 lines">--</td>
+<td class="l m b0 r0 l0 t0 lines">Always reads zero</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">1</td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">$at</code></td>
+<td class="l m b0 r0 l0 t0 lines">--</td>
+<td class="l m b0 r0 l0 t0 lines">Reserved. Used by linker.</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">2 –3</td>
+<td class="l m b0 r0 l0 t0 lines">
+<code class="code-inline tex2jax_ignore">$v0</code>–<code class="code-inline tex2jax_ignore">$v1</code>
+</td>
+<td class="l m b0 r0 l0 t0 lines">caller</td>
+<td class="l m b0 r0 l0 t0 lines">Return values</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">4 –7</td>
+<td class="l m b0 r0 l0 t0 lines">
+<code class="code-inline tex2jax_ignore">$a0</code>–<code class="code-inline tex2jax_ignore">$a3</code>
+</td>
+<td class="l m b0 r0 l0 t0 lines">caller</td>
+<td class="l m b0 r0 l0 t0 lines">First four arguments</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">8 –15</td>
+<td class="l m b0 r0 l0 t0 lines">
+<code class="code-inline tex2jax_ignore">$t0</code>–<code class="code-inline tex2jax_ignore">$t7</code>
+</td>
+<td class="l m b0 r0 l0 t0 lines">caller</td>
+<td class="l m b0 r0 l0 t0 lines">Temporaries</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">16–23</td>
+<td class="l m b0 r0 l0 t0 lines">
+<code class="code-inline tex2jax_ignore">$s0</code>–<code class="code-inline tex2jax_ignore">$s7</code>
+</td>
+<td class="l m b0 r0 l0 t0 lines">callee</td>
+<td class="l m b0 r0 l0 t0 lines">Temporaries</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">24–25</td>
+<td class="l m b0 r0 l0 t0 lines">
+<code class="code-inline tex2jax_ignore">$t8</code>–<code class="code-inline tex2jax_ignore">$t9</code>
+</td>
+<td class="l m b0 r0 l0 t0 lines">caller</td>
+<td class="l m b0 r0 l0 t0 lines">Temporaries</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">26–27</td>
+<td class="l m b0 r0 l0 t0 lines">
+<code class="code-inline tex2jax_ignore">$k0</code>–<code class="code-inline tex2jax_ignore">$k1</code>
+</td>
+<td class="l m b0 r0 l0 t0 lines">--</td>
+<td class="l m b0 r0 l0 t0" style="max-width:360px;"><div class="para">Reserved. Used by operating system</div></td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">28</td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">$gp</code></td>
+<td class="l m b0 r0 l0 t0 lines">--</td>
+<td class="l m b0 r0 l0 t0" style="max-width:360px;"><div class="para">Global data pointer. Used to address elements in the global data segment.</div></td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">29</td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">$sp</code></td>
+<td class="l m b0 r0 l0 t0 lines">callee</td>
+<td class="l m b0 r0 l0 t0 lines">Stack pointer</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">30</td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">$fp</code></td>
+<td class="l m b0 r0 l0 t0 lines">callee</td>
+<td class="l m b0 r0 l0 t0 lines">Frame pointer</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">31</td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">$ra</code></td>
+<td class="l m b0 r0 l0 t0 lines">caller</td>
+<td class="l m b0 r0 l0 t0 lines">Return address</td>
+</tr>
+</table></div></figure><span class="incontext"><a href="sec-asm-call.html#table-1" class="internal">in-context</a></span>
+</body>
+</html>

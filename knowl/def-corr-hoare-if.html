@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h5 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.4.5</span><span class="period">.</span><span class="space"> </span><span class="title">Hoare triple for if-then-else.</span>
+</h5> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\vdash\hoare {e\land P}{s_1}Q$}
+\AxiomC{$\vdash\hoare {\neg e\land P}{s_2}Q$}
+\LeftLabel{[If]}
+\BinaryInfC{$\vdash\hoare{P}{\CIf e{s_1}{s_2}}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div></div></article><span class="incontext"><a href="sec-corr-hoare.html#def-corr-hoare-if" class="internal">in-context</a></span>
+</body>
+</html>

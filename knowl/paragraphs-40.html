@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Java.</span></h3> <figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">public interface Env {
+    int get(String varName);
+}
+
+public interface Exp {
+    public int eval(Env e);
+    public String toString();
+}
+
+public class Add implements Exp {
+    private Exp left, right;
+
+    public Add(Exp left, Exp right) {
+        this.left = left;
+        this.right = right;
+    }
+
+    public int eval(Env e) {
+        return left.eval(e) + right.eval(e);
+    }
+
+    public String toString() {
+        return "" + left + " + " + right;
+    }
+}
+
+public class Var implements Exp {
+    private String name;
+
+    public Var(String name) {
+        this.name = name;
+    }
+
+    public int eval(Env e) {
+        return e.get(this.name);
+    }
+
+    public toString() {
+        return this.name;
+    }
+}
+</code></pre></div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">8.10.3<span class="period">.</span></span><span class="space"> </span>Implementation of the abstract syntax of the simple expression language in Java.</figcaption></figure> <div class="para">The Java implementation uses the object-oriented way of implementing algebraic data types. An interface declares all operations that can be applied to expressions. Every class implementing this interface corresponds to a variant. Every aspect of this variant (implementation of operations, initialization, data) are gathered in the class. Subtyping ensures that such a class can be used whenever an object of type <code class="code-inline tex2jax_ignore">Exp</code> is expected. The value of the field <code class="code-inline tex2jax_ignore">op</code> in the C implementation corresponds to the concrete type of the object in the Java implementation. The resolution of the overridden methods replaces the case distinctions in the C functions <code class="code-inline tex2jax_ignore">exp_eval</code> and <code class="code-inline tex2jax_ignore">exp_print</code>. The code that handles this internally is, without further ado by the programmer, inserted automatically by the compiler.</div> </section><span class="incontext"><a href="sec-java-proper-oo.html#paragraphs-40" class="internal">in-context</a></span>
+</body>
+</html>

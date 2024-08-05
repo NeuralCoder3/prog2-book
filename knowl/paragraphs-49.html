@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">L- to R-evaluation.</span></h4> <div class="para">If an expression is L-evaluable, the R-evaluation of that expression consists of L-evaluating it, which yields the corresponding address and then loading from it. Here, we need the type information to select the appropriate load instruction: When loading a character, we need to load a byte and sign-extend it. When loading an integer or a pointer, we have to load a word. The following rule makes it possible to omit individual R-evaluation rules for L-evaluable expressions and use this rule to handle the R-evaluation for them.</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:75%;"><div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC   {$\codeL{(\rlist)}{\denot{l}\enspace k}{c}$}
+\noLine
+\UnaryInfC{$L = \text{load instruction for type }k$}
+\LeftLabel{[CLtoR]}
+\UnaryInfC{$\codeR{(\rlist)}{\denot{l}\enspace k}{c_{LtoR}}$}
+\end{prooftree}
+\end{equation*}
+</div></div></div>
+<div class="sbspanel top" style="width:25%;">
+<pre class="program"><code class="language-nasm"># c_LtoR
+c
+L r r
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%23%20c_LtoR%0A%20%20%20%20c%0A%20%20%20%20L%20r%20r%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+</div></div></section><span class="incontext"><a href="sec-comp-codegen.html#paragraphs-49" class="internal">in-context</a></span>
+</body>
+</html>

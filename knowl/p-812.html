@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Before we start, we need to make an important distinction. In <a href="" class="xref" data-knowl="./knowl/def-corr-partial.html" title="Definition 7.1.7: Partial Correctness">Definition 7.1.7</a> and <a href="" class="xref" data-knowl="./knowl/def-corr-total.html" title="Definition 7.1.6: Total Correctness">Definition 7.1.6</a> we have defined Hoare triples <em class="emphasis">semantically</em> which means that we used properties of the program execution of a C0 program (more specifically its termination behavior) to define what a Hoare triple is. In this section, we are interested in defining a <em class="emphasis">logic</em> which means that we define a set of rules over the <em class="emphasis">syntax</em> of a language (here C0) to derive facts (here Hoare triples) about a term in that language (here a C0 program). To make the difference clear, we write</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-partial.html ./knowl/def-corr-total.html ./knowl/def-corr-partial.html ./knowl/def-corr-total.html">
+\begin{equation*}
+\models\hoare PpQ
+\end{equation*}
+</div>
+<div class="para">when we mean that program <span class="process-math">\(p\)</span> is in fact totally/partially correct with respect to the specification <span class="process-math">\((P,Q)\text{.}\)</span> This is the notion of a Hoare triple that we have introduced in <a href="" class="xref" data-knowl="./knowl/def-corr-partial.html" title="Definition 7.1.7: Partial Correctness">Definition 7.1.7</a> and <a href="" class="xref" data-knowl="./knowl/def-corr-total.html" title="Definition 7.1.6: Total Correctness">Definition 7.1.6</a>. We write</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-corr-partial.html ./knowl/def-corr-total.html ./knowl/def-corr-partial.html ./knowl/def-corr-total.html">
+\begin{equation*}
+\vdash\hoare PpQ
+\end{equation*}
+</div>
+<div class="para">when we mean that we derived the Hoare triple with the proof rules we develop in this section. Of course, the proof rules we define are only useful if they are sound which means that the Hoare triples we can derive with them are <em class="emphasis">semantically</em> true which formally means that <span class="process-math">\(\vdash\hoare PpQ\)</span> entails <span class="process-math">\(\models\hoare PpQ\text{.}\)</span> The rules we define in this section are sound but we do not prove it here because it requires a slightly more involved technical setup that is beyond the scope of this text.</div>
+</div>
+<span class="incontext"><a href="sec-corr-hoare.html#p-812" class="internal">in-context</a></span>
+</body>
+</html>

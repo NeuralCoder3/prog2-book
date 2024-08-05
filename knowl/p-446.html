@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">The problematic part of <code class="code-inline tex2jax_ignore">foo</code> is that it writes the provided string to a buffer with a fixed size (here 32) without checking whether the buffer overflows. What if <code class="code-inline tex2jax_ignore">"The message is: "</code> concatenated with <code class="code-inline tex2jax_ignore">msg</code> has more than 31 characters? Since <code class="code-inline tex2jax_ignore">sprintf</code> only has the address of the destination array, the function does not know the array's size and can therefore not check against it. Therefore, it will potentially write to addresses behind the destination array in the machine's sequential memory. This destroys the consistency of the run-time stack and allows the attacker to overwrite the return address that has been saved on the stack by <code class="code-inline tex2jax_ignore">foo</code>.</div>
+<span class="incontext"><a href="sec-c-undef.html#p-446" class="internal">in-context</a></span>
+</body>
+</html>

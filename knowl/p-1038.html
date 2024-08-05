@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">Instead of writing functions where every class is handled as a branch (like in <a href="" class="xref" data-knowl="./knowl/fig-oo-exp-c.html" title="Listing 8.10.2">Listing 8.10.2</a>), we create a function for every method. For every class, there is a table of functions (more specifically: function pointers). This table is called <dfn class="terminology">virtual method table</dfn>, which is often abbreviated as VMT, vtable, or vtab. The VMT contains for each method of the class (and every super class) the address of the corresponding function. Since every class has its own VMT, the address of the VMT identifies the class uniquely. It corresponds to the “tag” <code class="code-inline tex2jax_ignore">op</code> of the struct <code class="code-inline tex2jax_ignore">exp_t</code> in <a href="" class="xref" data-knowl="./knowl/fig-oo-exp-c.html" title="Listing 8.10.2">Listing 8.10.2</a>. Every object obtains during its initialization (where the concrete type is known) a pointer to the VMT of the class in a field that is hidden to the programmer (<code class="code-inline tex2jax_ignore">vtab</code> in <a href="" class="xref" data-knowl="./knowl/fig-oo-vtab.html" title="Listing 8.12.1">Listing 8.12.1</a>). Since we need to access the VMT without knowing the concrete type, the pointer to the VMT is at the same position for <em class="emphasis">every</em> object (usually at offset 0). This allows us to identify the concrete type of any object at run time.</div>
+<span class="incontext"><a href="sec-java-oo-with-c.html#p-1038" class="internal">in-context</a></span>
+</body>
+</html>

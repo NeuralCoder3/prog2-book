@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">R-evaluation and L-evaluation are defined by the following two functions</div>
+<div class="displaymath process-math">
+\begin{align*}
+\denotR\cdot\cdot\amp:\Expr\to\Sigma\pto\Val\\
+\denotL\cdot\cdot\amp:\LExpr\to\Sigma\pto\Addr
+\end{align*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}[t]{lcl}
+\denotL{\CVar x} \rho;\mu         \amp = \amp \rho\,\CVar x \\
+\denotR c \sigma                  \amp = \amp c \\
+\denotR{e_1\mathbin o e_2} \sigma \amp = \amp \denotR{e_1} \sigma\mathbin o\denotR{e_2} \sigma \\
+\denotR{l\,}\rho;\mu              \amp = \amp \mu\left(\denotL{l\,}\rho;\mu\right) \\
+\end{array} \\
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-c0-sem.html#p-647" class="internal">in-context</a></span>
+</body>
+</html>

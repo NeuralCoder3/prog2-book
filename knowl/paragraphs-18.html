@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Summary.</span></h4> <div class="para">Linked list have constant complexity for inserting and removing as opposed to array lists which have linear complexity for removing and <em class="emphasis">amortized</em> constant complexity for insertion. However, in contrast, the i-th element cannot be obtained in constant time in linked lists because, in general, there is no computation that takes <span class="process-math">\(i\)</span> and returns the address of the i-th list node (like address arithmetic in the array list case).</div> <div class="para">Linked lists have a significant practical drawback compared to array lists: Since every list node is allocated individually, the list nodes are not guaranteed to sit contiguously in memory. This makes a lot of the machinery in modern microprocessors which are optimized for processing arrays useless. So searching and inserting are typically a lot faster on array lists than on linked lists although their theoretical complexity is identical.</div> <div class="para">In summary, the following table sums up the differences in complexity for array and singly-linked lists:</div> <div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b1 r1 l0 t0 lines">Operation</td>
+<td class="l m b1 r1 l0 t0 lines">Array List</td>
+<td class="l m b1 r0 l0 t0 lines">Linked List</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">Appending</td>
+<td class="l m b0 r1 l0 t0 lines">amortized <span class="process-math">\(O(1)\)</span>
+</td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(O(1)\)</span></td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">Inserting after i-th</td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(O(n)\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(O(1)\)</span></td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">Removing i-th</td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(O(n)\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(O(1)\)</span></td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">Getting pointer to i-th</td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(O(1)\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(O(n)\)</span></td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines">Get size</td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(O(1)\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(O(n)\)</span></td>
+</tr>
+</table></div> <div class="para">One issue of <em class="emphasis">singly</em> linked lists is that inserting and removing <em class="emphasis">in front</em> of a given element is not directly possible because there are only next pointers and no pointers to previous elements. This can be remedied by using doubly-linked lists which we discuss in the next section.</div></section><span class="incontext"><a href="sec-ds-lists.html#paragraphs-18" class="internal">in-context</a></span>
+</body>
+</html>

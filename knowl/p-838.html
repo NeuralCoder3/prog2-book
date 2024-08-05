@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h6 class="heading"><span class="type">Paragraph</span></h6>
+<div class="para logical">
+<div class="para">Coming back to the example above, the else case can be dealt with similarly and generates another verification condition:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\CBinary{\ge}xy\simp Q[\CVar y/\CVar r]$}
+\AxiomC{}
+\RightLabel{[Assign]}
+\UnaryInfC{$\vdash\hoare{Q[\CVar y/\CVar r]}{\CAssnVV ry}{Q}$}
+\LeftLabel{[Consequence]}
+\BinaryInfC{$\vdash\hoare{\CBinary{\ge}xy}{\CAssnVV ry}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-corr-hoare.html#p-838" class="internal">in-context</a></span>
+</body>
+</html>

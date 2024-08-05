@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical"><ul class="disc">
+<li><div class="para">Explain function call mechanism. <code class="code-inline tex2jax_ignore">jal</code> and <code class="code-inline tex2jax_ignore">jr</code> and the return address.</div></li>
+<li><div class="para">Mention the problem that we want to preserve values over calls (first and foremost the return address).</div></li>
+<li><div class="para">Such values have to be saved somewhere; registers may be overwritten by called function.</div></li>
+<li><div class="para">So we need a convention which registers are preserved and which can be overwritten.</div></li>
+<li><div class="para">Overwritten registers must be saved somewhere. Global data not possible because recursive calls would overwrite saved values.</div></li>
+<li><div class="para">Need call stack. Explain allocation/deallocation of stack frame, usage of stack pointer. Show how saving/restoring is done (relative addressing to stack pointer.)</div></li>
+<li><div class="para">Discuss recursion and tail recursion in this context. Live code factorial recursively and tail recursively. Step through program and show the difference.</div></li>
+<li><div class="para">Goal is to understand that recursion requires book keeping and has an overhead.</div></li>
+</ul></div>
+<span class="incontext"><a href="section-74.html#p-1110" class="internal">in-context</a></span>
+</body>
+</html>

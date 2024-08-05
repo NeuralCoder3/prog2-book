@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">We have proven (<a href="" class="xref" data-knowl="./knowl/lem-arith-uadd.html" title="Lemma 1.3.5: Addition of bit strings is sound">Lemma 1.3.5</a>) that the addition algorithm of <a href="" class="xref" data-knowl="./knowl/def-arith-add.html" title="Definition 1.3.3: Addition of bit strings">Definition 1.3.3</a> always preserves the values under the unsigned interpretation <em class="emphasis">modulo</em> <span class="process-math">\(2^n\text{.}\)</span> We have already discussed the role of the carry out of the most significant position to detect overflows in the case of adding or subtracting unsigned numbers. We will see shortly that our addition algorithm also works for signed numbers in a similar way: It preserves the signed interpretation modulo <span class="process-math">\(2^n\)</span> but has a different criterion for determining an overflow, as the following examples show:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/lem-arith-uadd.html ./knowl/def-arith-add.html">
+\begin{align*}
+\buintp{011} + \buintp{110} = 9 \amp \ne \buintp{011\mathrel{+_3}110} = 1\\
+\bsintp{011} + \bsintp{110} = 1 \amp =   \bsintp{011\mathrel{+_3}110}\\
+\buintp{011} + \buintp{001} = 4 \amp =   \buintp{011\mathrel{+_3}001}\\
+\bsintp{011} + \bsintp{001} = 4 \amp \ne \bsintp{011\mathrel{+_3}001} = -4
+\end{align*}
+</div>
+<div class="para">The next lemma clarifies under which circumstances the lower <span class="process-math">\(n\)</span> bits of an addition represent the accurate result with respect to the signed interpretation and also gives a condition for the overflow:</div>
+</div>
+<span class="incontext"><a href="sec-arith-int.html#p-77" class="internal">in-context</a></span>
+</body>
+</html>

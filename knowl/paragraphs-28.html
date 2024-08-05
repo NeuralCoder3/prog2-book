@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Quadratic Probing.</span></h4> <div class="para logical">
+<div class="para">
+<dfn class="terminology">Quadratic probing</dfn> was introduced to solve the problem of cluster formation of linear probing. To this end, one introduces a quadratic term to “push” higher collision chain entries further away:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+h'(k,i)\defeq (h(k)+ci+di^2)\mathrel{\%}m
+\end{equation*}
+</div>
+<div class="para">Now the question is can <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> chosen such that <span class="process-math">\(h'\)</span> is surjective on the table for each key. (Again, if it is not, this implies that we would not be able to add a key even if the table was not full.) The following theorem establishes that by setting <span class="process-math">\(c=d=1/2\)</span> makes <span class="process-math">\(h'\)</span> <em class="emphasis">injective</em> on <span class="process-math">\(\{0,\dots,s^k-1\}\)</span> for any <span class="process-math">\(k\ge 0\text{.}\)</span>
+</div>
+</div> <article class="theorem theorem-like"><h5 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">5.3.6</span><span class="period">.</span>
+</h5>
+<div class="para">
+<span class="process-math">\(h_a'(i)\defeq (a+i(i+1)/2)\mathrel{\%}{2^k}\)</span> is injective on  <span class="process-math">\(\{0,\dots,2^k-1\}\text{.}\)</span>
+</div></article><article class="hiddenproof"><a href="" class="proof-knowl original" data-knowl="./knowl/proof-8-hidden.html" title="Proof 5.3.6.1"><h5 class="heading"><span class="type">Proof<span class="period">.</span></span></h5></a></article> <article class="corollary theorem-like"><h5 class="heading">
+<span class="type">Corollary</span><span class="space"> </span><span class="codenumber">5.3.7</span><span class="period">.</span>
+</h5>
+<div class="para">
+<span class="process-math">\(h_a'(i)\defeq (a+i(i+1)/2)\mathrel{2^k}\)</span> is surjective on  <span class="process-math">\(\{0,\dots,2^k-1\}\text{.}\)</span>
+</div></article><article class="hiddenproof"><a href="" class="proof-knowl original" data-knowl="./knowl/proof-9-hidden.html" title="Proof 5.3.7.1"><h5 class="heading"><span class="type">Proof<span class="period">.</span></span></h5></a></article></section><span class="incontext"><a href="sec-ds-hash.html#paragraphs-28" class="internal">in-context</a></span>
+</body>
+</html>

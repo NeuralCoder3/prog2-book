@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><pre class="program"><code class="language-c">int x;
+int *p;
+{ int y; p = &amp;y; }
+x = *p;
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20int%20x%3B%0A%20%20int%20*p%3B%0A%20%20%7B%20int%20y%3B%20p%20%3D%20%26y%3B%20%7D%0A%20%20x%20%3D%20*p%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20">Run</a><figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">6.6.2<span class="period">.</span></span><span class="space"> </span>After the inner block has been left, the pointer <span class="process-math">\(\CVar p\)</span> is dangling (i.e. contains an invalid address) because the container of <span class="process-math">\(\CVar y\)</span> has been freed.</figcaption></figure><span class="incontext"><a href="sec-c0-type.html#listing-33" class="internal">in-context</a></span>
+</body>
+</html>

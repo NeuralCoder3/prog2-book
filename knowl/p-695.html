@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">The leave rule terminates to a state in which the top-most variable assignment is removed from the stack and all addresses added in that block are removed from the memory assignment. These are all addresses in the <em class="emphasis">image</em> of the variable assignment that is being removed.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\config{\CSeq\cleave p}{\rho_1,\dots,\rho_k,\rho_{k+1};\mu}\steprel \config{p}{\rho_1,\dots,\rho_k;\mu'}\quad\text{[Leave]}
+\end{equation*}
+</div>
+<div class="para">with</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\mu'\defeq\mu|_{\funimage{\rho_1\cup\cdots\cup\rho_k}}
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="sec-c0-scopes.html#p-695" class="internal">in-context</a></span>
+</body>
+</html>

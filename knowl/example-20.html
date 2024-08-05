@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.4.2</span><span class="period">.</span>
+</h3>
+<div class="para logical">
+<div class="para">Consider the state:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-c0-expr-eval-ptr.html">
+\begin{equation*}
+\sigma=\rho;\mu \quad \text{ with }\quad \rho\defeq\{\CVar x\mapsto\adra,\CVar y\mapsto\adrb\}\quad\mu\defeq\{\adra\mapsto\adrb,\adrb\mapsto 3\}
+\end{equation*}
+</div>
+<div class="para">Apparently, <span class="process-math">\(\CVar x\)</span> points to the same container as <span class="process-math">\(\CVar y\text{.}\)</span> <span class="process-math">\(\CVar y\)</span> points to a container that contains the value 3. Let us consider the R-evaluation of the expression <span class="process-math">\(\CBinary{-}{\CBinary{+}{\CIndir{x}}{y}}{\CConst 1}\)</span> using <a href="" class="xref" data-knowl="./knowl/def-c0-expr-eval-ptr.html" title="Definition 6.4.1: Pointer Extension to the C0 Expression Evaluation">Definition 6.4.1</a>:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-c0-expr-eval-ptr.html">
+\begin{align*}
+\denotR{\CBinary{-}{\CBinary{+}{\CIndir{\CVar x}}{\CVar y}}{\CConst 1}}\sigma\amp = \CBinary{-}{\denotR{\CBinary{+}{\CIndir{\CVar x}}{\CVar y}}\sigma}{\denotR{\CConst 1}}\sigma \\
+\amp = \CBinary{-}{\denotR{\CBinary{+}{\CIndir{\CVar x}}{\CVar y}}\sigma}{\CConst 1} \\
+\amp = \CBinary{-}{\CBinary{+}{\denotR{\CIndir{\CVar x}}\sigma}{\denotR{\CVar y}\sigma}}{\CConst 1} 
+\end{align*}
+</div>
+<div class="para">Let us consider the R-evaluation of the last two remaining terms in detail:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def-c0-expr-eval-ptr.html">
+\begin{equation*}
+\begin{array}[t]{lcl}
+\denotR{\CVar y}\sigma   \amp = \amp \mu\,\denotL{\CVar y}\sigma \\
+\amp = \amp \mu\,(\rho\,\CVar y) \\
+\amp = \amp \mu\,\adrb \\
+\amp = \amp 3
+\end{array}
+\qquad
+\begin{array}[t]{lcl}
+\denotR{\CIndir{\CVar x}}\sigma \amp = \amp \mu\,\denotL{\CIndir{\CVar x}}\sigma \\
+\amp = \amp \mu\,\denotR{\CVar x}\sigma \\
+\amp = \amp \mu\,(\mu\,\denotL{\CVar x}\sigma) \\
+\amp = \amp \mu\,(\mu\,(\rho\,\CVar x)) \\
+\amp = \amp \mu\,(\mu\,\adra) \\
+\amp = \amp \mu\,\adrb \\
+\amp = \amp 3
+\end{array}
+\end{equation*}
+</div>
+<div class="para">The final result of R-evaluating the above expression is hence 5.</div>
+</div></article><span class="incontext"><a href="sec-c0-pointers.html#example-20" class="internal">in-context</a></span>
+</body>
+</html>

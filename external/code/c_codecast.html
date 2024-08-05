@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<head lang="fr">
+  <meta charset="utf-8">
+  <title>codecast</title>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+  <style>
+    @font-face {
+      font-family: "fioi";
+      src: url(./v5/build/fonts/fioi.woff) format("woff");
+      font-weight: normal;
+      font-style: normal
+    }
+
+    .col-sm-3,
+    .col-sm-9 {
+      float: left;
+    }
+
+    @media screen and (max-width: 800px) {
+      .col-sm-3 {
+        width: 15%;
+      }
+
+      .col-sm-9 {
+        width: 85%;
+      }
+    }
+
+    @media screen and (min-width: 800px) {
+      .col-sm-3 {
+        width: 25%;
+      }
+
+      .col-sm-9 {
+        width: 75%;
+      }
+    }
+
+  </style>
+
+  <script type="text/javascript">
+    const proxy_forward = "https://cors-proxy.fringe.zone/";
+    // const Request_orig = Request;
+    // var Request_overwrite = function (url, options) {
+    //   console.log("Request: " + url);
+    //   return new Request_orig(url, options);
+    // };
+
+    // window.Request = Request_overwrite;
+
+    const XMLHttpRequest_orig = XMLHttpRequest;
+    const XMLHttpRequest_overwrite = function () {
+      var xhr = new XMLHttpRequest_orig();
+      var open_orig = xhr.open;
+      xhr.open = function (method, url, async, user, password) {
+        console.log("XMLHttpRequest: " + url);
+        if (url === "translate") {
+          url = proxy_forward + "https://codecast.france-ioi.org/v5/translate"
+        }
+        return open_orig.apply(this, arguments);
+      };
+      return xhr;
+    };
+    window.XMLHttpRequest = XMLHttpRequest_overwrite;
+
+    // catch GET requests
+    // const fetch_orig = fetch;
+
+    // const fetch_overwrite = function (url, options) {
+    //   console.log("fetch: " + url);
+    //   return fetch_orig(url, options);
+    // };
+    // window.fetch = fetch_overwrite;
+
+
+
+    let code = `
+#include <stdio.h>
+int main() {
+  printf("Hello World!");
+  return 0;
+}
+      `.trim();
+    let autocompile = false;
+
+    let urlParams = null;
+    if (window.location.search) {
+      console.log("search:", window.location.search);
+      urlParams = new URLSearchParams(window.location.search);
+    }
+    // accept index.html#code=...&autocompile=true
+    if (window.location.hash) {
+      console.log("hash:", window.location.hash);
+      urlParams = new URLSearchParams("?" + window.location.hash.substring(1));
+    }
+
+    if (urlParams) {
+      if (urlParams.get('code')) {
+        code = urlParams.get('code');
+        autocompile = true;
+      }
+      if (urlParams.get('autocompile')) {
+        autocompile = urlParams.get('autocompile') === "true";
+      }
+    }
+
+
+    window.onload = function () {
+      const editor_tag = ".ace_text-input";
+      const editor = document.querySelector(editor_tag);
+      console.log(editor);
+      console.log("editor loaded");
+      editor.value = code;
+      editor.dispatchEvent(new Event('input', { bubbles: true }));
+      if (autocompile) {
+        setTimeout(() => {
+          // find button with inner text compile
+          const compile_button = [...document.getElementsByTagName("button")].find((button) => {
+            return button.innerText.includes("compile");
+          });
+          compile_button.click();
+          // disable "edit" button
+          setTimeout(() => {
+            const edit_button = [...document.getElementsByTagName("button")].find((button) => {
+              return button.innerText.includes("edit");
+            });
+            edit_button.disabled = true;
+          }, 1500);
+        }, 200);
+      }
+    }
+  </script>
+</head>
+
+<body id="app">
+  <div id="react-container">
+    <div style="width: 256px; height: 256px; margin: 0 auto;"><img
+        src="https://codecast.france-ioi.org/v5/assets/loading.gif"></div>
+  </div>
+  <script type="text/javascript" src="https://codecast.france-ioi.org/v5/build/vendor.js"></script>
+  <script type="text/javascript" src="https://codecast.france-ioi.org/v5/build/index.js"></script>
+  <script type="text/javascript">
+    Codecast.start({
+      "start": "sandbox",
+      "baseUrl": "https://codecast.france-ioi.org/v5"
+    })
+  </script>
+</body>

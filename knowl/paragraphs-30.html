@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Abort.</span></h4> <div class="para logical">
+<div class="para">Aborting the program means that it doesn't <em class="emphasis">properly</em> terminate (refer to <a href="" class="xref" data-knowl="./knowl/thm-c0-term.html" title="Remark 6.3.7: Kinds of Termination">Remark 6.3.7</a> and <a href="" class="xref" data-knowl="./knowl/def-corr-partial.html" title="Definition 7.1.7: Partial Correctness">Definition 7.1.7</a>). Hence, in <em class="emphasis">no</em> state does the program <span class="process-math">\(\CAbort\)</span> terminate in a state that would satisfy any postcondition. Therefore, for any postcondition <span class="process-math">\(Q\)</span> the Hoare triple of <span class="process-math">\(\CAbort\)</span> is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-c0-term.html ./knowl/def-corr-partial.html">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{}
+\LeftLabel{[Abort]}
+\UnaryInfC{$\vdash\hoare {\lfalse}{\CAbort}{Q}$}
+\end{prooftree}
+\end{equation*}
+</div>
+</div></section><span class="incontext"><a href="sec-corr-hoare.html#paragraphs-30" class="internal">in-context</a></span>
+</body>
+</html>

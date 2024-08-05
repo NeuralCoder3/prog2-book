@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.1.7</span><span class="period">.</span><span class="space"> </span><span class="title">Partial Correctness.</span>
+</h3> <div class="para logical">
+<div class="para">A program <span class="process-math">\(p\)</span> is <em class="emphasis">partially</em> correct with respect to a specification <span class="process-math">\((P,Q)\)</span> if for every model <span class="process-math">\(\sigma\)</span> of <span class="process-math">\(P\)</span> it either properly terminates in a state <span class="process-math">\(\sigma'\)</span> that satisfies <span class="process-math">\(Q\)</span> or diverges. More formally:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(\sigma\models P)\limp\left(\forall p'~\sigma'.\config p\sigma\terminates\config {p'}{\sigma'}\limp(p'=\varepsilon\land \sigma'\models Q)\right)
+\end{equation*}
+</div>
+<div class="para">We use the notation <span class="process-math">\(\hoare PpQ\)</span> to denote partial correctness. </div>
+</div></article><span class="incontext"><a href="sec-corr-functional.html#def-corr-partial" class="internal">in-context</a></span>
+</body>
+</html>

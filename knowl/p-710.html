@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">The rule [TVar] determines the type of the expression ‘occurrence of a variable’ by looking up the type of the variable in the type environment. Constants are always int. Binary arithmetic expressions also always have the type int irrespective of the operand types. Arithmetic is only allowed for integer types. Pointer arithmetic is handled by two specific rules: [TPtrArith] to add an offset to a pointer and [TPtrDiff] to subtract two pointers of the same type. The results of comparisons are of integer type (executing them yields either 0 or 1). Pointers can also be compared. However, the operands of a comparison have to be implicitly convertible to each other: We can compare a <span class="process-math">\(\CPtr\CVoid\)</span> with a <span class="process-math">\(\CPtr\CInt\)</span> and a <span class="process-math">\(\CChar\)</span> with a <span class="process-math">\(\CInt\)</span> but not a <span class="process-math">\(\CPtr\CChar\)</span> with a <span class="process-math">\(\CPtr\CInt\text{.}\)</span> As a special case, pointers can be compared against 0 ([TPtrCmp] and [TPtrCmpN]). Additionally, [TPtrArith], [TPtrCmp], [TCmp], and [TPtrCmpN] also need variants to handle commutativity which we omit here for the sake of brevity.</div>
+<span class="incontext"><a href="sec-c0-type.html#p-710" class="internal">in-context</a></span>
+</body>
+</html>

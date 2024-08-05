@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">A program <span class="process-math">\(p\)</span> is <em class="emphasis">partially</em> correct with respect to a specification <span class="process-math">\((P,Q)\)</span> if for every model <span class="process-math">\(\sigma\)</span> of <span class="process-math">\(P\)</span> it either properly terminates in a state <span class="process-math">\(\sigma'\)</span> that satisfies <span class="process-math">\(Q\)</span> or diverges. More formally:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(\sigma\models P)\limp\left(\forall p'~\sigma'.\config p\sigma\terminates\config {p'}{\sigma'}\limp(p'=\varepsilon\land \sigma'\models Q)\right)
+\end{equation*}
+</div>
+<div class="para">We use the notation <span class="process-math">\(\hoare PpQ\)</span> to denote partial correctness. </div>
+</div>
+<span class="incontext"><a href="sec-corr-functional.html#p-747" class="internal">in-context</a></span>
+</body>
+</html>

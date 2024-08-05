@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">In contrast, Horner's method evaluates the polynomial with <span class="process-math">\(n\)</span> multiplications. It relies on successively factoring out <span class="process-math">\(x\)</span> in the term above, giving:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+p(x)=a_0+x(a_1+\cdots +x(a_{n-2}+x(a_{n-1}+a_nx)\cdots))
+\end{equation*}
+</div>
+<div class="para">This becomes more palpable when written down using tail-recursive <a href="" class="fn-knowl original" data-knowl="./knowl/fn-7-hidden.html" title="Footnote 7"><sup> 7 </sup></a> equations:</div>
+<div class="displaymath process-math">
+\begin{align*}
+p'(x,0,r) \amp = r\cdot x + a_0\\
+p'(x,i,r) \amp = p'(x, i-1, r\cdot x + a_i)\text{ for }i&gt;0
+\end{align*}
+</div>
+<div class="para">with</div>
+<div class="displaymath process-math">
+\begin{equation*}
+p(x)=p'(x, n, 0)
+\end{equation*}
+</div>
+</div>
+<span class="incontext"><a href="section-18.html#p-209" class="internal">in-context</a></span>
+</body>
+</html>

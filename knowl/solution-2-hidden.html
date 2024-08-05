@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><div class="solution solution-like">
+<div class="para">In total, there are 16 different possibilities for boolean functions with two arguments: Since <span class="process-math">\(f(a,b)\)</span> takes two arguments, each of which can be either <span class="process-math">\(0\)</span> or <span class="process-math">\(1\text{,}\)</span> there are exactly <span class="process-math">\(4\)</span> possible different inputs. For each of these inputs there are 2 different possible results: <span class="process-math">\(0\)</span> and <span class="process-math">\(1\text{.}\)</span> This means in total we can find <span class="process-math">\(2^4 = 16\)</span> functions. All of  functions can be represented only using and, or, and negation, as follows:</div> <div class="para logical">
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{|c||c|c|c|c|c|c|c|c|}
+\hline
+f(0,0) \amp 0 \amp 1 \amp 0 \amp 1 \amp 0 \amp 1 \amp 0 \amp 1 \\
+f(0,1) \amp 0 \amp 0 \amp 1 \amp 1 \amp 0 \amp 0 \amp 1 \amp 1 \\
+f(1,0) \amp 0 \amp 0 \amp 0 \amp 0 \amp 1 \amp 1 \amp 1 \amp 1 \\
+f(1,1) \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \amp 0 \\
+\hline
+f(a,b) \amp a \band \bneg{a} \amp \bneg{a} \band \bneg{b} \amp \bneg{a} \band b \amp \bneg{a} \amp a \band \bneg{b} \amp \bneg{b} \amp (a \band \bneg{b}) \bor (b \band \bneg{a})\amp \bneg{a} \bor \bneg{b}\\
+\hline
+\end{array}
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{|c||c|c|c|c|c|c|c|c|}
+\hline
+f(0,0) \amp 0 \amp 1 \amp 0 \amp 1 \amp 0 \amp 1 \amp 0 \amp 1 \\
+f(0,1) \amp 0 \amp 0 \amp 1 \amp 1 \amp 0 \amp 0 \amp 1 \amp 1 \\
+f(1,0) \amp 0 \amp 0 \amp 0 \amp 0 \amp 1 \amp 1 \amp 1 \amp 1 \\
+f(1,1) \amp 1 \amp 1 \amp 1 \amp 1 \amp 1 \amp 1 \amp 1 \amp 1 \\
+\hline
+f(a,b) \amp a \band b \amp (a \band b) \bor (\bneg{a} \band \bneg{b}) \amp b \amp b \bor \bneg{a} \amp a \amp a \bor \bneg{b} \amp a \bor b \amp a \bor \bneg a \\
+\hline
+\end{array}
+\end{equation*}
+</div>
+</div> <div class="para">Now that we have shown that every boolean function with two arguments can be represented with and, not, and or and that we have shown in exercise 6 that and and or can be expressed with nand, the only thing left to show is that not can also be expressed using only nand.</div> <div class="para logical"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{|c|c|c|}
+\hline
+a \amp \bneg{a} \amp \bneg{a \band a} \\
+\hline
+0 \amp 1 \amp 1 \\
+1 \amp 0 \amp 0 \\
+\hline
+\end{array}
+\end{equation*}
+</div></div> <div class="para">In conclusion, we have now shown that and, or and not can be expressed using only nand, because we have also shown that every boolean function with two arguments can be represented by and, or and not we can conclude that nand is universal.</div>
+</div></body>
+</html>

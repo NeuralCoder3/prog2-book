@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">To keep it simple, we only consider integer variables for now. This means that, in contrast to real C, we do not allow address arithmetic. So in every container there is only a single value. Therefore, we can model containers as a partial map from addresses to values:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\Addr\pto\Val\cup\{\indetval\}
+\end{equation*}
+</div>
+<div class="para">We call that map <dfn class="terminology">memory assignment</dfn>.  The value <span class="process-math">\(\indetval\)</span> is the undefined value which is the content of a container before the container is first assigned a value. Note that the memory assignment is also a a partial map. If some address is not in the domain of a memory assignment, this means that there (currently) does not exist a container with that address.</div>
+</div>
+<span class="incontext"><a href="sec-c0-sem.html#p-642" class="internal">in-context</a></span>
+</body>
+</html>

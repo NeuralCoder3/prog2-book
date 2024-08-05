@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">enum { jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec };
+
+int days_per_month(unsigned month, bool is_leap_year) {
+    assert (month &lt; 12);
+    switch (month) {
+    case jan:
+    case mar:
+    case may:
+    case jul:
+    case aug:
+    case oct:
+    case dec:
+        return 31;
+    case feb:
+        return 28 + is_leap_year;
+    default:
+        return 30;
+    }
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20enum%20%7B%20jan%2C%20feb%2C%20mar%2C%20apr%2C%20may%2C%20jun%2C%20jul%2C%20aug%2C%20sep%2C%20oct%2C%20nov%2C%20dec%20%7D%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20days_per_month(unsigned%20month%2C%20bool%20is_leap_year)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20assert%20(month%20%3C%2012)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20switch%20(month)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20jan%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20mar%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20may%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20jul%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20aug%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20oct%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20dec%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%2031%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20case%20feb%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%2028%20%2B%20is_leap_year%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20default%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%2030%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">4.7.2<span class="period">.</span></span><span class="space"> </span>Example program using a switch-statement with an enumeration type. The <code class="code-inline tex2jax_ignore">assert</code> statement in the first line of the function body validates when executed that the function is called with a number corresponding to a valid month and aborts the execution if that is not the case.</figcaption></figure><span class="incontext"><a href="section-26.html#listing-11" class="internal">in-context</a></span>
+</body>
+</html>

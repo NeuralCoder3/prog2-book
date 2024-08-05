@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="li"><h4 class="heading">
+<span class="type">Item</span><span class="period">.</span>
+</h4>The while loop <span class="process-math">\(\CWhileInv esI\text{:}\)</span> We need to prove that <span class="process-math">\(\vdash\hoare {\hpc \denot{\CWhileInv esI}\,Q}{\CWhileInv esI}Q\)</span> with <span class="process-math">\(\hpc s\,Q=I\text{.}\)</span> By induction, we have that the rule<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\hvc s\,I$}
+\UnaryInfC{$\vdash\hoare{\hpc s\,I}sI$}
+\end{prooftree}
+\end{equation*}
+</div>is sound. We use this to derive our proof goal using the following derivation:<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$I\land e\limp\hpc s\,I$}
+\AxiomC{$\hvc s\,I$}
+\UnaryInfC{$\vdash\hoare{\hpc s\,I}sI$}
+\LeftLabel{[Conseq]$\qquad\quad$}
+\BinaryInfC{$\vdash\hoare{I\land e}sI$}
+\LeftLabel{[While]}
+\UnaryInfC{$\vdash\hoare I{\CWhileInv esI}{\neg e\land I}$}
+\AxiomC{$\neg e\land I\limp Q$}
+\LeftLabel{[Conseq]$\qquad\quad$}
+\BinaryInfC{$\vdash\hoare I{\CWhileInv esI}Q$}
+\end{prooftree}
+\end{equation*}
+</div>In that derivation, we used the consequence rule twice and generate two additional verification conditions: <span class="process-math">\(I\land e\limp\hpc s\,I\)</span> and <span class="process-math">\(\neg e\land I\limp Q\)</span> which is reflected in the definition of <span class="process-math">\(\hvc\text{.}\)</span></article><span class="incontext"><a href="sec-corr-hoare.html#li-90" class="internal">in-context</a></span>
+</body>
+</html>

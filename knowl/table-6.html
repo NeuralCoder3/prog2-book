@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="table table-like"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">4.8.5<span class="period">.</span></span><span class="space"> </span>Operators that are evaluated lazily</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b1 r1 l0 t0 lines">Operator</td>
+<td class="l m b1 r1 l0 t0 lines">Signature</td>
+<td class="l m b1 r0 l0 t0 lines">Behavior</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore">e ? t : f</code></td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{int} \times T \times T \to T\)</span></td>
+<td class="l m b0 r0 l0 t0 lines">if <code class="code-inline tex2jax_ignore">e</code> evaluates to <span class="process-math">\(0\text{,}\)</span> evaluate <code class="code-inline tex2jax_ignore">f</code>,</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore"></code></td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\)</span></td>
+<td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\quad\)</span>and <code class="code-inline tex2jax_ignore">t</code> otherwise</td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore">e1 &amp;&amp; e2</code></td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{int} \times \mathtt{int} \to \mathtt{int}\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">e1 == 0 ? 0 : e2</code></td>
+</tr>
+<tr>
+<td class="l m b0 r1 l0 t0 lines"><code class="code-inline tex2jax_ignore">e1 || e2</code></td>
+<td class="l m b0 r1 l0 t0 lines"><span class="process-math">\(\mathtt{int} \times \mathtt{int} \to \mathtt{int}\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">e1 != 0 ? 1 : e2</code></td>
+</tr>
+</table></div></figure><span class="incontext"><a href="sec-c-expr.html#table-6" class="internal">in-context</a></span>
+</body>
+</html>

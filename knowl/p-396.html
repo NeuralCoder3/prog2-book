@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para">It is important to not copy more characters than fit into the field. We realize this here with the <code class="code-inline tex2jax_ignore">snprintf</code> function with the size <code class="code-inline tex2jax_ignore">sizeof(p-&gt;name)</code>. If we copied the string without ensuring that the field size is respected, we would encounter undefined behavior (see <a href="sec-c-undef.html" class="internal" title="Section 4.15: Undefined Behavior">Section 4.15</a>) when the function is called with too large strings. We can use <code class="code-inline tex2jax_ignore">sizeof</code> here because the type of <code class="code-inline tex2jax_ignore">p-&gt;name</code> here is <code class="code-inline tex2jax_ignore">char[16]</code> and not <code class="code-inline tex2jax_ignore">char *</code>. The value of <code class="code-inline tex2jax_ignore">sizeof(p-&gt;name)</code> is therefore <span class="process-math">\(16\text{,}\)</span> rather than the size of a pointer.</div>
+<span class="incontext"><a href="sec-c-structs.html#p-396" class="internal">in-context</a></span>
+</body>
+</html>

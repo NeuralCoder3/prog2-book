@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Genericity.</span></h4> <div class="para">With respect to genericity, the linked list implementation we discussed here suffers from similar problems as the array lists discussed in the previous section: There is no way to specify the list node data structure <em class="emphasis">parametric</em> to the data type of the payload. C forces us to give a concrete type like <code class="code-inline tex2jax_ignore">int</code> which we used in the discussion above. Similar to array lists, void pointer genericity can be applied, making the elements void pointers to some data.</div> <div class="para">Another way that is also common in practice is to remove the <code class="code-inline tex2jax_ignore">element</code> field from the list node struct and make this struct a member of the element data type like so:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">typedef struct {
+  char* name;
+  char* surname;
+  struct {
+    int day, month, year;
+  } birthday;
+  list_node_t list;
+} person_t;
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20typedef%20struct%20%7B%0A%20%20%20%20char*%20name%3B%0A%20%20%20%20char*%20surname%3B%0A%20%20%20%20struct%20%7B%0A%20%20%20%20%20%20int%20day%2C%20month%2C%20year%3B%0A%20%20%20%20%7D%20birthday%3B%0A%20%20%20%20list_node_t%20list%3B%0A%20%20%7D%20person_t%3B%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">The advantage is that the list functions can be generic, i.e. independent of the payload data structure. The drawback is that the <code class="code-inline tex2jax_ignore">person_t</code> gets “contaminated” with the next pointer that is actually not part of a person.</div></section><span class="incontext"><a href="sec-ds-lists.html#paragraphs-17" class="internal">in-context</a></span>
+</body>
+</html>

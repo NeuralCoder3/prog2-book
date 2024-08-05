@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">In this section, we introduce two functions</div>
+<div class="displaymath process-math">
+\begin{align*}
+\hpc \amp:(\Stmt\cup\Prg)\to\Assert\to\Assert\\
+\hvc \amp:(\Stmt\cup\Prg)\to\Assert\to\powerset{\Assert}
+\end{align*}
+</div>
+<div class="para">that determine, given a postcondition <span class="process-math">\(Q\text{,}\)</span> for each statement or program, a precondition and a set of verification conditions such that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$\hvc q\,Q$}
+\UnaryInfC{$\vdash\hoare {\hpc q\,Q}qQ$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(q\)</span> is either a statement or a program. We can use such rules together with the consequence rule to prove a program correct with respect to a specification <span class="process-math">\((P,Q)\)</span> in the following way:</div>
+<div class="displaymath process-math">
+\begin{equation}
+\begin{prooftree}
+\AxiomC{$P\limp\hpc q\,Q$}
+\AxiomC{$\hvc q\,Q$}
+\UnaryInfC{$\vdash\hoare{\hpc q\,Q}qQ$}
+\BinaryInfC{$\vdash\hoare PqQ$}
+\end{prooftree}\tag{7.4}
+\end{equation}
+</div>
+<div class="para">The idea behind this is that the function <span class="process-math">\(\hpc\)</span> determines a precondition that describes the states under which an execution of <span class="process-math">\(q\)</span> properly terminates (if it terminates at all) in a state that satisfies a given postcondition <span class="process-math">\(Q\text{.}\)</span> One can indeed show that except for the while loop, the function <span class="process-math">\(\hpc\)</span> gives the <dfn class="terminology">weakest precondition</dfn>, i.e. the precondition that describes <em class="emphasis">exactly those states</em> for which the program terminates properly in a state that satisfies the postcondition <span class="process-math">\(Q\text{.}\)</span>
+</div>
+</div>
+<span class="incontext"><a href="sec-corr-hoare.html#p-850" class="internal">in-context</a></span>
+</body>
+</html>

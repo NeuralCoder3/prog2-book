@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">6.3.8</span><span class="period">.</span>
+</h4>
+<div class="para">consider the following C0 program and a piece of MIPS code a hypothetical C0 compiler has generated for our program.</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;">
+<pre class="program"><code class="language-c">if (y == 0)
+    x = 42;
+while (x != 0)
+    if (x == 42)
+        abort();
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0Aif%20(y%20%3D%3D%200)%0A%20%20%20%20x%20%3D%2042%3B%0Awhile%20(x%20!%3D%200)%0A%20%20%20%20if%20(x%20%3D%3D%2042)%0A%20%20%20%20%20%20%20%20abort()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<div class="sbspanel top" style="width:50%;">
+<pre class="program"><code class="language-nasm">      li   $t0 42
+      bnez $a1 L2
+      move $a0 $t0
+      b    L2
+L1:   bne  $a0 $t0 L2
+      jal  abort
+L2:   bnez $a0 L1
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%20%20li%20%20%20%24t0%2042%0A%20%20%20%20%20%20bnez%20%24a1%20L2%0A%20%20%20%20%20%20move%20%24a0%20%24t0%0A%20%20%20%20%20%20b%20%20%20%20L2%0AL1%3A%20%20%20bne%20%20%24a0%20%24t0%20L2%0A%20%20%20%20%20%20jal%20%20abort%0AL2%3A%20%20%20bnez%20%24a0%20L1%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+</div></div> <div class="para">Now let us consider some of the executions of that program on different states. The variable x is only written if y is 0. This means that the C0 program gets stuck when trying to evaluate the loop condition on all starting states in which y is unequal to 0. However, depending on the contents of the registers <code class="code-inline tex2jax_ignore">$a0</code> (parameter x) and <code class="code-inline tex2jax_ignore">$a1</code> (parameter y), the machine code program may terminate, abort or diverge.</div></article><span class="incontext"><a href="sec-c0-sem.html#example-16" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">factorial: factorial.o main.o
+	cc -o $@ $^
+
+main.o: main.c factorial.h
+factorial.o: factorial.c factorial.h
+
+%.o: %.c
+	cc -o $@ -c $&lt;
+
+clean:
+	rm -f factorial *.o
+</code></pre></div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">4.5.6<span class="period">.</span></span><span class="space"> </span>A simple <code class="code-inline tex2jax_ignore">Makefile</code> for the factorial program.</figcaption></figure><span class="incontext"><a href="sec-c-tu.html#listing-9" class="internal">in-context</a></span>
+</body>
+</html>

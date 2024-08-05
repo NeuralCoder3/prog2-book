@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h5 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.4.7</span><span class="period">.</span>
+</h5>
+<div class="para">Let us consider an example here as well. We subtract <span class="process-math">\(\CVar y\)</span> from <span class="process-math">\(\CVar x\)</span> until <span class="process-math">\(\CVar x\)</span> becomes less than <span class="process-math">\(\CVar y\text{.}\)</span> At the same time, we count how many times we subtracted <span class="process-math">\(\CVar y\)</span> in <span class="process-math">\(q\text{.}\)</span> In the end, <span class="process-math">\(\CVar q\)</span> is the quotient of <span class="process-math">\(\CVar x\)</span> divided by <span class="process-math">\(\CVar y\)</span> and <span class="process-math">\(\CVar x\)</span> contains the remainder.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{[Assign]}
+\UnaryInfC{$\vdash\hoare{P}{\CAssnVV q0}{I}$}
+\AxiomC{$\mathsf{Tree}_W$}
+\RightLabel{[SeqS]}
+\BinaryInfC{$\vdash\hoare{\underbrace{X=x}_{=P}}{\CAssnVV q0 \underbrace{\CWhile {\CVar x\geq \CVar y} {\CBlock{\CAssign{\CVar x}{\CVar x-\CVar y}\CAssign{\CVar q}{\CVar q+\CConst 1}}}}_{\eqdef W}}{\underbrace{\underbrace{\CVar q\cdot \CVar y+\CVar x=\CVar X}_{=I}\land \CVar x\lt \CVar y}_{=Q}}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="para">For better readability, we split off a part of the proof tree into a separate part designated by <span class="process-math">\(\mathsf{Tree}_W\text{.}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{prooftree}
+\AxiomC{$I\land \CVar x\geq \CVar y\Rightarrow R[\CVar x-\CVar y/\CVar x]$}
+\AxiomC{}
+\RightLabel{[Assign]}
+\UnaryInfC{$\vdash\hoare{R[\CVar x-\CVar y/\CVar x]}{\CAssign{\CVar x}{\CVar x-\CVar y}}{R}$}
+\RightLabel{[Csq]}
+\BinaryInfC{$\vdash\hoare{I\land \CVar x\geq \CVar y}{\CAssign{\CVar x}{\CVar x-\CVar y}}{R}$}
+\AxiomC{}
+\RightLabel{[Assign]}
+\UnaryInfC{$\vdash\hoare{R}{\CAssign{\CVar q}{\CVar q+\CConst 1}}{I}$}
+\RightLabel{[SeqS]}
+\BinaryInfC{$\vdash\hoare{I \land \CVar x\geq \CVar y}{\CAssign{\CVar x}{\CVar x-\CVar y}\CAssign{\CVar q}{\CVar q+\CConst 1}}{I}$}
+\RightLabel{[Block]}
+\UnaryInfC{$\vdash\hoare{I \land \CVar x\geq \CVar y}{\CBlock{\CAssign{\CVar x}{\CVar x-\CVar y}\CAssign{\CVar q}{\CVar q+\CConst 1}}}{I}$}
+\RightLabel{[While]}
+\UnaryInfC{$\vdash\hoare{I}{W}{I\land \CVar x \lt \CVar y}$}
+\end{prooftree}
+\end{equation*}
+</div>
+<div class="para">For the correctness proof, we need to remember the original value of <span class="process-math">\(x\)</span> with a ghost variable. The invariant <span class="process-math">\(\CVar q\cdot \CVar y + \CVar x = \CVar X\)</span> is conveniently also the postcondition of the program together with the fact that the remainder is smaller than the divisor. Therefore, we do not need the consequence rule for the while loop.</div> <div class="para">Let us go through the proof from right to left. After the loop, the condition is false. Therefore, we know <span class="process-math">\(\CVar x\lt \CVar y\text{.}\)</span> It remains to show that the invariant <span class="process-math">\(\CVar q\cdot \CVar y + \CVar x = \CVar X\)</span> is true before the loop was entered and in each iteration of the loop. We can do this by using the [While] rule.</div> <div class="para">Before and after each iteration of the loop, <span class="process-math">\(\CVar q\)</span> contains the count of how many times we subtracted <span class="process-math">\(\CVar y\)</span> from <span class="process-math">\(\CVar x\text{.}\)</span> In the loop, we subtract <span class="process-math">\(\CVar y\)</span> from <span class="process-math">\(\CVar x\)</span> one additional time and increase <span class="process-math">\(\CVar q\)</span> by one. By doing this, we invalidate that invariant for a moment in the loop body but restore it afterward before reaching the end of the loop body. The intermediate condition <span class="process-math">\(R\)</span> is true at the point before <span class="process-math">\(\CVar q\)</span> is increased but after <span class="process-math">\(\CVar y\)</span> is subtracted from <span class="process-math">\(\CVar x\text{.}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{gather*}
+R = I[\CVar q+1/\CVar q] = (\CVar q\cdot \CVar y + \CVar x + \CVar y = \CVar X)
+\end{gather*}
+</div>
+<div class="para logical">
+<div class="para">By applying the [Assign] rule to <span class="process-math">\(R\text{,}\)</span> we get the back to the invariant:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+I = R[\CVar x-\CVar y/\CVar x] = (\CVar q\cdot \CVar y + \CVar x - \CVar y + \CVar y = \CVar X) = (\CVar q \cdot \CVar y +\CVar x = \CVar X)
+\end{gather*}
+</div>
+</div> <div class="para logical">
+<div class="para">Lastly, it remains to show that the invariant was satisfied before the loop was entered. This is done by using the [Assign] rule for the first assignment.</div>
+<div class="displaymath process-math">
+\begin{gather*}
+P = I[\CConst 0/\CVar q] = (\CConst 0\cdot \CVar y + \CVar x = \CVar X) = (\CVar x = \CVar X)
+\end{gather*}
+</div>
+</div></article><span class="incontext"><a href="sec-corr-hoare.html#ex-corr-hoare-while" class="internal">in-context</a></span>
+</body>
+</html>

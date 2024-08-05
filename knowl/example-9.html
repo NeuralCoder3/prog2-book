@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.13.4</span><span class="period">.</span><span class="space"> </span><span class="title">Initialization.</span>
+</h4> <div class="para">It is a common pattern to define for each struct a function that properly initializes it. The following function initializes the version of <code class="code-inline tex2jax_ignore">struct person</code> where <code class="code-inline tex2jax_ignore">name</code> and <code class="code-inline tex2jax_ignore">surname</code> are aggregated:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">person_t *person_init(person_t *p, date_t const *d,
+                      char const *name, char const *surname)
+{
+    p-&gt;date = *d;
+    p-&gt;name = name;
+    p-&gt;surname = surname;
+    return p;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20person_t%20*person_init(person_t%20*p%2C%20date_t%20const%20*d%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20char%20const%20*name%2C%20char%20const%20*surname)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p-%3Edate%20%3D%20*d%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p-%3Ename%20%3D%20name%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p-%3Esurname%20%3D%20surname%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20p%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">Such initialization functions, which are also called <dfn class="terminology">constructors</dfn>, usually expect a pointer to an uninitialized struct container. This makes the constructor independent of how the struct is allocated: as a local variable, a global one, or dynamically:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">person_t global_p;
+void person_test() {
+    person_t local_p;
+    person_t *heap_p;
+
+    heap_p = malloc(sizeof(*heap_p));
+
+    person_init(&amp;global_p, /* ... */);
+    person_init(&amp;local_p, /* ... */);
+    person_init(heap_p, /* ... */);
+
+    free(heap_p);
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20person_t%20global_p%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20void%20person_test()%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20person_t%20local_p%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20person_t%20*heap_p%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20heap_p%20%3D%20malloc(sizeof(*heap_p))%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20person_init(%26global_p%2C%20%2F*%20...%20*%2F)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20person_init(%26local_p%2C%20%2F*%20...%20*%2F)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20person_init(heap_p%2C%20%2F*%20...%20*%2F)%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20free(heap_p)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">If we incorporate the <code class="code-inline tex2jax_ignore">name</code> and <code class="code-inline tex2jax_ignore">surname</code> fields by composition instead of aggregation, we need to copy the character sequences into the struct:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">person_t *person_init(person_t *p, date_t const *d,
+                      char const *name, char const *surname)
+{
+    p-&gt;date = *d;
+    snprintf(p-&gt;name,    sizeof(p-&gt;name),    "%s", name);
+    snprintf(p-&gt;surname, sizeof(p-&gt;surname), "%s", surname);
+    return p;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20person_t%20*person_init(person_t%20*p%2C%20date_t%20const%20*d%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20char%20const%20*name%2C%20char%20const%20*surname)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20p-%3Edate%20%3D%20*d%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20snprintf(p-%3Ename%2C%20%20%20%20sizeof(p-%3Ename)%2C%20%20%20%20%22%25s%22%2C%20name)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20snprintf(p-%3Esurname%2C%20sizeof(p-%3Esurname)%2C%20%22%25s%22%2C%20surname)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20p%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">It is important to not copy more characters than fit into the field. We realize this here with the <code class="code-inline tex2jax_ignore">snprintf</code> function with the size <code class="code-inline tex2jax_ignore">sizeof(p-&gt;name)</code>. If we copied the string without ensuring that the field size is respected, we would encounter undefined behavior (see <a href="sec-c-undef.html" class="internal" title="Section 4.15: Undefined Behavior">Section 4.15</a>) when the function is called with too large strings. We can use <code class="code-inline tex2jax_ignore">sizeof</code> here because the type of <code class="code-inline tex2jax_ignore">p-&gt;name</code> here is <code class="code-inline tex2jax_ignore">char[16]</code> and not <code class="code-inline tex2jax_ignore">char *</code>. The value of <code class="code-inline tex2jax_ignore">sizeof(p-&gt;name)</code> is therefore <span class="process-math">\(16\text{,}\)</span> rather than the size of a pointer.</div></article><span class="incontext"><a href="sec-c-structs.html#example-9" class="internal">in-context</a></span>
+</body>
+</html>

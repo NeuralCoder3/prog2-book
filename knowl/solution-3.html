@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<div class="solution solution-like">
+<h4 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">4.8.6.1</span><span class="period">.</span>
+</h4>
+<div class="para"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">unsigned int f1(unsigned int n, unsigned int k) {
+  assert(k &lt; 32);
+  unsigned int a = 1 &lt;&lt; k;
+  return n ^ a;
+}
+
+unsigned int f2(unsigned int n, unsigned int k) {
+  assert(k &lt; 32);
+  unsigned int a = 1 &lt;&lt; k;
+  return n | a;
+}
+
+unsigned int f3(unsigned int n, unsigned int k) {
+  assert(k &lt; 32);
+  unsigned int a = (unsigned int)1 &lt;&lt; k;
+  return n &amp; ~a;
+}
+
+unsigned int f4(unsigned int n, unsigned int k) {
+  assert(0 &lt; k &amp;&amp; k &lt; 32);
+  unsigned int s = 32;
+  return (n &lt;&lt; k) | (n &gt;&gt; (s - k));
+}
+
+unsigned int f5(unsigned int n, unsigned int k)
+{
+  assert(0 &lt; k &amp;&amp; k &lt; 32);
+  unsigned int s = 32;
+  return (n &lt;&lt; (s - k)) | (n &gt;&gt; k);
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=unsigned%20int%20f1(unsigned%20int%20n%2C%20unsigned%20int%20k)%20%7B%0A%20%20assert(k%20%3C%2032)%3B%0A%20%20unsigned%20int%20a%20%3D%201%20%3C%3C%20k%3B%0A%20%20return%20n%20%5E%20a%3B%0A%7D%0A%0Aunsigned%20int%20f2(unsigned%20int%20n%2C%20unsigned%20int%20k)%20%7B%0A%20%20assert(k%20%3C%2032)%3B%0A%20%20unsigned%20int%20a%20%3D%201%20%3C%3C%20k%3B%0A%20%20return%20n%20%7C%20a%3B%0A%7D%0A%0Aunsigned%20int%20f3(unsigned%20int%20n%2C%20unsigned%20int%20k)%20%7B%0A%20%20assert(k%20%3C%2032)%3B%0A%20%20unsigned%20int%20a%20%3D%20(unsigned%20int)1%20%3C%3C%20k%3B%0A%20%20return%20n%20%26%20~a%3B%0A%7D%0A%0Aunsigned%20int%20f4(unsigned%20int%20n%2C%20unsigned%20int%20k)%20%7B%0A%20%20assert(0%20%3C%20k%20%26%26%20k%20%3C%2032)%3B%0A%20%20unsigned%20int%20s%20%3D%2032%3B%0A%20%20return%20(n%20%3C%3C%20k)%20%7C%20(n%20%3E%3E%20(s%20-%20k))%3B%0A%7D%0A%0Aunsigned%20int%20f5(unsigned%20int%20n%2C%20unsigned%20int%20k)%0A%7B%0A%20%20assert(0%20%3C%20k%20%26%26%20k%20%3C%2032)%3B%0A%20%20unsigned%20int%20s%20%3D%2032%3B%0A%20%20return%20(n%20%3C%3C%20(s%20-%20k))%20%7C%20(n%20%3E%3E%20k)%3B%0A%7D%0A">Run</a>
+</div></div>
+</div>
+<span class="incontext"><a href="sec-c-expr.html#solution-3" class="internal">in-context</a></span>
+</body>
+</html>

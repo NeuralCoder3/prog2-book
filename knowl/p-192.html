@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para">We assume here that the word to print is in register <code class="code-inline tex2jax_ignore">$t0</code>. The first instruction is a shift that shifts the word to print down by <code class="code-inline tex2jax_ignore">$t1</code> bits. <code class="code-inline tex2jax_ignore">$t1</code> is supposed to index the four bit packets in the word and will assume the values 28, 24, 20, ..., 0 during the course of execution. To this end we will setup a loop later. Now, the shifts brings the four bits to be printed “down” so that the least significant bit of the packet is at bit position 0 of <code class="code-inline tex2jax_ignore">$a0</code>. Since there may be several set bits in <code class="code-inline tex2jax_ignore">$t0</code> above the four bits we want to print, we need to clear all bits beyond bit 3 by and-ing with 15. Now, <code class="code-inline tex2jax_ignore">$a0</code> contains the four bits to print with the LSB at position 0.</div>
+<span class="incontext"><a href="bsp-.html#p-192" class="internal">in-context</a></span>
+</body>
+</html>

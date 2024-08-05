@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">A benefit of using references is that they can be implemented with a compact memory footprint. The compiler typically translates them to an address to main memory, where the object's fields are located. For copying (as it also implicitly happens at a method call), only an address needs to be copied, rather than the entire object. However, multiple references to the same object at the same time can lead to program errors that are difficult to find. The problem is that <em class="emphasis">mutating</em> objects through aliases often opposes modularity: If we, for example, write a method that modifies an object <span class="process-math">\(O\text{,}\)</span> a caller of the method needs to be aware of the fact that there may be other objects that refer to <span class="process-math">\(O\)</span> and whether they can “handle” a potentially modified object. This awareness may require knowledge about other parts of the system and therefore is often not <em class="emphasis">modular</em> because the program's correctness then depends on the correct interplay of multiple objects (of potentially different classes).</div>
+<span class="incontext"><a href="sec-java-immutable.html#p-921" class="internal">in-context</a></span>
+</body>
+</html>

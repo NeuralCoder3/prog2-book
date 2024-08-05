@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Insertion.</span></h4> <div class="para">One simple way to insert a key into binary search tree while maintaining the search tree property is to insert new nodes as leaves. to this end, we need to find the suitable current leaf under which the new node has to be inserted. This is very similar to searching for the node but instead of returning <code class="code-inline tex2jax_ignore">NULL</code> when the key was not found, we return the leaf at which the search ended. Under this leaf the new node will be added to the tree. Either as its left child if the key to be inserted is smaller than the key of the leaf or as its right child otherwise.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">binary_tree_t* binary_tree_insert(binary_tree_t** root, int k) {
+  binary_tree_t* y = NULL;
+  binary_tree_t* x = *root;
+
+  while (x) {
+    // y now points to the parent of x
+    y = x;
+    if (k == x-&gt;key)
+      return x;
+    else if (k &lt; x-&gt;key)
+      x = x-&gt;left;
+    else
+      x = x-&gt;right;
+  }
+
+  // The key is not in the tree, so allocate a new tree node
+  binary_tree_t* new_node = malloc(sizeof(*new_node));
+  new_node-&gt;left = NULL;
+  new_node-&gt;right = NULL;
+  new_node-&gt;key = k;
+
+  if (y) {
+    // y points to a leaf
+    if (k &lt; y-&gt;key)
+      y-&gt;left = new_node;
+    else 
+      y-&gt;right = new_node;
+  }
+  else {
+    // if y is NULL, then the tree is empty
+    *root = new_node;
+  }
+
+  return new_node;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%20struct%20binary_tree_t%20%7B%0A%20%20int%20key%3B%0A%20%20struct%20binary_tree_t%20*left%3B%0A%20%20struct%20binary_tree_t%20*right%3B%0A%7D%3B%0A%0Astruct%20tree_t%20%7B%0A%20%20int%20key%3B%0A%20%20struct%20tree_t%20*children%5B10%5D%3B%0A%7D%3B%0A%0Astruct%20key_value_binary_tree_t%20%7B%0A%20%20int%20key%3B%0A%20%20char*%20value%3B%0A%20%20struct%20key_value_tree_t%20*left%3B%0A%20%20struct%20key_value_tree_t%20*right%3B%0A%7D%3B%0A%0Atypedef%20struct%20binary_tree_t%20binary_tree_t%3B%0A%0Aint%20max(int%20a%2C%20int%20b)%20%7B%0A%20%20return%20a%20%3E%20b%20%3F%20a%20%3A%20b%3B%0A%7D%0A%0Aint%20binary_tree_height(binary_tree_t*%20n)%20%7B%0A%20%20if%20(n)%0A%20%20%20%20return%201%20%2B%20max(binary_tree_height(n-%3Eleft)%2C%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20binary_tree_height(n-%3Eright))%3B%0A%20%20else%0A%20%20%20%20return%200%3B%0A%7D%0A%0Abinary_tree_t*%20binary_tree_search(binary_tree_t*%20root%2C%20int%20k)%20%7B%0A%20%20if%20(!root%20%7C%7C%20root-%3Ekey%20%3D%3D%20k)%0A%20%20%20%20return%20root%3B%0A%20%20else%20if%20(k%20%3C%20root-%3Ekey)%0A%20%20%20%20return%20binary_tree_search(root-%3Eleft%2C%20k)%3B%0A%20%20else%0A%20%20%20%20return%20binary_tree_search(root-%3Eright%2C%20k)%3B%0A%7D%0A%0Abinary_tree_t*%20binary_tree_insert(binary_tree_t**%20root%2C%20int%20k)%20%7B%0A%20%20binary_tree_t*%20y%20%3D%20NULL%3B%0A%20%20binary_tree_t*%20x%20%3D%20*root%3B%0A%0A%20%20while%20(x)%20%7B%0A%20%20%20%20%2F%2F%20y%20now%20points%20to%20the%20parent%20of%20x%0A%20%20%20%20y%20%3D%20x%3B%0A%20%20%20%20if%20(k%20%3D%3D%20x-%3Ekey)%0A%20%20%20%20%20%20return%20x%3B%0A%20%20%20%20else%20if%20(k%20%3C%20x-%3Ekey)%0A%20%20%20%20%20%20x%20%3D%20x-%3Eleft%3B%0A%20%20%20%20else%0A%20%20%20%20%20%20x%20%3D%20x-%3Eright%3B%0A%20%20%7D%0A%0A%20%20%2F%2F%20The%20key%20is%20not%20in%20the%20tree%2C%20so%20allocate%20a%20new%20tree%20node%0A%20%20binary_tree_t*%20new_node%20%3D%20malloc(sizeof(*new_node))%3B%0A%20%20new_node-%3Eleft%20%3D%20NULL%3B%0A%20%20new_node-%3Eright%20%3D%20NULL%3B%0A%20%20new_node-%3Ekey%20%3D%20k%3B%0A%0A%20%20if%20(y)%20%7B%0A%20%20%20%20%2F%2F%20y%20points%20to%20a%20leaf%0A%20%20%20%20if%20(k%20%3C%20y-%3Ekey)%0A%20%20%20%20%20%20y-%3Eleft%20%3D%20new_node%3B%0A%20%20%20%20else%20%0A%20%20%20%20%20%20y-%3Eright%20%3D%20new_node%3B%0A%20%20%7D%0A%20%20else%20%7B%0A%20%20%20%20%2F%2F%20if%20y%20is%20NULL%2C%20then%20the%20tree%20is%20empty%0A%20%20%20%20*root%20%3D%20new_node%3B%0A%20%20%7D%0A%0A%20%20return%20new_node%3B%0A%7D%0A%20%0A%0Aint%20main()%20%7B%0A%20%20%20%20binary_tree_t*%20t%20%3D%20NULL%3B%0A%20%20%20%20binary_tree_insert(%26t%2C7)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C5)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C6)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C3)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C42)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C13)%3B%0A%20%20%20%20binary_tree_insert(%26t%2C65)%3B%0A%20%20%20%20binary_tree_t*%20r12%20%3D%20binary_tree_search(t%2C12)%3B%0A%20%20%20%20binary_tree_t*%20r6%20%20%3D%20binary_tree_search(t%2C16)%3B%0A%7D%0A%20%20%20">Run</a>
+</div> <div class="para">Note that insertion into a <em class="emphasis">balanced</em> binary search tree can destroy the balanced-ness property. There exist various extensions to binary search trees (such as <a class="external" href="https://en.wikipedia.org/wiki/AVL_tree" target="_blank">AVL trees</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-10-hidden.html" title="Footnote 10"><sup> 10 </sup></a> or <a class="external" href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree" target="_blank">red-black trees</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-11-hidden.html" title="Footnote 11"><sup> 11 </sup></a>) that preserve balanced-ness upon insertion and deletion by modifying the tree accordingly. These are out of scope of this book and we refer to a standard algorithms and data structures text (e.g. <a href="" class="xref" data-knowl="./knowl/cormen.html" title="Bibliographic Entry 4: Introduction to Algorithms">[4]</a>) for more detailed information.</div></section><span class="incontext"><a href="sec-ds-trees.html#paragraphs-24" class="internal">in-context</a></span>
+</body>
+</html>

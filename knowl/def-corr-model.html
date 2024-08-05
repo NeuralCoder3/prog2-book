@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.1.3</span><span class="period">.</span><span class="space"> </span><span class="title">Model.</span>
+</h3> <div class="para logical">
+<div class="para">A state <span class="process-math">\(\sigma\)</span> is a <em class="emphasis">model</em> of an assertion <span class="process-math">\(A\)</span> if it <em class="emphasis">satisfies</em> <span class="process-math">\(A\text{.}\)</span> Satisfaction is defined by the relation <span class="process-math">\(\models\)</span> which is defined inductively on the assertion language:</div>
+<div class="displaymath process-math">
+\begin{align*}
+\sigma \amp \models e              \amp\amp\text{iff }\denotR{e}\sigma\ne 0\\
+\sigma \amp \models \lneg A        \amp\amp\text{iff }\sigma\not\models A\\
+\sigma \amp \models A_1\land A_2   \amp\amp\text{iff }\sigma\models A_1\text{ and }\sigma\models A_2\\
+\sigma \amp \models \forall x.A    \amp\amp\text{iff for every }i\in\mathtt{int}\text{ there is }\sigma[i/x]\models A
+\end{align*}
+</div>
+<div class="para">All the other operators in <span class="process-math">\(\mathit{Assert}\)</span> are just syntactical sugar</div>
+<div class="displaymath process-math">
+\begin{align*}
+\lfalse\amp =x\land\lneg x  \amp \ltrue\amp =\lneg\lfalse\\
+A_1\lor A_2\amp=\lneg(\lneg A_1\land\lneg A_2) \amp A_1\limp A_2\amp=\lneg A_1\lor A_2\\
+A_1\liff A_2\amp = (A_1\limp A_2)\land(A_2\limp A_1)\amp \exists x.A \amp=\neg\forall x.\lneg A
+\end{align*}
+</div>
+<div class="para">and <span class="process-math">\(\models\)</span> is defined on them accordingly. </div>
+</div></article><span class="incontext"><a href="sec-corr-functional.html#def-corr-model" class="internal">in-context</a></span>
+</body>
+</html>

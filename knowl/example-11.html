@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.14.1</span><span class="period">.</span><span class="space"> </span><span class="title">Running Average.</span>
+</h4> <div class="para logical">
+<div class="para">We want to write a program that computes the average of all numbers from a list of files. A technique to compute the average of a list of numbers is the <em class="emphasis">running average</em>. If we know the average <span class="process-math">\(s_n\)</span> of the first <span class="process-math">\(n\)</span> numbers <span class="process-math">\(a_1, \dots, a_n\text{,}\)</span> the average of the numbers <span class="process-math">\(a_1, \dots, a_{n+1}\)</span> can be computed as:</div>
+<div class="displaymath process-math">
+\begin{equation}
+s_{n+1} = \frac n{n+1} s_n + \frac 1{n+1} a_{n+1}\tag{4.1}
+\end{equation}
+</div>
+</div> <div class="para">We start with a function that computes the average of all numbers given in <em class="emphasis">one</em> file. We assume that the input files contain textual representations of floating-point numbers that are separated by whitespace characters as in this example:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">1 2.2 3
+4.2
+1.4
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%201%202.2%203%0A%20%20%20%20%20%20%20%20%20%20%20%204.2%0A%20%20%20%20%20%20%20%20%20%20%20%201.4%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">We convert the textual representation to a <code class="code-inline tex2jax_ignore">double</code> floating-point value using <code class="code-inline tex2jax_ignore">fscanf</code> and store it into a variable <code class="code-inline tex2jax_ignore">val</code>. The average and the number of the read numbers are stored in a struct:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">typedef struct {
+    double avg;
+    unsigned n;
+} avg_t;
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20typedef%20struct%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20double%20avg%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20unsigned%20n%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20avg_t%3B%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">The function <code class="code-inline tex2jax_ignore">running_average</code> expects a file and a pointer to such a struct as arguments. It then reads as long as it can find numbers in the file and continues the average computation according to <a href="" class="xref" data-knowl="./knowl/eq-c-runavg.html" title="Equation 4.1">(4.1)</a>:</div> <aside class="aside aside-like"><div class="para">
+<code class="code-inline tex2jax_ignore">fscanf</code> returns the number of correctly decoded elements of the format string, providing us a termination criterion.</div></aside> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">avg_t *running_average(FILE* f, avg_t* avg)
+{
+    double val;
+    while (fscanf(f, "%lg", &amp;val) == 1) {
+        double   old_n = avg-&gt;n;
+        unsigned new_n = ++avg-&gt;n;
+        avg-&gt;avg = (old_n / new_n) * avg-&gt;avg + val / new_n;
+    }
+    return avg;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20avg_t%20*running_average(FILE*%20f%2C%20avg_t*%20avg)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20double%20val%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20while%20(fscanf(f%2C%20%22%25lg%22%2C%20%26val)%20%3D%3D%201)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20double%20%20%20old_n%20%3D%20avg-%3En%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20unsigned%20new_n%20%3D%20%2B%2Bavg-%3En%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20avg-%3Eavg%20%3D%20(old_n%20%2F%20new_n)%20*%20avg-%3Eavg%20%2B%20val%20%2F%20new_n%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20avg%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">The following main function accepts a list of file names as command line parameters. It opens these files one after the other and calls the <code class="code-inline tex2jax_ignore">running_average</code> function with it. Lastly, it prints the computed average. If no command line parameter is given, the standard input <code class="code-inline tex2jax_ignore">stdin</code> is used as an input file.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int main(int argc, char *argv[])
+{
+    avg_t avg;
+    avg.avg = 0.0;
+    avg.n   = 0;
+
+    if (argc == 1) {
+        running_average(stdin, &amp;avg);
+    }
+    else {
+        for (int i = 1; i &lt; argc; i++) {
+            FILE* input;
+            if ((input = fopen(argv[i], "r")) != NULL) {
+                running_average(input, &amp;avg);
+                fclose(input);
+            }
+            else {
+                fprintf(stderr, "no such file: %s\n", argv[i]);
+                return 1;
+            }
+        }
+    }
+    printf("%g\n", avg.avg);
+    return 0;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20main(int%20argc%2C%20char%20*argv%5B%5D)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20avg_t%20avg%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20avg.avg%20%3D%200.0%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20avg.n%20%20%20%3D%200%3B%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(argc%20%3D%3D%201)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20running_average(stdin%2C%20%26avg)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20else%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20for%20(int%20i%20%3D%201%3B%20i%20%3C%20argc%3B%20i%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20FILE*%20input%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20((input%20%3D%20fopen(argv%5Bi%5D%2C%20%22r%22))%20!%3D%20NULL)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20running_average(input%2C%20%26avg)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fclose(input)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20else%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20fprintf(stderr%2C%20%22no%20such%20file%3A%20%25s%5Cn%22%2C%20argv%5Bi%5D)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20printf(%22%25g%5Cn%22%2C%20avg.avg)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div></article><span class="incontext"><a href="sec-c-io.html#example-11" class="internal">in-context</a></span>
+</body>
+</html>

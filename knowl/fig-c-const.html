@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int w = 0;
+int x = 1;
+int const* p = &amp;x;       /* pointer to a const int */
+w  = *p;                 /* allowed */
+*p = w;                  /* forbidden */
+p  = &amp;w;                 /* allowed, since the pointer is not const */
+int * const q = &amp;x;      /* const pointer to an int */
+*q = 1;                  /* allowed, as the pointed-to value is not const */
+q  = &amp;w;                 /* forbidden, since the pointer is const */
+int const *const r = &amp;x; /* const pointer to const int */
+*r = 1;                  /* forbidden */
+r  = &amp;w;                 /* forbidden */
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20w%20%3D%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20x%20%3D%201%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20const*%20p%20%3D%20%26x%3B%20%20%20%20%20%20%20%2F*%20pointer%20to%20a%20const%20int%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20w%20%20%3D%20*p%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20allowed%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20*p%20%3D%20w%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20forbidden%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20p%20%20%3D%20%26w%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20allowed%2C%20since%20the%20pointer%20is%20not%20const%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20*%20const%20q%20%3D%20%26x%3B%20%20%20%20%20%20%2F*%20const%20pointer%20to%20an%20int%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20*q%20%3D%201%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20allowed%2C%20as%20the%20pointed-to%20value%20is%20not%20const%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20q%20%20%3D%20%26w%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20forbidden%2C%20since%20the%20pointer%20is%20const%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20const%20*const%20r%20%3D%20%26x%3B%20%2F*%20const%20pointer%20to%20const%20int%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20*r%20%3D%201%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20forbidden%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20r%20%20%3D%20%26w%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20forbidden%20*%2F%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">4.10.6<span class="period">.</span></span><span class="space"> </span>Different positions of <code class="code-inline tex2jax_ignore">const</code> in pointer types</figcaption></figure><span class="incontext"><a href="sec-c-ptr.html#fig-c-const" class="internal">in-context</a></span>
+</body>
+</html>

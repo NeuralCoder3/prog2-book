@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">A processor executes instructions. These instructions are just data that is stored in the memory of the computer. The <dfn class="terminology">program counter (PC)</dfn> is a register inside the CPU that contains the address of the instruction that is currently executed. In MIPS (and many other modern ISAs), each <dfn class="terminology">instruction word</dfn> is 32 bits wide. The vast majority of instructions fall in one of the following three categories:</div>
+<ol class="decimal">
+<li>
+<span class="heading"><span class="title">Computation.</span></span><div class="para">These instructions take two operands of which one is read from the register file and the other either also from the register file or directly from the instruction word. In the latter case, the operand is called an <dfn class="terminology">immediate</dfn>. Immediates allow for embedding constants into the instruction word which is needed quite often when programming (think of adding 1 to a number for example). The <dfn class="terminology">arithmetic-logical unit (ALU)</dfn> performs all the operations we have discussed in <a href="sec-arith.html" class="internal" title="Chapter 1: Computer Arithmetic">Chapter 1</a> (addition, subtraction, and, or, xor, and more) and writes the result back to the register file. The MIPS processor we look at has a <dfn class="terminology">word size</dfn> of 32 bit which means that the ALU inputs and outputs are 32 bits wide.</div>
+</li>
+<li>
+<span class="heading"><span class="title">Memory Access.</span></span><div class="para">These instructions compute an address based on the contents of a register and an optional immediate and use this address to either load or store data from or to the main memory.</div>
+</li>
+<li>
+<span class="heading"><span class="title">Control Flow.</span></span><div class="para">When the processor executes a computation or memory instruction, it increments the program counter by 4 to let it point to the instruction right after the one that is currently been executed. Control flow instructions can influence the value of the program counter in various different ways that we discuss below. Essentially, they serve the purpose to alter the program's flow which is important to implement repeated and conditional execution of code. Without that, computers would not be very powerful because they only could execute a simple list of instructions.</div>
+</li>
+</ol>
+</div>
+<span class="incontext"><a href="sec-asm-mips.html#p-121" class="internal">in-context</a></span>
+</body>
+</html>

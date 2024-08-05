@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">Reconsider the example in <a href="" class="xref" data-knowl="./knowl/rem-c-nesting.html" title="Remark 4.1.4">Remark 4.1.4</a>. When the declaration in line 2 is executed, a container large enough for an <code class="code-inline tex2jax_ignore">int</code> is being allocated for local variable <code class="code-inline tex2jax_ignore">y</code> and the value 0 is stored in it. Assume the identifier <code class="code-inline tex2jax_ignore">x</code> has a value greater than 0 so that the if condition in line 3 is true. When line 4 is executed, a new container for an <code class="code-inline tex2jax_ignore">int</code> is allocated and bound to <code class="code-inline tex2jax_ignore">y</code>. Note that the container allocated by line 2 is now no longer accessible through the identifier <code class="code-inline tex2jax_ignore">y</code>: The inner declaration of <code class="code-inline tex2jax_ignore">y</code> shadows the outer one. After the then-block has finished executing in line 5, the container for <code class="code-inline tex2jax_ignore">y</code> is deallocated and the old binding for <code class="code-inline tex2jax_ignore">y</code> is being restored. When block is left, the container allocated in line 2 will again be accessible through the indentifier <code class="code-inline tex2jax_ignore">y</code>.</div>
+<span class="incontext"><a href="sec-c-object.html#p-259" class="internal">in-context</a></span>
+</body>
+</html>

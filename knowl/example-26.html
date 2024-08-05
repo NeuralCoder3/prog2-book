@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">7.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Assertions in the Minimum Program.</span>
+</h3> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">#include &lt;assert.h&gt;
+unsigned min(unsigned x, unsigned y) {
+    unsigned m = x &lt; y ? x : y;
+    assert(m &lt;= x &amp;&amp; m &lt;= y &amp;&amp; (m == x || m == y));
+    return m;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%23include%20%3Cassert.h%3E%0Aunsigned%20min(unsigned%20x%2C%20unsigned%20y)%20%7B%0A%20%20%20%20unsigned%20m%20%3D%20x%20%3C%20y%20%3F%20x%20%3A%20y%3B%0A%20%20%20%20assert(m%20%3C%3D%20x%20%26%26%20m%20%3C%3D%20y%20%26%26%20(m%20%3D%3D%20x%20%7C%7C%20m%20%3D%3D%20y))%3B%0A%20%20%20%20return%20m%3B%0A%7D%0A%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">
+<code class="code-inline tex2jax_ignore">assert</code> evaluates the argument expression. If the resulting value is 0, then the execution aborts immediately. Hence, the program aborts very close to the error location.</div></article><span class="incontext"><a href="sec-corr-failures.html#example-26" class="internal">in-context</a></span>
+</body>
+</html>

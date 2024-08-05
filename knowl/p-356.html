@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">We can access the individual elements of an array via pointer arithmetic relative to the base address. As illustrated in the above example, we use the subscripting operator <code class="code-inline tex2jax_ignore">e[i]</code> for this purpose. The expression <code class="code-inline tex2jax_ignore">e[i]</code> is however only “syntactic sugar” for the expression <code class="code-inline tex2jax_ignore">*(e + i)</code>. If <code class="code-inline tex2jax_ignore">e</code> has type <code class="code-inline tex2jax_ignore">T*</code>, we can add an expression <code class="code-inline tex2jax_ignore">i</code> of type <code class="code-inline tex2jax_ignore">int</code> to <code class="code-inline tex2jax_ignore">e</code> and obtain another pointer value of type <code class="code-inline tex2jax_ignore">T*</code>, offset from <code class="code-inline tex2jax_ignore">e</code>. With this construct, we can create different pointers into the same container. Unfortunately, it is easy to construct invalid pointers with pointer arithmetic: For example, with the above declaration of the array <code class="code-inline tex2jax_ignore">numbers</code>, the addresses <code class="code-inline tex2jax_ignore">numbers + 100042</code> and <code class="code-inline tex2jax_ignore">numbers - 1</code> are invalid. The corresponding offsets (<span class="process-math">\(100042\)</span> and <span class="process-math">\(-1\)</span>) are outside the limits <span class="process-math">\([0;100000[\)</span> implied by the size (<span class="process-math">\(100000\)</span>) of the container. Constructing (not only accessing!) such “out-of-bounds” pointers causes undefined behavior (<a href="sec-c-undef.html" class="internal" title="Section 4.15: Undefined Behavior">Section 4.15</a>).</div>
+<span class="incontext"><a href="sec-c-ptr.html#p-356" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.4.9</span><span class="period">.</span><span class="space"> </span><span class="title">Preconditions and Verification Conditions.</span>
+</h4> <div class="para logical"><div class="displaymath process-math">
+\begin{align*}
+\hpc\,\denot{\CTerm}\,Q                 \amp = Q\\
+\hpc\,\denot{\CSeq sp}\,Q               \amp = \hpc\,s\,(\hpc\,p\,Q)\\
+\hpc\,\denot{\CAssign{\CVar x}{e}}\,Q   \amp = Q[e/\CVar x]\\
+\hpc\,\denot{\CBlock{p}}\,Q             \amp = \hpc\,p\,Q\\
+\hpc\,\denot{\CIf{e}{s_1}{s_2}}\,Q      \amp = (e\land\hpc\,s_1\,Q)\lor(\neg e\land\hpc\,s_2\,Q)\\
+\hpc\,\denot{\CWhileInv{e}{s}{I}}\,Q    \amp = I
+\end{align*}
+</div></div> <div class="para logical"><div class="displaymath process-math">
+\begin{align*}
+\hvc \denot{\CTerm}\,Q                 \amp = \{\}\\
+\hvc \denot{\CSeq sp}\,Q               \amp = \hvc s\,(\hpc\,p\,Q)\cup \hvc\,p\,Q\\
+\hvc \denot{\CAssign{\CVar x}{e}}\,Q   \amp = \{\}\\
+\hvc \denot{\CBlock{p}}\,Q             \amp = \hvc p\,Q\\
+\hvc \denot{\CIf{e}{s_1}{s_2}}\,Q      \amp = (\hvc s_1\,Q)\cup(\hvc s_2\,Q)\\
+\hvc \denot{\CWhileInv{e}{s}{I}}\,Q    \amp = \{I\land e\limp\hpc s\,I, \neg e\land I\limp Q\}\cup(\hvc s\,I)
+\end{align*}
+</div></div></article><span class="incontext"><a href="sec-corr-hoare.html#def-corr-hoare-pc" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">The program in <a href="" class="xref" data-knowl="./knowl/fig-c-ptr.html" title="Figure 4.10.2">Figure 4.10.2</a> shows how the operators <code class="code-inline tex2jax_ignore">*</code> and <code class="code-inline tex2jax_ignore">&amp;</code> are used. Let us look at the effects of the individual instructions in detail:</div>
+<ol class="decimal">
+<li><div class="para">The value <span class="process-math">\(1\)</span> is written into the container of <code class="code-inline tex2jax_ignore">x</code>.</div></li>
+<li><div class="para">The container of <code class="code-inline tex2jax_ignore">y</code> can carry addresses of <code class="code-inline tex2jax_ignore">int</code> containers. The expression <code class="code-inline tex2jax_ignore">x</code> is L-evaluable: The result is the address of the container of <code class="code-inline tex2jax_ignore">x</code>. R-evaluating the address-of operator therefore also results in this value. This address is then written to the container of <code class="code-inline tex2jax_ignore">y</code>. Without the address-of operator, the compiler would find a type error since expressions on the right side of an assignment are R-evaluated, and the R-evaluation of <code class="code-inline tex2jax_ignore">x</code> reads the value from the container of <code class="code-inline tex2jax_ignore">x</code> and does <em class="emphasis">not</em> provide its address.</div></li>
+<li><div class="para">R-evaluating the expression <code class="code-inline tex2jax_ignore">2</code> gives the value <span class="process-math">\(2\text{.}\)</span> The left side of the assignment is more exciting: The expression <code class="code-inline tex2jax_ignore">*y</code> is, by definition, L-evaluable; otherwise it could not occur on the left side of an assignment. Its value is the result of the R-evaluation of its operand. Here, this is the content of the container of <code class="code-inline tex2jax_ignore">y</code>: the address of <code class="code-inline tex2jax_ignore">x</code>. Therefore, the value <span class="process-math">\(2\)</span> is written to the container bound to <code class="code-inline tex2jax_ignore">x</code>.</div></li>
+<li><div class="para">L-evaluating <code class="code-inline tex2jax_ignore">z</code> results in the address of the container of <code class="code-inline tex2jax_ignore">z</code>, whereas R-evaluating <code class="code-inline tex2jax_ignore">y</code> gives the content of the container of <code class="code-inline tex2jax_ignore">y</code>, which is the address of <code class="code-inline tex2jax_ignore">x</code>. Consequently, the address of <code class="code-inline tex2jax_ignore">x</code> is written to the container of <code class="code-inline tex2jax_ignore">z</code>.</div></li>
+<li><div class="para">As <code class="code-inline tex2jax_ignore">z</code> contains the address of <code class="code-inline tex2jax_ignore">x</code>, the content of <code class="code-inline tex2jax_ignore">x</code>'s container is now changed to <span class="process-math">\(3\text{.}\)</span>
+</div></li>
+<li><div class="para">The interesting part is the occurrence of the dereference operator on the right side: R-evaluating <code class="code-inline tex2jax_ignore">y</code> yields the content of <code class="code-inline tex2jax_ignore">y</code>'s container, i.e. the address of <code class="code-inline tex2jax_ignore">x</code>. We have seen that the expression <code class="code-inline tex2jax_ignore">*y</code> is L-evaluable. The R-evaluation of an L-evaluable expression just reads the contents of the container whose address results from the L-evaluation. In this example, that is the content of the container of <code class="code-inline tex2jax_ignore">x</code>, <span class="process-math">\(3\text{.}\)</span> In the end, <code class="code-inline tex2jax_ignore">w</code> therefore carries the value <span class="process-math">\(3\text{.}\)</span>
+</div></li>
+</ol>
+</div>
+<span class="incontext"><a href="sec-c-ptr.html#p-349" class="internal">in-context</a></span>
+</body>
+</html>

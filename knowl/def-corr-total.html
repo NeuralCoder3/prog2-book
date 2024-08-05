@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="definition definition-like"><h3 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">7.1.6</span><span class="period">.</span><span class="space"> </span><span class="title">Total Correctness.</span>
+</h3> <div class="para logical">
+<div class="para">A program <span class="process-math">\(p\)</span> is <em class="emphasis">totally</em> correct with respect to a specification <span class="process-math">\((P,Q)\)</span> if for every model <span class="process-math">\(\sigma\)</span> of <span class="process-math">\(P\)</span> there is a model <span class="process-math">\(\sigma'\)</span> of <span class="process-math">\(Q\)</span> such that <span class="process-math">\(\config p\sigma\)</span> <em class="emphasis">properly</em> <a href="" class="xref" data-knowl="./knowl/thm-c0-term.html" title="Remark 6.3.7: Kinds of Termination">terminates 6.3.7</a> in <span class="process-math">\(\sigma'\text{.}\)</span> More formally:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm-c0-term.html">
+\begin{equation*}
+(\sigma\models P)\limp\left(\exists\sigma'.\config p\sigma\terminates\configt{\sigma'}\land\sigma'\models Q\right)
+\end{equation*}
+</div>
+<div class="para">It is customary to write the statement “Program <span class="process-math">\(p\)</span> is totally correct with respect to the specification <span class="process-math">\((P,Q)\)</span>” using a so-called <dfn class="terminology">Hoare triple</dfn><a href="" class="fn-knowl original" data-knowl="./knowl/fn-15-hidden.html" title="Footnote 15"><sup> 15 </sup></a> <span class="process-math">\(\hoaret PpQ\)</span> </div>
+</div></article><span class="incontext"><a href="sec-corr-functional.html#def-corr-total" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Synopsis.</span></h3> <div class="para logical"><ul class="disc">
+<li><div class="para">Program is just a stream of characters</div></li>
+<li><div class="para">Lexer forms “words” (called tokens) from characters and can already detect lexical errors.</div></li>
+<li><div class="para">Parser checks if token stream adheres to concrete syntax. If yes, it builds the AST, if not, it reports errors.</div></li>
+<li><div class="para">However, not all syntactically correct programs are valid C programs.</div></li>
+<li><div class="para">They can violate static semantics: types don't match.</div></li>
+<li><div class="para">Analyzing static semantics (“semantic analysis”) can detect such errors and discard erroneous programs.</div></li>
+<li><div class="para">As a side effect, it elaborates types which we need later on for code generation.</div></li>
+<li><div class="para">Language is statically type-safe if well-typed programs don't get stuck.</div></li>
+<li><div class="para">Discuss examples of C programs that are well-typed but get stuck and discuss how Java solves these problems.</div></li>
+<li><div class="para">Introduce type system for C0 (<a href="sec-c0-type.html" class="internal" title="Section 6.6: A Simple Type System (C0t)">Section 6.6</a>): relation of a type environment, an expression, and its type.</div></li>
+<li><div class="para">Define typing rules inductively over the syntax.</div></li>
+</ul></div></section><span class="incontext"><a href="section-90.html#paragraphs-96" class="internal">in-context</a></span>
+</body>
+</html>

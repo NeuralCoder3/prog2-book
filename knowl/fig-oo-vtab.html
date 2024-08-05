@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">typedef struct {
+    int  (*eval)(void* this, env_t const* e);
+    void (*print)(void* this, FILE* f);
+} exp_vtab_t;
+typedef struct { exp_vtab_t* vtab; } exp_t;
+
+// Var and Add have the same VMT, as they add no methods.
+typedef exp_vtab_t exp_add_vtab_t;
+typedef struct {
+    exp_add_vtab_t const* vtab; exp_t* opnds[2]; } exp_add_t;
+
+// Const has one more method. The methods need to be listed
+// in the same order as in exp_vtab_t.
+typedef struct {
+    int  (*eval)(void* this, env_t const* e);
+    void (*print)(void* this, FILE* f);
+    int  (*get_value)(void* this);
+} exp_const_vtab_t;
+typedef struct {
+  exp_const_vtab_t const* vtab; int value; } exp_const_t;
+
+int exp_add_eval(void* this, env_t const *e) {
+    exp_add_t* add = this;
+    exp_t* l = add-&gt;opnds[0]; exp_t* r = add-&gt;opnds[1];
+    return l-&gt;vtab-&gt;eval(l, e) + r-&gt;vtab-&gt;eval(r, e);
+}
+
+// VMT for Add
+static const exp_add_vtab_t exp_add_vtab = {
+    exp_add_eval, exp_add_print };
+
+// Constructor for Add
+exp_add_t* exp_init_add(exp_add_t* this, exp_t* l, exp_t* r) {
+    this-&gt;vtab = &amp;exp_add_vtab;
+    this-&gt;opnds[0] = l; this-&gt;opnds[1] = r;
+    return this;
+}
+
+int exp_const_eval(void* this, env_t const *e) {
+    exp_const_t* t = this;
+    return t-&gt;value;
+}
+
+// VMT for Const
+static const exp_const_vtab_t exp_const_vtab = {
+    exp_const_eval, exp_const_print, exp_const_get_value };
+
+// Constructor for Const
+exp_const_t* exp_init_const(exp_const_t* this, int value) {
+    this-&gt;vtab  = &amp;exp_const_vtab;
+    this-&gt;value = value;
+    return this;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=typedef%20struct%20%7B%0A%20%20%20%20int%20%20(*eval)(void*%20this%2C%20env_t%20const*%20e)%3B%0A%20%20%20%20void%20(*print)(void*%20this%2C%20FILE*%20f)%3B%0A%7D%20exp_vtab_t%3B%0Atypedef%20struct%20%7B%20exp_vtab_t*%20vtab%3B%20%7D%20exp_t%3B%0A%0A%2F%2F%20Var%20and%20Add%20have%20the%20same%20VMT%2C%20as%20they%20add%20no%20methods.%0Atypedef%20exp_vtab_t%20exp_add_vtab_t%3B%0Atypedef%20struct%20%7B%0A%20%20%20%20exp_add_vtab_t%20const*%20vtab%3B%20exp_t*%20opnds%5B2%5D%3B%20%7D%20exp_add_t%3B%0A%0A%2F%2F%20Const%20has%20one%20more%20method.%20The%20methods%20need%20to%20be%20listed%0A%2F%2F%20in%20the%20same%20order%20as%20in%20exp_vtab_t.%0Atypedef%20struct%20%7B%0A%20%20%20%20int%20%20(*eval)(void*%20this%2C%20env_t%20const*%20e)%3B%0A%20%20%20%20void%20(*print)(void*%20this%2C%20FILE*%20f)%3B%0A%20%20%20%20int%20%20(*get_value)(void*%20this)%3B%0A%7D%20exp_const_vtab_t%3B%0Atypedef%20struct%20%7B%0A%20%20exp_const_vtab_t%20const*%20vtab%3B%20int%20value%3B%20%7D%20exp_const_t%3B%0A%0Aint%20exp_add_eval(void*%20this%2C%20env_t%20const%20*e)%20%7B%0A%20%20%20%20exp_add_t*%20add%20%3D%20this%3B%0A%20%20%20%20exp_t*%20l%20%3D%20add-%3Eopnds%5B0%5D%3B%20exp_t*%20r%20%3D%20add-%3Eopnds%5B1%5D%3B%0A%20%20%20%20return%20l-%3Evtab-%3Eeval(l%2C%20e)%20%2B%20r-%3Evtab-%3Eeval(r%2C%20e)%3B%0A%7D%0A%0A%2F%2F%20VMT%20for%20Add%0Astatic%20const%20exp_add_vtab_t%20exp_add_vtab%20%3D%20%7B%0A%20%20%20%20exp_add_eval%2C%20exp_add_print%20%7D%3B%0A%0A%2F%2F%20Constructor%20for%20Add%0Aexp_add_t*%20exp_init_add(exp_add_t*%20this%2C%20exp_t*%20l%2C%20exp_t*%20r)%20%7B%0A%20%20%20%20this-%3Evtab%20%3D%20%26exp_add_vtab%3B%0A%20%20%20%20this-%3Eopnds%5B0%5D%20%3D%20l%3B%20this-%3Eopnds%5B1%5D%20%3D%20r%3B%0A%20%20%20%20return%20this%3B%0A%7D%0A%0Aint%20exp_const_eval(void*%20this%2C%20env_t%20const%20*e)%20%7B%0A%20%20%20%20exp_const_t*%20t%20%3D%20this%3B%0A%20%20%20%20return%20t-%3Evalue%3B%0A%7D%0A%0A%2F%2F%20VMT%20for%20Const%0Astatic%20const%20exp_const_vtab_t%20exp_const_vtab%20%3D%20%7B%0A%20%20%20%20exp_const_eval%2C%20exp_const_print%2C%20exp_const_get_value%20%7D%3B%0A%0A%2F%2F%20Constructor%20for%20Const%0Aexp_const_t*%20exp_init_const(exp_const_t*%20this%2C%20int%20value)%20%7B%0A%20%20%20%20this-%3Evtab%20%20%3D%20%26exp_const_vtab%3B%0A%20%20%20%20this-%3Evalue%20%3D%20value%3B%0A%20%20%20%20return%20this%3B%0A%7D%0A%0A">Run</a>
+</div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">8.12.1<span class="period">.</span></span><span class="space"> </span>“Object-oriented” variant in C for the example from <a href="" class="xref" data-knowl="./knowl/fig-oo-exp-java.html" title="Listing 8.10.3">Listing 8.10.3</a>.</figcaption></figure><span class="incontext"><a href="sec-java-oo-with-c.html#fig-oo-vtab" class="internal">in-context</a></span>
+</body>
+</html>

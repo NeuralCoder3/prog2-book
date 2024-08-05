@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="listing figure-like"><pre class="program"><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#include "factorial.h"
+
+int main(int argc, char *argv[]) {
+    if (argc &lt;= 1) {
+        fprintf(stderr,
+            "syntax: %s &lt;value&gt;\n",
+            argv[0]);
+        return 1;
+    }
+
+    int n = atoi(argv[1]);
+    int r = factorial(n);
+    printf("%u\n", r);
+    return 0;
+}
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%23include%20%3Cstdio.h%3E%0A%23include%20%3Cstdlib.h%3E%0A%0A%23include%20%22factorial.h%22%0A%0Aint%20main(int%20argc%2C%20char%20*argv%5B%5D)%20%7B%0A%20%20%20%20if%20(argc%20%3C%3D%201)%20%7B%0A%20%20%20%20%20%20%20%20fprintf(stderr%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%22syntax%3A%20%25s%20%3Cvalue%3E%5Cn%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20argv%5B0%5D)%3B%0A%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20int%20n%20%3D%20atoi(argv%5B1%5D)%3B%0A%20%20%20%20int%20r%20%3D%20factorial(n)%3B%0A%20%20%20%20printf(%22%25u%5Cn%22%2C%20r)%3B%0A%20%20%20%20return%200%3B%0A%7D%0A">Run</a><figcaption><span class="codenumber">(c)</span><span class="space"> </span><code class="code-inline tex2jax_ignore">main.c</code></figcaption></figure><span class="incontext"><a href="sec-c-tu.html#listing-8" class="internal">in-context</a></span>
+</body>
+</html>

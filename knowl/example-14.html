@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.15.4</span><span class="period">.</span><span class="space"> </span><span class="title">Integer Overflow.</span>
+</h4> <div class="para">The following code also originates from the Linux kernel. The type <code class="code-inline tex2jax_ignore">loff_t</code> is a signed integer type.</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int do_fallocate(..., loff_t offset, loff_t len)
+{
+    struct inode *inode = ...;
+    if (offset &lt; 0 || len &lt;= 0)
+        return -EINVAL;
+    /* Check for wrap through zero too */
+    if ((offset + len &gt; inode-&gt;i_sb-&gt;s_maxbytes)
+        || (offset + len &lt; 0))
+        return -EFBIG;
+...
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20do_fallocate(...%2C%20loff_t%20offset%2C%20loff_t%20len)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20struct%20inode%20*inode%20%3D%20...%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(offset%20%3C%200%20%7C%7C%20len%20%3C%3D%200)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20-EINVAL%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20Check%20for%20wrap%20through%20zero%20too%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20((offset%20%2B%20len%20%3E%20inode-%3Ei_sb-%3Es_maxbytes)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%7C%20(offset%20%2B%20len%20%3C%200))%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20-EFBIG%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20...%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">The code first ensures that both variables, <code class="code-inline tex2jax_ignore">offset</code> and <code class="code-inline tex2jax_ignore">len</code> are not negative. The condition <code class="code-inline tex2jax_ignore">offset + len &lt; 0</code> attempts to check whether the addition causes an overflow. However, C does not define the behavior of overflowing signed integer arithmetic. From the first if-statement, the compiler concludes that <code class="code-inline tex2jax_ignore">offset</code> and <code class="code-inline tex2jax_ignore">len</code> are not negative at the second if. Adding to non-negative integers either causes undefined behavior (if an overflow occurs), or results in a positive number. The compiler therefore optimizes the second if-statment as follows:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">...
+if (offset + len &gt; inode-&gt;i_sb-&gt;s_maxbytes)
+    return -EFBIG;
+...
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20...%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20(offset%20%2B%20len%20%3E%20inode-%3Ei_sb-%3Es_maxbytes)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20-EFBIG%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20...%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">A correct test for the overflow could look as follows:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int do_fallocate(..., loff_t offset, loff_t len)
+{
+    struct inode *inode = ...;
+    if (offset &lt; 0 || len &lt;= 0)
+        return -EINVAL;
+    /* Check for wrap through zero too */
+    if ((LOFF_T_MAX - offset &lt; len)
+        || (offset + len &gt; inode-&gt;i_sb-&gt;s_maxbytes)
+        return -EFBIG;
+...
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20do_fallocate(...%2C%20loff_t%20offset%2C%20loff_t%20len)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20struct%20inode%20*inode%20%3D%20...%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(offset%20%3C%200%20%7C%7C%20len%20%3C%3D%200)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20-EINVAL%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20Check%20for%20wrap%20through%20zero%20too%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20((LOFF_T_MAX%20-%20offset%20%3C%20len)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%7C%20(offset%20%2B%20len%20%3E%20inode-%3Ei_sb-%3Es_maxbytes)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20-EFBIG%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20...%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">Here, <code class="code-inline tex2jax_ignore">LOFF_T_MAX</code> needs to be the largest value contained in <code class="code-inline tex2jax_ignore">loff_t</code>. Ideally, one writes a function for this check to make the code more readable and to concentrate potential errors to one place:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">int loff_overflows(loff_t offset, loff_t len)
+{
+    assert(offset &gt;= 0);
+    assert(len &gt; 0);
+    return LOFF_T_MAX - offset &lt; len;
+}
+
+int do_fallocate(..., loff_t offset, loff_t len)
+{
+    struct inode *inode = ...;
+    if (offset &lt; 0 || len &lt;= 0)
+        return -EINVAL;
+    /* Check for wrap through zero too */
+    if (loff_overflows(offset, len)
+        || (offset + len &gt; inode-&gt;i_sb-&gt;s_maxbytes)
+        return -EFBIG;
+...
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20loff_overflows(loff_t%20offset%2C%20loff_t%20len)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20assert(offset%20%3E%3D%200)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20assert(len%20%3E%200)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20LOFF_T_MAX%20-%20offset%20%3C%20len%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20do_fallocate(...%2C%20loff_t%20offset%2C%20loff_t%20len)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20struct%20inode%20*inode%20%3D%20...%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(offset%20%3C%200%20%7C%7C%20len%20%3C%3D%200)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20-EINVAL%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20Check%20for%20wrap%20through%20zero%20too%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20(loff_overflows(offset%2C%20len)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%7C%20(offset%20%2B%20len%20%3E%20inode-%3Ei_sb-%3Es_maxbytes)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20-EFBIG%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20...%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div></article><span class="incontext"><a href="sec-c-undef.html#example-14" class="internal">in-context</a></span>
+</body>
+</html>

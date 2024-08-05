@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">The second column represents the so-called <dfn class="terminology">mnemonic</dfn> which is a short textual description of the opcode, i.e. the operation the instruction stands for such as <code class="code-inline tex2jax_ignore">mul</code> for multiplication or <code class="code-inline tex2jax_ignore">addiu</code> for “add a register to an immediate and ignore overflows”. The last column gives the operands of instruction. Registers are prefixed by the <code class="code-inline tex2jax_ignore">$</code> sign, e.g. <code class="code-inline tex2jax_ignore">$2</code> refers to register 2. Numbers without dollar signs represent immediates. So, <code class="code-inline tex2jax_ignore">addiu $2 $0 1</code> adds the value 1 to the contents of register 0 and stores the result in register 2. Effectively, this instruction places the value 1 into register 2 because register 0 always reads as zero. The instructions <code class="code-inline tex2jax_ignore">bgtz</code> and <code class="code-inline tex2jax_ignore">bgez</code> are control flow instructions that alter the value of the program counter. <code class="code-inline tex2jax_ignore">bgtz $4 -3</code> for example tests, if the value in register 4 is greater than zero (=gtz). If this is the case, the program counter is advanced by -3 instructions relative to the next instruction. (so, if the branch instruction is located at address 0x04000008, the pc will be set to 0x04000000.) If this is not the case, the program counter advances normally to the next instruction and the branch has no other effect. When adding a value to an address (like adding -3 to the pc in this example), this value is called an <dfn class="terminology">offset</dfn>. Branches that take offsets are called <dfn class="terminology">relative branches</dfn> whereas branches that take addresses as operands are called <dfn class="terminology">absolute branches</dfn>. <code class="code-inline tex2jax_ignore">jr</code> is an absolute branch: it sets the program counter to the contents of its operand register. A branch instruction that branches on a condition like in this example, is called a <dfn class="terminology">conditional branch</dfn>. Sometimes one also dedicates the term branch specifically to conditional branches and calls unconditional branches <dfn class="terminology">jumps</dfn>. The instruction <code class="code-inline tex2jax_ignore">bgez $0 2</code> acts as an <dfn class="terminology">unconditional branch</dfn> here. <code class="code-inline tex2jax_ignore">bgez</code> checks if the operand register is greater or equal than zero (=gez). Since the operand register here is register 0 which is always zero, the condition is always fulfilled and the instruction will branch <em class="emphasis">every time</em> it is executed making it an unconditional branch instruction, effectively. </div>
+<span class="incontext"><a href="sec-asm-asm.html#p-131" class="internal">in-context</a></span>
+</body>
+</html>

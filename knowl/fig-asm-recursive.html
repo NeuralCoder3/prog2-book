@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="figure figure-like"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel middle" style="width:50%;">
+<pre class="program"><code class="language-nasm">                  .text
+    .globl fac
+fac:
+    li     $v0 1
+    blez   $a0 end
+loop:
+
+
+
+    mul    $v0 $v0 $a0
+    addiu  $a0 $a0 -1
+    bgtz   $a0 loop
+
+
+
+
+end:
+    jr     $ra
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.text%0A%20%20%20%20.globl%20fac%0Afac%3A%0A%20%20%20%20li%20%20%20%20%20%24v0%201%0A%20%20%20%20blez%20%20%20%24a0%20end%0Aloop%3A%0A%0A%0A%0A%20%20%20%20mul%20%20%20%20%24v0%20%24v0%20%24a0%0A%20%20%20%20addiu%20%20%24a0%20%24a0%20-1%0A%20%20%20%20bgtz%20%20%20%24a0%20loop%0A%0A%0A%0A%0Aend%3A%0A%20%20%20%20jr%20%20%20%20%20%24ra%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+<div class="sbspanel middle" style="width:50%;">
+<pre class="program"><code class="language-nasm">                  .text
+    .globl fac_rec
+fac_rec:
+    li     $v0 1
+    blez   $a0 end
+
+    addiu  $sp $sp -8
+    sw     $ra 0($sp)
+    sw     $a0 4($sp)
+
+    addiu  $a0 $a0 -1
+    jal    fac_rec
+    lw     $a0 4($sp)
+    mul    $v0 $v0 $a0
+    lw     $ra 0($sp)
+    addiu  $sp $sp 8
+end:
+    jr     $ra
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://neuralcoder3.github.io/mars-mips/?code=%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.text%0A%20%20%20%20.globl%20fac_rec%0Afac_rec%3A%0A%20%20%20%20li%20%20%20%20%20%24v0%201%0A%20%20%20%20blez%20%20%20%24a0%20end%0A%0A%20%20%20%20addiu%20%20%24sp%20%24sp%20-8%0A%20%20%20%20sw%20%20%20%20%20%24ra%200(%24sp)%0A%20%20%20%20sw%20%20%20%20%20%24a0%204(%24sp)%0A%0A%20%20%20%20addiu%20%20%24a0%20%24a0%20-1%0A%20%20%20%20jal%20%20%20%20fac_rec%0A%20%20%20%20lw%20%20%20%20%20%24a0%204(%24sp)%0A%20%20%20%20mul%20%20%20%20%24v0%20%24v0%20%24a0%0A%20%20%20%20lw%20%20%20%20%20%24ra%200(%24sp)%0A%20%20%20%20addiu%20%20%24sp%20%24sp%208%0Aend%3A%0A%20%20%20%20jr%20%20%20%20%20%24ra%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">2.8.2<span class="period">.</span></span><span class="space"> </span>Tail-recursive and recursive implementation of the factorial procedure. The recursive implementation has to save the argument and the return address across the recursive call causing a stack frame to be created. The tail-recursive version does neither need a stack frame nor loads and stores to save the registers.</figcaption></figure><span class="incontext"><a href="sec-asm-call.html#fig-asm-recursive" class="internal">in-context</a></span>
+</body>
+</html>

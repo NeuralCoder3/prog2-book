@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para">Which classes should be made immutable and which should not needs to be decided on a case-by-case basis. Since we need to replicate instead of modify objects when we work with immutable classes, this can lead to allocating and initializing a large number of objects. Such operations cost time and memory. A class <code class="code-inline tex2jax_ignore">Image</code> that represents a graphical image is for instance not a likely candidate for immutability: Assume the image has <span class="process-math">\(1000\times 1000\)</span> pixels and every pixel requires four bytes. A single image then requires four megabytes of space. If we want to change a pixel in such an image, it is a bad idea to copy <span class="process-math">\(999,999\)</span> pixels to create a <em class="emphasis">new</em> image.</div>
+<span class="incontext"><a href="sec-java-immutable.html#p-925" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">8.8.4</span><span class="period">.</span>
+</h3>
+<div class="para">Consider the invocation of the method <code class="code-inline tex2jax_ignore">foo</code> in the method <code class="code-inline tex2jax_ignore">call</code>:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">class A {
+  void foo(int x, int y, float z) {}
+  void foo(boolean x, float y) {}
+  void foo(int x, float y) {}
+  void foo(long x, int y) {}
+  void call() { this.foo(2, 2); }
+}
+</code></pre></div> <div class="para logical">
+<div class="para">The argument types are <span class="process-math">\((\mathtt{int}, \mathtt{int})\text{.}\)</span> <code class="code-inline tex2jax_ignore">foo</code> has four declarations with the following signatures:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(\mathtt{int}, \mathtt{int}, \mathtt{float}), \quad(\mathtt{boolean}, \mathtt{float}), \quad(\mathtt{int}, \mathtt{float}), \quad(\mathtt{long}, \mathtt{int})
+\end{equation*}
+</div>
+</div> <div class="para">The first one does not qualify because its arity does not match. Neither does the second one, as the types are not convertible (<code class="code-inline tex2jax_ignore">int</code> does not convert to <code class="code-inline tex2jax_ignore">boolean</code>). The last two do match, but both are <em class="emphasis">maximally specific</em>. Java therefore cannot find a declaration and reports an error. If we added a method</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-java">void foo(int x, int y) {}
+</code></pre></div> <div class="para">its signature would be more specific than <span class="process-math">\((\mathtt{int}, \mathtt{float})\)</span> and <span class="process-math">\((\mathtt{long}, \mathtt{int})\text{.}\)</span> Java then could find a unique maximally specific signature.</div></article><span class="incontext"><a href="sec-java-overload.html#example-39" class="internal">in-context</a></span>
+</body>
+</html>

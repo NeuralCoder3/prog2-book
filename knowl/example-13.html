@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.15.3</span><span class="period">.</span><span class="space"> </span><span class="title">Shifts.</span>
+</h4> <div class="para">Let us consider a code fragment from the implementation of the ext4 file system in the Linux kernel:</div> <aside class="aside aside-like"><div class="para">Bug 14287, Linux kernel, 2009. <a class="external" href="https://bugzilla.kernel.org/show_bug.cgi?id=14287" target="_blank"><code class="code-inline tex2jax_ignore">https://bugzilla.kernel.org/show_bug.cgi?id=14287</code></a>.</div></aside> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">...
+groups_per_flex = 1 &lt;&lt; s;
+flex_group_count = ... / groups_per_flex;
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20...%0A%20%20%20%20%20%20%20%20%20%20%20%20groups_per_flex%20%3D%201%20%3C%3C%20s%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20flex_group_count%20%3D%20...%20%2F%20groups_per_flex%3B%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">According to page 493 of the C99 Standard, the behavior of shifts is undefined in certain situations:</div> <blockquote class="blockquote"><div class="para">“The behavior is undefined in the following circumstances: [...] An expression is shifted by a negative number or by an amount greater than or equal to the width of the promoted expression (6.5.7)”</div></blockquote> <div class="para">Assume that <code class="code-inline tex2jax_ignore">sizeof(int) == 4</code>. If the value of <code class="code-inline tex2jax_ignore">s</code> is greater than or equal to 32, the programs behavior is undefined.</div> <div class="para">The C Standard leaves the behavior of such shifts undefined because different processors implement them differently. In the 32-bit versions of MIPS and the widely used x86 architecture, only the lowest 5 bit of the shift amount are taken into account. A shift by 32 there is equivalent to a shift by 0. On a PowerPC processor, the lowest <em class="emphasis">6</em> bit of the shift amount are considered. There, a left shift by 32 results in the value 0. Both implementations are justified. None is “wrong”.</div> <div class="para">If C defined one of these meanings, or even a third one, for shifts, the implementations on <em class="emphasis">every</em> processor would need to respect this. For processors that implement shifts differently, this requires additional code. This is to be avoided according to C's philosophy, therefore the behavior is undefined to enable more efficient implementations for the <em class="emphasis">defined</em> behavior.</div> <div class="para">The above-mentioned bug report also noted that the code crashed on a PowerPC since <code class="code-inline tex2jax_ignore">groups_per_flex</code> had the value 0, leading to a division by zero that caused an exception in the PowerPC processor. A programmer attempted to fix this error by testing the variable for 0 after the shift:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">...
+groups_per_flex = 1 &lt;&lt; s;
+/* There are some situations, after shift the
+    value of 'groups_per_flex' can become zero
+    and division with 0 will result in fixpoint
+    divide exception */
+if (groups_per_flex == 0)
+    return 1;
+flex_group_count = ... / groups_per_flex;
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20...%0A%20%20%20%20%20%20%20%20%20%20%20%20groups_per_flex%20%3D%201%20%3C%3C%20s%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F*%20There%20are%20some%20situations%2C%20after%20shift%20the%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20value%20of%20'groups_per_flex'%20can%20become%20zero%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20and%20division%20with%200%20will%20result%20in%20fixpoint%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20divide%20exception%20*%2F%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20(groups_per_flex%20%3D%3D%200)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20flex_group_count%20%3D%20...%20%2F%20groups_per_flex%3B%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div> <div class="para">This correction is wrong, since it does not eliminate the undefined behavior. The C compiler that is used to compile the Linux kernel therefore promptly “optimized the fix away”. That is correct, since the program's behavior is undefined when <code class="code-inline tex2jax_ignore">s</code> is greater than or equal to the number of bits in an <code class="code-inline tex2jax_ignore">int</code>. In the defined case, the content of <code class="code-inline tex2jax_ignore">groups_per_flex</code> is never 0, thus the if-statement's condition is always false and it can be removed.</div> <div class="para">A correct fix would be:</div> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;">
+<pre class="program"><code class="language-c">if (s &lt; 0 || s &gt;= CHAR_BIT * sizeof(int))
+    return 1;
+groups_per_flex = 1 &lt;&lt; s;
+flex_group_count = ... / groups_per_flex;
+</code></pre>
+<a xmlns:mb="https://pretextbook.org/" xmlns:msxsl="urn:schemas-microsoft-com:xslt" style="margin-top:.6em;color: var(--bodytitle);" target="_blank" href="https://prog2.de/book/external/code/c_codecast.html?autocompile=true&amp;code=%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20(s%20%3C%200%20%7C%7C%20s%20%3E%3D%20CHAR_BIT%20*%20sizeof(int))%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20groups_per_flex%20%3D%201%20%3C%3C%20s%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20flex_group_count%20%3D%20...%20%2F%20groups_per_flex%3B%0A%20%20%20%20%20%20%20%20%20%20">Run</a>
+</div></article><span class="incontext"><a href="sec-c-undef.html#example-13" class="internal">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h3 class="heading"><span class="type">Paragraph</span></h3>
+<div class="para logical">
+<div class="para">The abstract syntax of a language is given by a <dfn class="terminology">syntax definition</dfn> using a table like the following:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{rclll}
+\text{Category}    \amp          \amp \text{Abstract Syntax} \amp \text{Concrete Syntax} \amp \text{Description} \\
+\hline
+\mathit{Expr}\ni e \amp \syndef  \amp \mathtt{Add}[e_1,e_2] \amp e_1+e_2                \amp \text{Addition} \\
+\amp        | \amp \mathtt{Mul}[e_1,e_2] \amp e_1*e_2                \amp \text{Multiplication} \\
+\amp        | \amp \mathtt{Const}_c      \amp c                      \amp \text{Constant} \\
+\amp        | \amp \mathtt{Var}_x        \amp x                      \amp \text{Variable} \\
+\end{array}
+\end{equation*}
+</div>
+<div class="para">The column “Category” defines a specific syntactic category (expression, statement, and so on). For each category there may be multiple rows. Each row defines one syntactic construct of the respective category. The column “Abstract Syntax” defines the <em class="emphasis">structure</em> for that specific construct: A piece of abstract syntax consists of</div>
+<ul class="disc">
+<li><div class="para">a label (such as <span class="process-math">\(\mathtt{Add}\)</span>) that denotes the construct. It is also used as the label of a node in an abstract syntax tree that represents the instance of such a construct in a concrete program.</div></li>
+<li><div class="para">a list of children given in brackets. These are given by variable names of specific categories, for example <span class="process-math">\(\mathtt{Add}[e_1, e_2]\)</span> means that an <span class="process-math">\(\mathtt{Add}\)</span> construct consists of two sub-expressions.</div></li>
+<li><div class="para">possibly some attributes given as subscripts to the label. These attributes constitute additional information for a piece of abstract syntax such as the concrete name of an identifier or the value of a constant. These are not important for the structure of the program but may be important later on to analyze, execute, or transform the program.</div></li>
+</ul>
+<div class="para">The column “Concrete Syntax” shows how the construct looks like in written program text. In both columns one can use variables which stand for other syntactic constructs with the same name (e.g. <span class="process-math">\(e\)</span> for expressions). Each variable must be defined in the category column to indicate from which category a construct comes. The example above for instance defines a construct <span class="process-math">\(\mathtt{Add}\)</span> which belongs to the category <span class="process-math">\(\Expr\)</span> and stands for an addition expression and consists of two other constructs that are from the category <span class="process-math">\(\Expr\)</span> as well.</div>
+</div>
+<span class="incontext"><a href="sec-c0-syntax-general.html#p-632" class="internal">in-context</a></span>
+</body>
+</html>

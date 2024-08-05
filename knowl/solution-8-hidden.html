@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><div class="solution solution-like">
+<div class="para logical">
+<div class="para">We first prove the dual formulation of the above statement:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+n \geq 2^{h/2}\text{.}
+\end{equation*}
+</div>
+<div class="para">To do this, we introduce the minimal size of a balanced tree of height <span class="process-math">\(h\)</span> as <span class="process-math">\(s_{min}(h)\text{.}\)</span>
+</div>
+</div> <div class="para logical">
+<div class="para">
+<em class="emphasis"><span class="process-math">\(h = 0:\)</span></em> <div class="para">The tree is a single node.</div>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+s_{min}(h) := 1\text{.}
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">
+<em class="emphasis"><span class="process-math">\(h = 1:\)</span></em> <div class="para">The tree is either a root with a single child or a root node with two children. The first case has less nodes, so we define:</div>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+s_{min}(h) := 2\text{.}
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">
+<em class="emphasis"><span class="process-math">\(h-1,h\rightarrow h + 1:\)</span></em> <div class="para">By the definition of height, one subtree has height <span class="process-math">\(h-1\text{.}\)</span> Using proof by contradiction, we can show that the other subtree has height <span class="process-math">\(h-2\)</span> as the size <span class="process-math">\(s_{min}\)</span> would not be minimal otherwise. By recursion, we obtain the minimal sized trees for <span class="process-math">\(h-1\)</span> and <span class="process-math">\(h-2\text{.}\)</span>
+</div>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+s_{min}(h+1) := s_{min}(h) + s_{min}(h-1) + 1\text{.}
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">By definition of <span class="process-math">\(s_{min}\text{,}\)</span> we have for every tree of size <span class="process-math">\(n\)</span> and height <span class="process-math">\(h\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+n \geq s_{min}(h)\text{.}
+\end{equation*}
+</div>
+<div class="para">We show <span class="process-math">\(s_{min} \geq 2^{h/2}\)</span> to obtain <span class="process-math">\(n\geq 2^{h/2}\)</span> by transitivity.</div>
+</div> <div class="para">By complete induction on <span class="process-math">\(h\text{:}\)</span>
+</div> <div class="para logical">
+<div class="para"><em class="emphasis"><span class="process-math">\(h = 0:\)</span></em></div>
+<div class="displaymath process-math">
+\begin{equation*}
+s_{min}(h) = s_{min}(0) = 1 \geq 1 = 2^{0} = 2^{h/2}\text{.}
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para"><em class="emphasis"><span class="process-math">\(h = 1:\)</span></em></div>
+<div class="displaymath process-math">
+\begin{equation*}
+s_{min}(h) = s_{min}(1) = 2 \geq \sqrt{2} = 2^{0.5} = 2^{h/2}\text{.}
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para"><em class="emphasis"><span class="process-math">\(h = 2:\)</span></em></div>
+<div class="displaymath process-math">
+\begin{align*}
+s_{min}(h) \amp= s_{min}(h-1) + s_{min}(h-2) + 1\\
+\amp = s_{min}(1) + s_{min}(0) + 1\\
+\amp = 2 + 1 = 3 \geq 2 = 2^{1}\\
+\amp = 2^{h/2}
+\end{align*}
+</div>
+</div> <div class="para logical">
+<div class="para">
+<em class="emphasis"><span class="process-math">\(h-1,h\rightarrow h + 1:\)</span></em> <div class="para">Induction hypothesis: <span class="process-math">\(s_{min}(h-1)\geq 2^{(h-1)/2} = 2^{h/2-1}\)</span>
+</div>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+s_{min}(h+1) \amp= s_{min}(h) + s_{min}(h-1) + 1\\
+\amp = (s_{min}(h-1) + s_{min}(h-2) + 1) + s_{min}(h-1) + 1\\
+\amp = 2s_{min}(h-1) + s_{min}(h-2) + 2\\
+\amp \geq 2s_{min}(h-1) \\
+\amp \overset{IH}{\geq} 2\cdot 2^{h/2-1}\\
+\amp = 2^{h/2}
+\end{align*}
+</div>
+</div> <div class="para logical">
+<div class="para">Lastly, we obtain from <span class="process-math">\(n\geq 2^{h/2}\)</span> the inequality:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+h \leq 2\log_2(n)\text{.}
+\end{equation*}
+</div>
+</div>
+</div></body>
+</html>
